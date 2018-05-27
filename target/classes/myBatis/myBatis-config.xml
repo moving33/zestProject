@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<typeAliases>
+		<typeAlias type="com.zest.web.model.LectureVO"  alias="lectureVO" />
+		<typeAlias type="com.zest.web.model.CategoryVO" alias="CategoryVO" />
+		<typeAlias type="com.zest.web.model.ClientVO" alias="ClientVO" />	
+	</typeAliases>
+	
+    <!--Sql Mapper 설정-->
+    <mappers>
+        <!--위치값을 줄때 루트 폴터는 resources 폴더이다.-->
+        <mapper resource="myBatis/test/test.xml"></mapper>
+        <mapper resource="myBatis/category/category-sqlMapping.xml"/>
+        <mapper resource="myBatis/category/lecture-sqlMapping.xml" />        
+        <!-- 클라이언트 -->
+        <mapper resource="myBatis/client/client-sqlMapping.xml" />
+    </mappers>
+</configuration>

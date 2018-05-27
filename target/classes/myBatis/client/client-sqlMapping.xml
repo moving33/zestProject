@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+ <mapper namespace="com.zest.client">
+ 
+ 	<!-- client 조회 -->
+ 	<select id="getClient" parameterType="ClientVO" resultType="ClientVO">
+ 	 SELECT * FROM CLIENT WHERE CL_EMAIL = #{cl_email}   
+ 	</select>
+ 	
+ 	<!-- client 가입 -->
+ 	<insert id="insertClient" parameterType="ClientVO">
+ 	 INSERT INTO CLIENT(CL_NAME, CL_EMAIL, CL_PASS) VALUES (#{cl_name} ,#{cl_email}, #{cl_pass});
+ 	</insert>
+ 	
+ 	 
+ </mapper>
