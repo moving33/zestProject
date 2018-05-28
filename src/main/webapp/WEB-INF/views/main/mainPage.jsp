@@ -53,7 +53,7 @@
 				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
+			<div class="collapse navbar-collapse" id="loginCheck">
 				<!-- 최상위 메뉴 -->
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item activej"><a class="nav-linkj logo"
@@ -394,7 +394,8 @@
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.bundle.min.js"></script>
 	<script src="js/main/mainPage.js"></script>
-	<c:if test="${ login == 'success' }">
+	<script src="js/common.js"></script>
+	<%-- <c:if test="${ login == 'success' }">
 		<script>
 		// 로그인시 창바꾸기 마이페이지와 로그아웃이 생김 (j)
 			var html = "<ul class='navbar-nav ml-auto'>" +
@@ -411,7 +412,7 @@
 			"</ul>";
 	$("#navbarResponsive").html(html);
 		</script>
-	</c:if>
+	</c:if> --%>
 </body>
 
 </html>

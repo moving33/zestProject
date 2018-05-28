@@ -33,12 +33,12 @@
 			<mapping path="/main"/>
 			<mapping path="/category"/>
 			<mapping path="/clientPage"/>			
-			<beans:bean class="com.zest.web.interceptor.LoginCheckInterceptor" />
+			<beans:bean class="com.zest.web.client.interceptor.LoginCheckInterceptor" />
 		</interceptor>
 	</interceptors>
 	 
 	
-	<context:component-scan base-package="com.zest.web.controller" />
+	<context:component-scan base-package="com.zest.web.client.controller" />
 	
 	
 	

@@ -14,7 +14,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import com.zest.web.model.LectureVO;
+import com.zest.web.client.model.LectureVO;
 
 
 public class DbTest {

@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.test">
 
-   	<resultMap type="com.zest.web.model.LectureVO" id="lecture">
+   	<resultMap type="com.zest.web.client.model.LectureVO" id="lecture">
 		<result column="LECTURE_ID" property="lecture_id"/>
 		<result column="LECTURE_NAME" property="lecture_name" />
 		<result column="LECTURE_COUNT" property="lecture_count" />

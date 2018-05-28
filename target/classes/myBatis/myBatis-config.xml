@@ -4,9 +4,9 @@
 <configuration>
 
 	<typeAliases>
-		<typeAlias type="com.zest.web.model.LectureVO"  alias="lectureVO" />
-		<typeAlias type="com.zest.web.model.CategoryVO" alias="CategoryVO" />
-		<typeAlias type="com.zest.web.model.ClientVO" alias="ClientVO" />	
+		<typeAlias type="com.zest.web.client.model.LectureVO"  alias="lectureVO" />
+		<typeAlias type="com.zest.web.client.model.CategoryVO" alias="CategoryVO" />
+		<typeAlias type="com.zest.web.client.model.ClientVO" alias="ClientVO" />	
 	</typeAliases>
 	
     <!--Sql Mapper 설정-->
