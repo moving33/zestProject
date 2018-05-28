@@ -38,12 +38,12 @@
 			<!-- 검색창 -->
 			<form class="flyout-search" action="#" name="search">
 				<div class="searchdiv" style="border: 2px solid #ff7200">
-					<div class="inputlmg">
+					<div class="inputlmg" style="padding-top: 3px;">
 						<img src="images/돋보기.png" onclick='#' style="margin-left: 5px;">
 						<!-- 검색 텍스트 -->
 						<input type="text" name="search"
 							placeholder="배우고 싶은 수업 또는 튜터를 검색해보세요!" onclick="#" value=""
-							style="border-color: #ffffff00; width: 330px; outline: none; padding-top: 3px;">
+							style="border-color: #ffffff00; width: 330px; outline: none; padding-top: 1px;">
 					</div>
 				</div>
 			</form>

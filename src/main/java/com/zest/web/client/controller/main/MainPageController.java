@@ -27,6 +27,7 @@ import com.zest.web.client.aop.AopAdvice;
 import com.zest.web.client.model.ClientVO;
 import com.zest.web.client.model.LectureVO;
 import com.zest.web.client.service.LectureService;
+import com.zest.web.client.service.client.ClientUpdateService;
 
 @Controller
 public class MainPageController {
@@ -35,6 +36,9 @@ public class MainPageController {
 
 	@Autowired
 	LectureService lectureService;
+	
+	@Autowired
+	ClientUpdateService clientUpdateService;
 
 	// 카테고리 강의 리스트를 저장해 놓는 곳
 	Map<String, List<LectureVO>> lectureVOlist = new HashMap<>();
@@ -102,6 +106,8 @@ public class MainPageController {
 		if(clientVO != null) {
 			session.removeAttribute("client");
 			session.invalidate();
+			//마지막 로그인 업데이트
+			clientUpdateService.clientLastLogin(clientVO);
 		}		
 		//로그 아웃후 다시 메인 페이지로 이동
 		return "redirect:/main";
@@ -115,5 +121,15 @@ public class MainPageController {
 	public void setLectureService(LectureService lectureService) {
 		this.lectureService = lectureService;
 	}
+
+	public ClientUpdateService getClientUpdateService() {
+		return clientUpdateService;
+	}
+
+	public void setClientUpdateService(ClientUpdateService clientUpdateService) {
+		this.clientUpdateService = clientUpdateService;
+	}
+	
+	
 
 }

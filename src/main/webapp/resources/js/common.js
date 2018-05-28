@@ -4,7 +4,6 @@ $(document).ready(function(){
    var list = $('#loginCheck');
    var listHtml = '';
    
-   alert("스크립트 세션 틀어왔다");
    
    fetch("/zest/session",{      
       
@@ -18,8 +17,6 @@ $(document).ready(function(){
          return response.json();
       }).then((data) => {
          if(data == 1){
-            alert(data);
-            alert("로그인 성공");
             var listHtml = "<ul class='navbar-nav ml-auto'>" +
 			"<li class='nav-item activej'>"+
 			"<a class='nav-linkj logo'id='service' href='#'><b>서비스소개</b>" +
@@ -33,8 +30,55 @@ $(document).ready(function(){
 			"<b>로그아웃</b></a></li>" +
 			"</ul>";
             list.html(listHtml);
+            changePageColor();
+            
          }
       }).catch((e) => {
          console.log(e);
-      });
+      });  
 });
+
+
+function changePageColor(){
+	 $("#service").on({
+			mouseenter : function() {
+				$(this).css("background-color", "#ffffff"),
+				$(this).css("color", "#ff7200");
+			},
+			mouseleave : function() {
+				$(this).css("background-color", "#ffffff"),
+				$(this).css("color", "#000000");
+			}
+		});
+	 
+	 $("#insert").on({
+			mouseenter : function() {
+				$(this).css("background-color", "#ffffff"),
+				$(this).css("color", "#ff7200");
+			},
+			mouseleave : function() {
+				$(this).css("background-color", "#ffffff"),
+				$(this).css("color", "#000000");
+			}
+		});
+	 $("#myPage").on({
+			mouseenter : function() {
+				$(this).css("background-color", "#ffffff"),
+				$(this).css("color", "#ff7200");
+			},
+			mouseleave : function() {
+				$(this).css("background-color", "#ffffff"),
+				$(this).css("color", "#000000");
+			}
+		});
+	 $("#logout").on({
+			mouseenter : function() {
+				$(this).css("background-color", "#ffffff"),
+				$(this).css("color", "#ff7200");
+			},
+			mouseleave : function() {
+				$(this).css("background-color", "#ffffff"),
+				$(this).css("color", "#000000");
+			}
+		});
+}

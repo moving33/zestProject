@@ -50,6 +50,15 @@ public class ClientDAOImpl implements ClientDAO {
 		
 		
 	}
+	
+	
+	//lastLogin 업데이트
+	@Override
+	public void updateLastLogin(ClientVO clientVO) {
+		logger.info("..ing");
+		sqlSessionTemplate.update("com.zest.client.updateLastLogin", clientVO);
+		
+	}
 
 	public SqlSessionTemplate getSqlSessionTemplate() {
 		return sqlSessionTemplate;
