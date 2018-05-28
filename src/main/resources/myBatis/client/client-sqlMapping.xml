@@ -14,5 +14,8 @@
  	 INSERT INTO CLIENT(CL_NAME, CL_EMAIL, CL_PASS) VALUES (#{cl_name} ,#{cl_email}, #{cl_pass});
  	</insert>
  	
+ 	<update id="updateLastLogin" parameterType="ClientVO">
+ 	 UPDATE CLIENT set CL_LL_DATE= now() where CL_EMAIL = #{cl_email}
+ 	</update>
  	 
  </mapper>

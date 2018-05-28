@@ -14,5 +14,6 @@ public interface ClientDAO {
 	List<ClientVO> getClientList(ClientVO clientVO);	
 	//특정회원조회
 	ClientVO getClient(ClientVO clientVO);
-	
+	//로그아웃시 마지막 날짜 업데이트 
+	void updateLastLogin(ClientVO clientVO);
 }

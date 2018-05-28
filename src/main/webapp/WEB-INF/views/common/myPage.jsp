@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,7 +31,8 @@
 				</div>
 				<div class="rightmenu">
 					<ul>
-						<li><a href="#"> <span> <img src="images/common/icon_ttalk.png"><br>
+						<li><a href="#"> <span> <img
+									src="images/common/icon_ttalk.png"><br>
 							</span> <span>실시간톡</span>
 						</a></li>
 						<li><a href="#"> <span> <img
@@ -56,7 +58,7 @@
 									style="background-image: url('//taling.me/Content/Uploads/Profile/339ed0e1d12129252e9b7a0df29088ddda7583c4.jpg')">
 								</div>
 								<div class="right">
-									<div class="right01">사용자이름</div>
+									<div class="right01">${client.cl_name}</div>
 									<div class="right02">
 										<a href="#"> <span>정보수정</span>
 										</a>
@@ -94,21 +96,24 @@
 						<div class="sec03">
 							<div class="box">
 								<div class="left">
-									<div class="smsize">등록된 전화번호</div>
-									<div class="middle smsize">등록된 이메일</div>
-									<div class="middle smsize">학교 정보</div>
-									<div class="middle smsize">계정 정보</div>
-								</div>
+									<div class="lgsize">핸드폰 번호</div>
+									<div class="middle lgsize">등록된 이메일</div>
+									<div class="middle lgsize">학교 정보</div>
+									
+								</div>								
+								
 								<div class="right">
 									<div class="lgsize">
-										<a href="#"> <span>번호 수정</span></a>
+									<c:if test="${client.cl_hp == 'none'}">미인증
+									<a href="#"><span>번호 등록</span></a>
+									</c:if>
+										<c:if test="${client.cl_hp != 'none'}">client.cl_hp
+										<a href="#"><span>번호 수정</span></a>
+										</c:if>										
 									</div>
-
-									<div class="middle lgsize">이메일@asddd.com</div>
+									<div class="middle lgsize">${client.cl_email}</div>
 									<div class="middle lgsize">인증여부</div>
-									<div class="middle lgsize">
-										가입 이메일 정보 <a href="#"> <span>비밀번호변경</span>
-										</a>
+									
 									</div>
 								</div>
 							</div>
@@ -185,8 +190,8 @@
 				<div class="info">
 					<b>드루와</b>
 					<ul>
-						<li><img src="images/common/yellow.png">&nbsp;KAKAO 옐로우ID /
-							@Droowa</li>
+						<li><img src="images/common/yellow.png">&nbsp;KAKAO
+							옐로우ID / @Droowa</li>
 						<li>운영시간 / 평일 10:00~19:00</li>
 					</ul>
 				</div>
@@ -200,8 +205,9 @@
 				<div class="logo_box">
 					<a href="#" target="_blank"><img
 						src="images/common/ic_sns_facebook_38_38.png"></a> <a href="#"
-						target="_blank"><img src="images/common/ic_sns_instagram_38_38.png"></a>
-					<a href="#" target="_blank"><img
+						target="_blank"><img
+						src="images/common/ic_sns_instagram_38_38.png"></a> <a href="#"
+						target="_blank"><img
 						src="images/common/ic_sns_youtube_38_38.png"></a>
 				</div>
 
