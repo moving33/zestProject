@@ -32,7 +32,8 @@
 		<interceptor>
 			<mapping path="/main"/>
 			<mapping path="/category"/>
-			<mapping path="/clientPage"/>			
+			<mapping path="/clientPage"/>	
+			<mapping path="/tutorRegiPage"/>		
 			<beans:bean class="com.zest.web.client.interceptor.LoginCheckInterceptor" />
 		</interceptor>
 	</interceptors>

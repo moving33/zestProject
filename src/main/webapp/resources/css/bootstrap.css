@@ -169,7 +169,8 @@ a {
 
 a:hover {
   color: #0056b3;
-  text-decoration: underline;
+  /* 라인 표시 지우기 
+  text-decoration: underline; */
 }
 
 a:not([href]):not([tabindex]) {

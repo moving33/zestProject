@@ -20,7 +20,7 @@
 				<div class="leftmenu">
 					<ul>
 
-						<li><a href="#"> <span>튜터등록</span>
+						<li><a href="tutorRegiPage"> <span>튜터등록</span>
 						</a></li>
 						<li><a href="#"> <span>수업검색</span>
 						</a></li>
