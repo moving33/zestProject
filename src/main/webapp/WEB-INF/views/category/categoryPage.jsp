@@ -46,7 +46,7 @@
 				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
+			<div class="collapse navbar-collapse" id="loginCheck">
 				<!-- 최상위 메뉴 -->
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item activej"><a class="nav-linkj logo" id="service" href="#">
@@ -247,25 +247,8 @@
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.bundle.min.js"></script>
 	<script src="js/category/categoryPage.js"></script>
-	<c:if test="${ login == 'success' }">
-		<script>
-		// 로그인시 창바꾸기 마이페이지와 로그아웃이 생김 (j)
-			alert("로그인  중입니다.");		
-			var html = "<ul class='navbar-nav ml-auto'>" +
-			"<li class='nav-item activej'>"+
-			"<a class='nav-linkj logo'id='service' href='#'><b>서비스소개</b>" +
-			"<span class='sr-only'>(current)</span></a></li>" +
-			"<li class='nav-item'>"+
-			"<a class='nav-linkj' id='insert' href='#' style='font-size: 20px;'><b>튜터 등록</b></a></li>" +
-			"<li class='nav-item'>"+
-			"<a class='nav-linkj' id='myPage' href='clientPage' style='font-size: 20px;'><b>마이페이지</b></a></li>" +
-			"<li class='nav-item'>"+
-			"<a class='nav-linkj' id='logout' href='main/logout' style='font-size: 20px;'>"+			
-			"<b>로그아웃</b></a></li>" +
-			"</ul>";
-	$("#navbarResponsive").html(html);
-		</script>
-	</c:if>
+	<script src="js/common.js"></script>
+
 
 </body>
 
