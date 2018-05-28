@@ -29,6 +29,7 @@ public class LoginController {
 	// 로그인 페이지
 	@RequestMapping(value = "/common/loginPage")
 	public ModelAndView viewMainPage() {
+		logger.info("...ing-jh");
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("common/loginPage");
 		return modelAndView;
