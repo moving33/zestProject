@@ -40,10 +40,22 @@ public class Tutor_PropDAOImpl implements Tutor_PropDAO {
 		return sqlSessionTemplate.selectOne("com.zest.tutorProp.searchTutorProp",vo);
 	}
 
+	//튜터 리스트 검색
 	@Override
-	public List<Tutor_PropVO> getListTutor_prop(Tutor_PropVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Tutor_PropVO> getListTutor_prop(Object obj) {
+
+		return sqlSessionTemplate.selectList("com.zest.tutorProp.getTutorPropList",obj);
+
+	}
+
+	@Override
+	public Tutor_PropVO getTutor_propNumber(Integer integer) {
+		return sqlSessionTemplate.selectOne("com.zest.tutorProp.searchTutorPropNumber",integer);
+	}
+
+	@Override
+	public Integer getTutor_propCount(Object obj) {
+		return sqlSessionTemplate.selectOne("com.zest.tutorProp.countTutorProp",obj);
 	}
 
 	public SqlSessionTemplate getSqlSessionTemplate() {

@@ -28,9 +28,19 @@ public class Tutor_PropSearchServiceImpl implements Tutor_PropSearchService {
 	}
 
 	@Override
-	public List<Tutor_PropVO> getListTutor_prop(Tutor_PropVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Tutor_PropVO> getListTutor_prop(Object obj) {
+
+		return tutor_PropDAO.getListTutor_prop(obj);
+	}
+
+	@Override
+	public Integer getTutor_propCount(Object obj) {
+		return tutor_PropDAO.getTutor_propCount(obj);
+	}
+
+	@Override
+	public Tutor_PropVO getTutor_propNumber(Integer integer) {
+		return tutor_PropDAO.getTutor_propNumber(integer);
 	}
 
 	public Tutor_PropDAO getTutor_PropDAO() {

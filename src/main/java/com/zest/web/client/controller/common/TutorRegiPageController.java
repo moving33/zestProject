@@ -43,7 +43,6 @@ public class TutorRegiPageController {
 	}
 
 	// 이미지 파일 업로드관련
-	@Transactional
 	@RequestMapping(value = "/tutorRegiPage", method = RequestMethod.POST)
 	public ModelAndView insertTutorRegiPage(Tutor_PropVO vo, MultipartFile file_profile,
 			MultipartFile file_certification, HttpSession session,ModelAndView modelAndView) throws IllegalStateException, IOException {

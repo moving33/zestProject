@@ -17,7 +17,15 @@ public interface Tutor_PropDAO {
 	Tutor_PropVO getTutor_prop(Tutor_PropVO vo);
 	
 	//리스트 검색
-	List<Tutor_PropVO> getListTutor_prop(Tutor_PropVO vo);
+	List<Tutor_PropVO> getListTutor_prop(Object obj);
+
+	//primary key 가지고 검색
+	Tutor_PropVO getTutor_propNumber(Integer integer);
+
+	//승인할 애들의 총 개수 가져오기
+	Integer getTutor_propCount(Object obj);
+
+
 	
 	
 	

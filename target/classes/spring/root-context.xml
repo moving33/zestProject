@@ -43,6 +43,8 @@
 		<constructor-arg ref="sqlSessionFactoryBean" />
 	</bean>	
 	
+	<bean class="com.zest.web.client.model.Paging"></bean>
+	
 
 	<!-- Transaction 설정하기 --> <!-- Transaction Manager 설정 commit, rollback -->
 	<!-- <bean id="transactionManager"

@@ -1,5 +1,6 @@
 package com.zest.web.client.model;
 
+import java.sql.Timestamp;
 import java.util.Arrays;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -14,16 +15,20 @@ public class Tutor_PropVO {
 	private String tp_nn; //신청한 튜터의 닉네임
 	private String tp_image_path; // 신청한 튜터의 인증관련 이미지의 경로
 	private MultipartFile[] file_add; // 추가한 파일 사진 
-	private String tp_prop_date; // 튜터의 신청일자
+	private Timestamp tp_prop_date; // 튜터의 신청일자
 	private String tp_message; // 튜터 승인여부 관련메세지 
 	private Integer tp_status; // 튜터신청의 상태  0은 미승인 1은 승인
-	
-	
-	
-	
-	
-	
-	
+	private String format_tpd; // 튜터의 신청일자를 원하는 날짜형식으로 변환
+
+
+	public String getFormat_tpd() {
+		return format_tpd;
+	}
+
+	public void setFormat_tpd(String format_tpd) {
+		this.format_tpd = format_tpd;
+	}
+
 	public MultipartFile[] getFile_add() {
 		return file_add;
 	}
@@ -67,10 +72,10 @@ public class Tutor_PropVO {
 	public void setTp_image_path(String tp_image_path) {
 		this.tp_image_path = tp_image_path;
 	}
-	public String getTp_prop_date() {
+	public Timestamp getTp_prop_date() {
 		return tp_prop_date;
 	}
-	public void setTp_prop_date(String tp_prop_date) {
+	public void setTp_prop_date(Timestamp tp_prop_date) {
 		this.tp_prop_date = tp_prop_date;
 	}
 	public String getTp_message() {
@@ -85,19 +90,21 @@ public class Tutor_PropVO {
 	public void setTp_status(Integer tp_status) {
 		this.tp_status = tp_status;
 	}
+
 	@Override
 	public String toString() {
-		return "Tutor_PropVO [tp_no=" + tp_no + ", tp_category_id=" + tp_category_id + ", tp_email=" + tp_email
-				+ ", tp_hp=" + tp_hp + ", tp_nn=" + tp_nn + ", tp_image_path=" + tp_image_path + ", file_add="
-				+ Arrays.toString(file_add) + ", tp_prop_date=" + tp_prop_date + ", tp_message=" + tp_message
-				+ ", tp_status=" + tp_status + "]";
+		return "Tutor_PropVO{" +
+				"tp_no=" + tp_no +
+				", tp_category_id='" + tp_category_id + '\'' +
+				", tp_email='" + tp_email + '\'' +
+				", tp_hp='" + tp_hp + '\'' +
+				", tp_nn='" + tp_nn + '\'' +
+				", tp_image_path='" + tp_image_path + '\'' +
+				", file_add=" + Arrays.toString(file_add) +
+				", tp_prop_date=" + tp_prop_date +
+				", tp_message='" + tp_message + '\'' +
+				", tp_status=" + tp_status +
+				", format_tpd='" + format_tpd + '\'' +
+				'}';
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 }
