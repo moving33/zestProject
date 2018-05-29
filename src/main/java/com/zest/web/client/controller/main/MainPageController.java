@@ -36,9 +36,7 @@ public class MainPageController {
 
 	@Autowired
 	LectureService lectureService;
-	
-	@Autowired
-	ClientUpdateService clientUpdateService;
+		
 
 	// 카테고리 강의 리스트를 저장해 놓는 곳
 	Map<String, List<LectureVO>> lectureVOlist = new HashMap<>();
@@ -106,8 +104,8 @@ public class MainPageController {
 		if(clientVO != null) {
 			session.removeAttribute("client");
 			session.invalidate();
-			//마지막 로그인 업데이트
-			clientUpdateService.clientLastLogin(clientVO);
+			//마지막 로그인 업데이트 로그아웃시 할 의미가 없어서 로그인으로 옮김
+			//clientUpdateService.clientLastLogin(clientVO);
 		}		
 		//로그 아웃후 다시 메인 페이지로 이동
 		return "redirect:/main";
@@ -122,14 +120,6 @@ public class MainPageController {
 		this.lectureService = lectureService;
 	}
 
-	public ClientUpdateService getClientUpdateService() {
-		return clientUpdateService;
-	}
-
-	public void setClientUpdateService(ClientUpdateService clientUpdateService) {
-		this.clientUpdateService = clientUpdateService;
-	}
-	
 	
 
 }

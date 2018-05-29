@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.zest.web.client.model.ClientVO;
 import com.zest.web.client.service.client.ClientSearchService;
+import com.zest.web.client.service.client.ClientUpdateService;
 
 //회원가입 페이지 컨트롤러
 @Controller
@@ -25,6 +26,9 @@ public class LoginController {
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
+	
+	@Autowired
+	ClientUpdateService clientUpdateService;
 	
 	// 로그인 페이지
 	@RequestMapping(value = "/common/loginPage")
@@ -58,6 +62,8 @@ public class LoginController {
 			modelAndView.addObject("result", "success");
 			//해당 사용자 세션에 저장
 			session.setAttribute("client", vo);
+			//마지막 로그인 날짜 업데이트
+			clientUpdateService.clientLastLogin(vo);
 			return modelAndView;
 		}		
 	}
@@ -77,6 +83,16 @@ public class LoginController {
 	public void setPasswordEncoder(BCryptPasswordEncoder passwordEncoder) {
 		this.passwordEncoder = passwordEncoder;
 	}
+
+	public ClientUpdateService getClientUpdateService() {
+		return clientUpdateService;
+	}
+
+	public void setClientUpdateService(ClientUpdateService clientUpdateService) {
+		this.clientUpdateService = clientUpdateService;
+	}
+	
+	
 	
 	
 }

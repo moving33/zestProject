@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+ <mapper namespace="com.zest.tutorProp">
+ 
+ 	
+ 
+ 	<!-- 튜터 신청테이블에 데이터 입력-->
+ 	<insert id="insertTutorProp" parameterType="Tutor_PropVO">
+	INSERT INTO TUTOR_PROP(TP_CATEGORY_ID, TP_EMAIL, TP_HP, TP_NN) 
+	values(#{tp_category_id},#{tp_email},#{tp_hp},#{tp_nn})	 		 		
+ 	</insert>
+ 	
+ 	<!-- 이메일 가지고 찾기 -->
+ 	<select id="searchTutorProp" resultType="Tutor_PropVO">
+ 	select * from TUTOR_PROP WHERE TP_EMAIL=#{tp_email} AND TP_STATUS=0
+ 	</select>
+ 	
+ 	<!--  업데이트 -->
+ 	<update id="updateTutorProp" parameterType="Tutor_PropVO">
+ 	<if test="{tp_image_path !=null}">
+ 	update TUTOR_PROP set TP_IMAGE_PATH=#{tp_image_path} where TP_NO=#{tp_no};
+ 	</if>
+ 	
+ 	<if test="{tp_status !=null}">
+ 	update TUTOR_PROP set TP_STATUS=#{tp_status},TP_MESSAGE=#{tp_message} where TP_NO=#{tp_no};
+ 	</if>
+ 	</update>
+ </mapper>

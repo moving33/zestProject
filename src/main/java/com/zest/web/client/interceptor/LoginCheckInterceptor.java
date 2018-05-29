@@ -46,10 +46,14 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		logger.info("로그인 인터셉터 작동");
-		if (request.getSession().getAttribute("client") != null) {			
-			logger.info("로그인 인터셉터 작동");
+		if (request.getSession().getAttribute("client") != null) {					
 			ClientVO clientVO = (ClientVO) request.getSession().getAttribute("client");
-			modelAndView.addObject("client",clientVO);
+			logger.info(clientVO.toString());
+			
+			if(modelAndView == null) {
+				modelAndView = new ModelAndView();
+				modelAndView.addObject("client",clientVO);
+			}
 			//modelAndView.addObject("login", "success");
 		}else {
 			//modelAndView.addObject("login", "logout");

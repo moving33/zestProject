@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <link rel="stylesheet" href="css/common/tutorResistPage.css" />
+<link rel="stylesheet" href="css/bootstrap.css" />
 
 <title>Insert title here</title>
 </head>
@@ -66,8 +67,7 @@
 	<div id="container_register">
 
 		<h1>기본정보 입력</h1>
-		<form method="POST" id="frm-register-detail"
-			enctype="multipart/form-data">
+		<form method="POST" id="frm-register-detail" action="" enctype="multipart/form-data" onsubmit="return validateFile()">
 			<div class="register_cont">
 				<div class="reginput">
 					<ul>
@@ -76,8 +76,8 @@
 								style="background-image: url(//taling.me/Content/Uploads/Profile/339ed0e1d12129252e9b7a0df29088ddda7583c4.jpg)">
 								<div class="picture-overlay">
 									<!-- <img id="thumbnail" src=""> -->
-									<i class="glyphicon glyphicon-edit"></i> <input type="file"
-										id="profile" name="picture" accept="image/*">
+									<i class="glyphicon glyphicon-edit"></i> 
+									<input type="file" id="profile" name="file_profile" accept="image/*" required>
 
 								</div>
 
@@ -86,6 +86,19 @@
 								var file = document.querySelector('#profile');
 								//해당 값이 변환되면 스크립트 작동
 								file.onchange = function() {
+
+									//용량체크
+									var maxSize = 2 * 1024 * 1024; //2M
+									var fileSize = 0;
+
+
+									fileSize = file.files.size;
+
+									if (fileSize > maxSize) {
+										alert("첨부파일 사이즈는 2MB 이내로 등록 가능합니다.    ");
+										return;
+									}
+
 									var fileList = file.files;
 									//읽기
 									var reader = new FileReader();
@@ -143,21 +156,20 @@
 							</p></li>
 					</ul>
 					<ul>
-						<li><label>별명입력</label> <input id="Description"
-							name="Description" type="text"
-							placeholder="튜터님의 정체성을 가장 잘 드러낼 수 있는 별명을 입력해주세요" value=""
-							class="input_txt05"></li>
+						<li><label>별명입력</label> 
+						<input id="Description" name="tp_nn" type="text" placeholder="튜터님의 정체성을 가장 잘 드러낼 수 있는 별명을 입력해주세요" value=""
+							class="input_txt05" required>
+						</li>
 						<li><label>휴대폰 번호</label> <!--select id="Phone1" name="Phone1" class="input_txt04 not">
 						<option value="010" >010</option>
 						<option value="011" >011</option>
 						<option value="019" >019</option>
 						<option value="016" >016</option>
-					</select--> <input id="Phone" name="Phone" type="text"
-							placeholder="010-1234-5678" value="" class="input_txt02">
+					</select--> <input id="Phone" name="tp_hp" type="text" placeholder="010-1234-5678" value="" class="input_txt02" required>
 							<!--input id="Phone3" name="Phone3" type="text" placeholder="휴대폰번호" value="" class="input_txt04"/-->
 
-							<input type="hidden" id="IsPhone" value="0"> <a
-							class="inputbtn" id="btn-register-phone">번호인증</a>
+							<input type="hidden" id="IsPhone" value="0" required> <a
+							class="inputbtn" id="btn-register-phone" style="height: 54px;">번호인증</a>
 							<p class="regintxt01 clearbt redtxt" id="IsPhoneConfirm"
 								style="width: -webkit-fill-available;">번호인증을 눌러 번호를 인증해주세요.</p>
 							<p class="regintxt01 clearbt" id="IsPhoneConfirmed"
@@ -173,159 +185,95 @@
 							</p></li>
 					</ul>
 					<ul>
-						<li><label style="padding: 0px 15px 0px 15px;">신분/학력<br>인증
-						</label>
+						<li>
+						<label style="padding: 0px 15px 0px 15px;">신분/학력<br>인증</label>
 							<p class="regintxt05">소속된 대학이나 졸업한 대학을 인증해주세요. 없으시면 신분증인증을
-								해주시면 됩니다(필수)</p>
-							<p class="regintxt07 clearbt"></p>
-							<p class="regintxt02">
-								<input id="univ" name="univ" type="radio" value="1"
-									class="innone" checked="" onclick="checkLayer(1);"><label
-									for="univ_y" class="chnon">대학인증</label>
-							</p>
-							<p class="regintxt021">
-								<input id="univ" name="univ" type="radio" value="0"
-									class="innone" onclick="checkLayer(2);"><label
-									for="univ_n" class="chnon">대학원인증</label>
-							</p>
-							<p class="regintxt021">
-								<input id="univ" name="univ" type="radio" value="0"
-									class="innone" onclick="checkLayer(3);"><label
-									for="univ_n" class="chnon">신분증인증</label>
-							</p>
-
-							<div id="SchoolMajor">
-								<input id="" name="SchoolMajor" type="text"
-									placeholder="학교(대학) 예) 드루와대학교" value=""
-									class="input_txt03 clearbt"> <input id=""
-									name="SchoolMajorS" type="text" placeholder="학과 예) 드루와학과"
-									value="" class="input_txt03">
-								<p class="regintxt07 clearbt"></p>
-								<p class="regintxt02">
-									<input id="AcademicStatus" name="AcademicStatus" type="radio"
-										value="0" class="innone" checked=""><label
-										for="univ_y" class="chnon">재학</label>
-								</p>
-								<p class="regintxt02">
-									<input id="AcademicStatus" name="AcademicStatus" type="radio"
-										value="1" class="innone"><label for="univ_y"
-										class="chnon">졸업</label>
-								</p>
-								<p class="regintxt02">
-									<input id="AcademicStatus" name="AcademicStatus" type="radio"
-										value="2" class="innone"><label for="univ_y"
-										class="chnon">수료</label>
-								</p>
-
+								해주시면 됩니다(필수)</p>								
+				
 								<p class="regintxt04 clearbt">
-									<b>학력 인증(<font color="red">필수</font>)
-									</b> - 학생증, 재학증명서, 졸업증명서
+									<b>학력 인증,신분인증(<font color="red">필수</font>)</b>
+									<br>
+									 학생증, 재학증명서, 졸업증명서 ,신분증
 								</p>
 								<p class="regintxt05 clearbt">
-									<input type="file" name="School"
-										style="width: -webkit-fill-available;">
+									<input type="file" name="file_certification" style="width: -webkit-fill-available;" id="cf1" required>
 								</p>
+
 								<p class="regintxt01 clearbt redtxt" id="IsSchoolVerified">파일을
 									업로드해주세요.</p>
-
-							</div>
-
-							<div id="SchoolMajor2" style="display: none;">
-								<input id="" name="SchoolMajor2" type="text"
-									placeholder="학교(대학) 예) 드루와대학교" value=""
-									class="input_txt03 clearbt"> <input id=""
-									name="SchoolMajor2S" type="text" placeholder="학과 예) 드루와학과"
-									value="" class="input_txt03">
-								<p class="regintxt07 clearbt"></p>
-								<p class="regintxt02">
-									<input id="AcademicStatus2" name="AcademicStatus2" type="radio"
-										value="0" class="innone"><label for="univ_y"
-										class="chnon">재학</label>
-								</p>
-								<p class="regintxt02">
-									<input id="AcademicStatus2" name="AcademicStatus2" type="radio"
-										value="1" class="innone"><label for="univ_y"
-										class="chnon">졸업</label>
-								</p>
-								<p class="regintxt02">
-									<input id="AcademicStatus2" name="AcademicStatus2" type="radio"
-										value="2" class="innone"><label for="univ_y"
-										class="chnon">수료</label>
-								</p>
-
-								<p class="regintxt04 clearbt">
-									<b>학력 인증(<font color="red">필수</font>)
-									</b> - 학생증, 재학증명서, 졸업증명서
-								</p>
-								<p class="regintxt05 clearbt">
-									<input type="file" name="School2">
-								</p>
-								<p class="regintxt01 clearbt redtxt" id="IsSchoolVerified">파일을
-									업로드해주세요.</p>
-
-							</div>
-
-							<div id="Idcard" style="display: none;">
-								<p class="regintxt04 clearbt">
-									<b>신분 인증(<font color="red">필수</font>)
-									</b> - 주민등록증, 운전면허증
-								</p>
-								<p class="regintxt05 clearbt">
-									<input type="file" name="Idcard">
-								</p>
-								<p class="regintxt01 clearbt redtxt" id="IsSchoolVerified">파일을
-									업로드해주세요.</p>
-
-							</div></li>
-						<br>
-						<br>
+							
+						</li>
+					
+						<li>
+						<p class="regintxt04 clearbt" style="height: 30px;">
+									<b>특기분야를 선택 해주세요(<font color="red">필수</font>)
+									</b>
+								<div class="input-group mb-3" style="width: 515px; margin-left: 145px; height: 70px;">
+									<!-- <div class="input-group-prepend" style="height: 50px; margin-top: 10px;">
+										<button class="btn btn-outline-secondary" type="button" id="categoryBtn">선택하기</button>
+									</div> -->
+									
+									<select class="custom-select" id="categorySelect"
+										name="tp_category_id" required>
+										<option selected>선택해주세요</option>
+										<option value="BEAUTY">뷰티</option>
+										<option value="BUSINESS">실무</option>
+										<option value="DESIGN">디자인</option>
+										<option value="FOOD">요리/음식</option>
+										<option value="LANGUAGE">외국어</option>
+										<option value="LIFE">라이프스타일</option>
+										<option value="MUSIC">뮤직</option>
+										<option value="OTHER">기타</option>
+										<option value="PROGRAM">프로그래밍</option>
+										<option value="SPORTS">스포츠</option>
+									</select> <input type="hidden" id="IsCategory" value="0">
+								</div>
+								</p>	
+							
+							</li>
+							
+							
 						<li><label>자격증<br>(선택)
-						</label> <input id="Cert0" name="Cert0" type="text"
-							placeholder="예) 토플 117, HSK 6급, GTQ 1급, 입상경력.." value=""
-							class="input_txt01">
+						</label> <input id="Cert0" name="Cert0" type="text" placeholder="예) 토플 117, HSK 6급, GTQ 1급, 입상경력.." value=""
+							class="input_txt01" readonly="readonly">
 							<p class="regintxt05 clearbt" style="margin-top: -17px;">
-								<input type="file" name="file0" style="width: 425px;">
+								<input type="file" name="file_add" style="width: 425px;" accept="image/*">
 							</p>
 							<div id="CertAdd"></div> <a onclick="addFile();" class="addbtn">추가+</a>
-							<!-- 올려진 파일의 개수를 얻어오는 녀석 --> <input type="hidden" id="fileCnt"
-							name="fileCnt" value="0"> <script>
+							<!-- 올려진 파일의 개수를 얻어오는 녀석 --> 
+							<input type="hidden" id="fileCnt" name="fileCnt" value="0"> 
+							
+							<script>
 								function removeFile() {
-									
 									var fileNoID = $('#fileCnt');
 									var fileNoData = fileNoID.val();
 									alert(fileNoData);
 									//히든에 저장되있는 값을 -
-									fileNoID.val(fileNoData-1);
+									fileNoID.val(fileNoData - 1);
 									alert(fileNoID.val());
 									//삭제하기
-									var item = document.getElementById("plusFile"+fileNoData);
-									  if(item !=null){
-									      item.parentNode.removeChild(item);
-									   }
-									
+									var item = document.getElementById("plusFile"+ fileNoData);
+									if (item != null) {
+										item.parentNode.removeChild(item);
+									}
+
 								}
-								
+
 								function addFile() {
 									fileCnt = document
 											.getElementById('fileCnt').value;
 									fileCnt++;
-									html = '';
-									html += '<input id="Cert'
-											+ fileCnt
-											+ '" name="Cert'
-											+ fileCnt
-											+ '" type="text" placeholder="예) 토플 117, HSK 6급, GTQ 1급, 입상경력.." value="" class="input_txt01 clearbt"/>';
-									html += '<p class="regintxt05 clearbt"><input type="file" style="width: 425px;" name="file'+fileCnt+'"/></p>';
+									html = '';									
+									html += '<p class="regintxt05 clearbt"><input type="file" accept="image/*" style="width: 425px;" name="file_add"/></p>';
 									html += '<button type="button" onclick="removeFile()" style="margin-top: -70px; margin-right: -40px; float: right; width: 55px; height: 40px;">삭제</button>'
 
 									var div = document.createElement('div');
-											
-									div.setAttribute('id','plusFile'+fileCnt);
-										
+
+									div.setAttribute('id', 'plusFile'+ fileCnt);
+
 									div.style.width = "652px";
 									div.innerHTML = html;
-									document.getElementById('CertAdd')
-											.appendChild(div);
+									document.getElementById('CertAdd').appendChild(div);
 									document.getElementById('fileCnt').value = fileCnt;
 									alert(fileCnt);
 								}
@@ -410,6 +358,7 @@
 
 
 	<script src="js/jquery.min.js"></script>
+	<script src="js/tutor/tutorRegistPage.js"></script>
 	<script src="js/common.js"></script>
 	<!-- <script src="js/tutor/tutorPage.js"></script> -->
 </body>
