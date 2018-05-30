@@ -86,7 +86,7 @@
 
 					<tr style="text-align: center">
 						<td>${item.tp_no}</td>
-						<td><a href="/zest/admin/tutorManager/prop/${item.tp_no}">${item.tp_email}</a></td>
+						<td><a href="/zest/admin/tutorManager/prop/${item.tp_no}" id="detailPage" >${item.tp_email}</a></td>
 						<td>${item.tp_hp}</td>
 						<td>${item.format_tpd}</td>
 						<td>${item.tp_category_id}</td>
@@ -157,16 +157,26 @@
 				</div>
 			</div>
 		</div>
+		</div>
+		
+		
+		<!-- 튜터 상세페이지 -->
+		<div id="detailArticle" style="display: ${display}">
 		<div class="tutorth">
 			<h2>프로필사진</h2>
 			<div class="circle"
 				style="background-image: url('${profile}'); background-size: cover;	background-position: center;">
 			</div>
 		</div>
+		
+		
 		<div class="buttons">
-			<button class="button button2">승인</button>
+			<button class="button button2" id="profileBtn1">승인</button>
 			<br>
-			<button class="button button3">불가</button>
+			<button class="button button3" id="profileBtn2">불가</button>
+			<!-- 체크하기 -->
+			
+			<input type="hidden" id="profileCheck" value="0">
 		</div>
 		<div class="content">
 			<h3>신청한 회원 상세 정보</h3>
@@ -176,7 +186,7 @@
 				<li>신청자 핸드폰 : ${tempVO.tp_hp} </li>
 
 			</ul>
-
+		
 		</div>
 		<br>
 		<div class="confirm">
@@ -188,9 +198,11 @@
 			</div>
 			<div class="schoolbutton">
 
-				<button class="button button2">승인</button>
+				<button class="button button2" id="certiBtn1">승인</button>
 				<br>
-				<button class="button button3">불가</button>
+				<button class="button button3" id="certiBtn2">불가</button>
+				<!-- 체크하기 -->
+			<input type="hidden" id="certiCheck" value="0">
 			</div>
 		</div>
 		<div class="license">
@@ -225,8 +237,19 @@
 		</div>
 		<hr>
 		<div class="allconfirm">
-			<button class="allbutton allbutton2">승인</button>
-			<button class="allbutton allbutton3">불가</button>
+			<button class="allbutton allbutton2" id="submitBtn1">승인</button>
+			<button class="allbutton allbutton3" id="submitBtn2">불가</button>
+			<!-- 이메일과 넘버키를 저장해놓는 녀석 -->
+			<input type="hidden" id="emailData" value="${tempVO.tp_email}" >
+			<input type="hidden" id="numberData" value="${tempVO.tp_no}" >
+			
 		</div>
+		
+		</div>
+		
+		
+		
+		<script src="/zest/js/jquery.min.js"></script>
+		<script src="/zest/js/admin/tutorPropPage.js"></script>
 </body>
 </html>

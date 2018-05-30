@@ -1,13 +1,20 @@
 package com.zest.web.admin.controller.tutor;
 
+import com.zest.web.client.model.ClientVO;
 import com.zest.web.client.model.Paging;
 import com.zest.web.client.model.Tutor_PropVO;
+import com.zest.web.client.service.client.ClientSearchService;
 import com.zest.web.client.service.tutor.Tutor_PropSearchService;
+import com.zest.web.client.service.tutor.Tutor_PropUpdateService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +28,12 @@ public class TutorManagePageController {
 
     @Autowired
     private Tutor_PropSearchService tutor_propSearchService;
+    
+    @Autowired 
+    private ClientSearchService clientSearchService;
+    
+    @Autowired
+    private Tutor_PropUpdateService tutor_PropUpdateService; 
 
     @Autowired
     private Paging paging;
@@ -82,12 +95,13 @@ public class TutorManagePageController {
         model.put("search_text", search_text);
         model.put("search_type", search_type);
         model.put("bp", paging);
+        model.put("display", "none");
         modelAndView.addAllObjects(model);
         modelAndView.setViewName("admin/tutorProp");
         return modelAndView;
     }
 
-
+    //튜터 상세 페이지
     @RequestMapping(value = "/admin/tutorManager/prop/{num}")
     public ModelAndView viewDetailPropPage(ModelAndView modelAndView,
                                            @PathVariable String num,
@@ -178,6 +192,8 @@ public class TutorManagePageController {
         model.put("search_type", search_type);
         model.put("bp", paging);
         model.put("tempVO", tempVo);
+        //디스플레이처리
+        model.put("display", "block");
         modelAndView.addAllObjects(model);
 
 
@@ -185,8 +201,44 @@ public class TutorManagePageController {
         return modelAndView;
     }
 
+    //승인여부결정 
+    @RequestMapping(value="/admin/tutorManager/propSubmit",method=RequestMethod.POST)
+    @ResponseBody
+    public String submitTutorPorp(@RequestBody Map<String,Object> modelMap) {
+    	
+    	
+    	//email를 가지고 튜터를 신청한 해당 클래스를 가져온다
+    	ClientVO tempClientVO = new ClientVO();
+    	tempClientVO.setCl_email((String)modelMap.get("email"));
+    	tempClientVO = clientSearchService.getClient(tempClientVO);
+
+    	//확인
+    	System.out.println(tempClientVO.toString());
+    	
+    	//요청처리된 튜터를 승인한다.
+    	Tutor_PropVO tempTutor_PropVO = new Tutor_PropVO();
+    	tempTutor_PropVO.setTp_no(Integer.valueOf((String)modelMap.get("no")));
+    	tempTutor_PropVO.setTp_status(new Integer(1));
+    	
+    	tutor_PropUpdateService.updateTutor_prop(tempTutor_PropVO);
+    	
+    	//승인 튜터 업데이트 하기
+    	
+    	
+    
+    	
+    	
+    	
+    	return null;
+    }
 
     public void setTutor_propSearchService(Tutor_PropSearchService tutor_propSearchService) {
         this.tutor_propSearchService = tutor_propSearchService;
     }
+
+	public void setClientSearchService(ClientSearchService clientSearchService) {
+		this.clientSearchService = clientSearchService;
+	}
+    
+    
 }

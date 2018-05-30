@@ -196,7 +196,7 @@
 									 학생증, 재학증명서, 졸업증명서 ,신분증
 								</p>
 								<p class="regintxt05 clearbt">
-									<input type="file" name="file_certification" style="width: -webkit-fill-available;" id="cf1" required>
+									<input type="file" id="certFile" name="file_certification" style="width: -webkit-fill-available;" id="cf1" required>
 								</p>
 
 								<p class="regintxt01 clearbt redtxt" id="IsSchoolVerified">파일을
