@@ -80,13 +80,18 @@ $(document).ready(
 								body: JSON.stringify(data),
 								
 							}).then(function(response) {
-
 								if (!response.ok) {
 									throw Error(response.statusText);
 								}
+								//텍스트 기반으로 처리
+								return response.text();						
+							}).then(function(text){
+								console.log(text);
+							
 							});
+							location.href='/zest/admin/tutorManager/prop';
 						} else {
-							return;
+							location.href='/zest/admin/tutorManager/prop';
 						}
 
 					});

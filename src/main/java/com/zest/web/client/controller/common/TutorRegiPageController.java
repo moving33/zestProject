@@ -46,7 +46,6 @@ public class TutorRegiPageController {
 	@RequestMapping(value = "/tutorRegiPage", method = RequestMethod.POST)
 	public ModelAndView insertTutorRegiPage(Tutor_PropVO vo, MultipartFile file_profile,
 			MultipartFile file_certification, HttpSession session,ModelAndView modelAndView) throws IllegalStateException, IOException {
-		logger.info(vo.toString());
 
 		// 클라이언트 객체로부터 정보 가져오기
 		if (session.getAttribute("client") != null) {
@@ -78,9 +77,10 @@ public class TutorRegiPageController {
 			// 추가된 사진 처리하고 저장하기
 			for (int i = 0; i < vo.getFile_add().length; i++) {
 				MultipartFile file = vo.getFile_add()[i];
-				logger.info(file.getOriginalFilename());
+				if(!file.isEmpty()) {
 				String tutorAddFileName = file.getOriginalFilename();
 				file.transferTo(new File("c:/zest/tutorProp/"+tutorProp_no+"/add" + i +"."+ getFileExtension(tutorAddFileName)));
+				}
 			}
 			
 			//사진 경로 업데이트 해주기

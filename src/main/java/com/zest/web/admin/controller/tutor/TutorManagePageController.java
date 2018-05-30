@@ -2,8 +2,11 @@ package com.zest.web.admin.controller.tutor;
 
 import com.zest.web.client.model.ClientVO;
 import com.zest.web.client.model.Paging;
+import com.zest.web.client.model.TuTorVO;
 import com.zest.web.client.model.Tutor_PropVO;
 import com.zest.web.client.service.client.ClientSearchService;
+import com.zest.web.client.service.tutor.TutorImageUpdateService;
+import com.zest.web.client.service.tutor.TutorInsertService;
 import com.zest.web.client.service.tutor.Tutor_PropSearchService;
 import com.zest.web.client.service.tutor.Tutor_PropUpdateService;
 
@@ -34,6 +37,12 @@ public class TutorManagePageController {
     
     @Autowired
     private Tutor_PropUpdateService tutor_PropUpdateService; 
+    
+    @Autowired
+    private TutorInsertService tutorInsertService;
+    
+    @Autowired
+    private TutorImageUpdateService tutorImageUpdateService; 
 
     @Autowired
     private Paging paging;
@@ -213,23 +222,23 @@ public class TutorManagePageController {
     	tempClientVO = clientSearchService.getClient(tempClientVO);
 
     	//확인
-    	System.out.println(tempClientVO.toString());
     	
     	//요청처리된 튜터를 승인한다.
     	Tutor_PropVO tempTutor_PropVO = new Tutor_PropVO();
     	tempTutor_PropVO.setTp_no(Integer.valueOf((String)modelMap.get("no")));
     	tempTutor_PropVO.setTp_status(new Integer(1));
     	
+    	Tutor_PropVO temp = new Tutor_PropVO();
+    	temp = tutor_propSearchService.getTutor_propNumber(Integer.valueOf((String)modelMap.get("no")));
     	tutor_PropUpdateService.updateTutor_prop(tempTutor_PropVO);
     	
     	//승인 튜터 업데이트 하기
+    	TuTorVO torVO = tutorInsertService.tutorInsert(temp,tempClientVO);
+    	//튜터 이미지경로 업데이트 
+    	tutorImageUpdateService.updateImage(torVO);    	
     	
+    	return "test";
     	
-    
-    	
-    	
-    	
-    	return null;
     }
 
     public void setTutor_propSearchService(Tutor_PropSearchService tutor_propSearchService) {
@@ -239,6 +248,16 @@ public class TutorManagePageController {
 	public void setClientSearchService(ClientSearchService clientSearchService) {
 		this.clientSearchService = clientSearchService;
 	}
+
+	public void setTutor_PropUpdateService(Tutor_PropUpdateService tutor_PropUpdateService) {
+		this.tutor_PropUpdateService = tutor_PropUpdateService;
+	}
+
+	public void setTutorInsertService(TutorInsertService tutorInsertService) {
+		this.tutorInsertService = tutorInsertService;
+	}
+	
+	
     
     
 }
