@@ -33,6 +33,13 @@ public class Tutor_PropDAOImpl implements Tutor_PropDAO {
 		sqlSessionTemplate.update("com.zest.tutorProp.updateTutorProp",vo);
 
 	}
+	
+	
+	//상태 체크
+	@Override
+	public Tutor_PropVO getTutor_propStatus(Tutor_PropVO vo) {
+		return sqlSessionTemplate.selectOne("com.zest.tutorProp.checkStauts",vo);
+	}
 
 	@Override
 	public Tutor_PropVO getTutor_prop(Tutor_PropVO vo) {

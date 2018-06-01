@@ -26,11 +26,17 @@ public class Tutor_PropSearchServiceImpl implements Tutor_PropSearchService {
 		logger.info("...ing");
 		return tutor_PropDAO.getTutor_prop(vo);
 	}
-
+	
+	//리스트검색
 	@Override
 	public List<Tutor_PropVO> getListTutor_prop(Object obj) {
 
 		return tutor_PropDAO.getListTutor_prop(obj);
+	}
+	//상태검색
+	@Override
+	public Tutor_PropVO getTutor_propStatus(Tutor_PropVO vo) {
+		return tutor_PropDAO.getTutor_propStatus(vo);
 	}
 
 	@Override

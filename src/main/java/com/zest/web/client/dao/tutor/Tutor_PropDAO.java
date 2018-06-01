@@ -16,6 +16,9 @@ public interface Tutor_PropDAO {
 	//개별검색
 	Tutor_PropVO getTutor_prop(Tutor_PropVO vo);
 	
+	//상태 체크
+	Tutor_PropVO getTutor_propStatus(Tutor_PropVO vo);
+	
 	//리스트 검색
 	List<Tutor_PropVO> getListTutor_prop(Object obj);
 
@@ -24,6 +27,8 @@ public interface Tutor_PropDAO {
 
 	//승인할 애들의 총 개수 가져오기
 	Integer getTutor_propCount(Object obj);
+	
+
 
 
 	

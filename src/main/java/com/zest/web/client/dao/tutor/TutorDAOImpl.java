@@ -14,7 +14,9 @@ public class TutorDAOImpl implements TutorDAO {
     //내용 넣기
     @Override
     public TuTorVO insertTutor(TuTorVO tuTorVO) {
+    	System.out.println("1111");
         sqlSessionTemplate.insert("com.zest.tutor.insertTutor",tuTorVO);
+        System.out.println("2222");
         return tuTorVO;
     }
     
