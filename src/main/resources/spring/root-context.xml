@@ -13,9 +13,15 @@
 
 
 	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<!-- 클라이언트 -->
 	<context:component-scan base-package="com.zest.web.client.aop" />
 	<context:component-scan base-package="com.zest.web.client.dao" />
 	<context:component-scan base-package="com.zest.web.client.service" />
+	
+	<!-- 관리자 -->
+	<context:component-scan base-package="com.zest.web.admin.service" />
+	<context:component-scan base-package="com.zest.web.admin.dao" />
+	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!--해당 위치에서 properties 파일을 읽어와라 -->
 	<!-- <context:property-placeholder
