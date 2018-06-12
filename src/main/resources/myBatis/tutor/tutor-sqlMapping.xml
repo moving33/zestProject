@@ -34,5 +34,11 @@
           WHERE
             TT_NO = #{tt_no}
     </update>
-
+	
+	<!-- 클라이언트 아이디로 튜터 객체 검색 -->
+	<select id="getTutorForClientId" resultType="TutorVO">
+		SELECT * FROM 
+				 TUTOR
+			WHERE TT_EMAIL = #{clientEmailId}				 
+	</select>
 </mapper>

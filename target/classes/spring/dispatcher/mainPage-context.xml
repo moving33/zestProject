@@ -38,17 +38,24 @@
 			<mapping path="/tutorRegiPage"/>		
 			<beans:bean class="com.zest.web.client.interceptor.LoginCheckInterceptor" />
 		</interceptor>
+		
+		<!-- 관리자 로그인 관련 -->
+		<interceptor>
+			<mapping path="/admin/**"/>
+			<beans:bean class="com.zest.web.admin.interceptor.AdminLoginCheckInterceptor"/>
+		</interceptor>
 	</interceptors>
 	 
 	<!-- 파일업로드설정 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!-- 파일 업로드 최대용량 10m -->
-		<beans:property name="maxUploadSize" value="10000000"></beans:property>
+		<beans:property name="maxUploadSize" value="50000000"></beans:property>
 	</beans:bean>
 	
 	<context:component-scan base-package="com.zest.web.client.controller" />
 	<!--관리자페이지 관리-->
 	<context:component-scan base-package="com.zest.web.admin.controller" />
+	
 	<!-- aop설정 -->
 	<aop:aspectj-autoproxy/>
 	<beans:bean class="com.zest.web.client.aop.AopAdvice"></beans:bean>

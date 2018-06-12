@@ -16,7 +16,7 @@ public class AopAdvice {
 	/*@Pointcut("execution( * com.zest.web.client.*.*(..))")
 	public void test() {}*/
 	
-	@Before("execution( * com.zest.web.client..*.*(..))")
+	@Before("execution( * com.zest.web..*.*(..))")
 	public void beforeLog(JoinPoint joinPoint) {		
 		
 		//처리하는 클래스 이름

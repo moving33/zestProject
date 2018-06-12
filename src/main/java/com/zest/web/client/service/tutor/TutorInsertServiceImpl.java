@@ -28,7 +28,6 @@ public class TutorInsertServiceImpl implements TutorInsertService {
 		TuTorVO tuTorVO = settingTutor(tutor_propVO, clientVO);
 		// tutor 넣기
 		tuTorVO = tutorDAO.insertTutor(tuTorVO);
-		
 		String imagePath = "c:/zest/tutor/" + tuTorVO.getTt_no(); //생성할 폴더
 		String orginFilePath = tutor_propVO.getTp_image_path(); //가져올 폴더 
 		
@@ -46,7 +45,7 @@ public class TutorInsertServiceImpl implements TutorInsertService {
 		}
 
 		// 프로필 이미지 사진 옮기고 삭제하기
-		List<File> dirList = getDirFileList(imagePath);
+		List<File> dirList = getDirFileList(orginFilePath);
 		for (File file : dirList) {
 			String tempFileName = file.getName();
 			int lastDot = tempFileName.lastIndexOf('.');
@@ -110,7 +109,6 @@ public class TutorInsertServiceImpl implements TutorInsertService {
 		tuTorVO.setTt_nn(tutor_propVO.getTp_nn());
 		tuTorVO.setTt_categroy_id(tutor_propVO.getTp_category_id());
 		// tutor 넣기
-		tuTorVO = tutorDAO.insertTutor(tuTorVO);
 		return tuTorVO;
 	}
 
