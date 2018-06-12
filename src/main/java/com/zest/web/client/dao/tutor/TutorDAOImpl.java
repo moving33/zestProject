@@ -18,15 +18,18 @@ public class TutorDAOImpl implements TutorDAO {
         sqlSessionTemplate.insert("com.zest.tutor.insertTutor",tuTorVO);
         System.out.println("2222");
         return tuTorVO;
-    }
-    
+    }    
     
 
     @Override
 	public void updateTutorImage(TuTorVO torVO) {
 		sqlSessionTemplate.update("com.zest.tutor.updateImagePathTutor",torVO);		
 	}
-
+    
+	@Override
+	public TuTorVO getTutorForClinetId(String ClientEmailId) {		
+		return sqlSessionTemplate.selectOne("com.zest.tutor.getTutorForClientId",ClientEmailId);
+	}
 
 
 	public SqlSessionTemplate getSqlSessionTemplate() {

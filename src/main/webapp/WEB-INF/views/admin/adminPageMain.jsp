@@ -13,6 +13,7 @@
 <head>
 <title>$Title$</title>
 
+<!-- 세션 검사 -->
 
 <link href="/zest/css/admin/zest_admin.css" rel="stylesheet">
 <link href="/zest/css/bootstrap.css" rel="stylesheet">
@@ -32,33 +33,9 @@
 						<a></a>
 					</div>
 					<%--로그 오른쪽부분 --%>
-					<div class="navbar-collapse">
-						<%--toggle and nav items--%>
-						<ul class="navbar-nav mr-auto mt-md-2" style="display: block;">
-							<%--로그인창--%>
-							<li class="nav-item m-1 float-left">
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text labelLogin" id="adminSpan1">ID</span>
-									</div>
-									<input type="text" class="form-control" placeholder="Admin ID"
-										aria-label="Admin ID" aria-describedby="basic-addon1">
-								</div>
-							</li>
-							<li class="nav-item m-1 float-left">
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text labelLogin" id="adminSpan2">PASSWORD</span>
-									</div>
-									<input type="password" class="form-control"
-										placeholder="password" aria-label="Admin Password"
-										aria-describedby="basic-addon1">
-								</div>
-
-							</li>
-
-
-						</ul>
+					<div class="navbar-collapse" style="font-size: 18px;">
+						관리자 <b style="color: #ff7200;">${admin.name}</b>님 환영합니다.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="logout" style="float: right;">로그아웃</a>
 					</div>
 				</nav>
 			</div>
