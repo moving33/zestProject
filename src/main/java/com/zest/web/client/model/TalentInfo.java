@@ -2,18 +2,18 @@ package com.zest.web.client.model;
 
 /*수업의 정보 모델 : 시간 데이터와 수업의 위치를 담고 있음*/
 public class TalentInfo {
-	Integer ti_no; // 주요키
-	Integer talent_no; // 수업테이블의 주요키
-	String zone_id; //위치 
-	String ti_zone_detail; //상세 위치 
-	Integer ti_mon; //코드가 들어감 0 일시 시간협의 월요일 화요일 순서
-	Integer ti_tue;
-	Integer ti_wed;
-	Integer ti_tur;
-	Integer ti_fri;
-	Integer ti_sat;
-	Integer ti_sun;
-	Integer tc_status; //상태 코드
+	private Integer ti_no; // 주요키
+	private Integer talent_no; // 수업테이블의 주요키
+	private String zone_id; //위치 
+	private String ti_zone_detail; //상세 위치 
+	private Integer ti_mon; //코드가 들어감 0 일시 시간협의 월요일 화요일 순서
+	private Integer ti_tue;
+	private Integer ti_wed;
+	private Integer ti_tur;
+	private Integer ti_fri;
+	private Integer ti_sat;
+	private Integer ti_sun;
+	private Integer tc_status; //상태 코드
 	
 	public Integer getTi_no() {
 		return ti_no;

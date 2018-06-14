@@ -6,21 +6,21 @@ import java.util.Arrays;
  * worker : J
  * */
 public class Talent_contentVO {
-	Integer tc_no; // 주요내용의 주요키 
-	Integer talent_no; // talent 테이블의 주요키
-	Integer tutor_no; //등록한 튜터의 넘버
-	String tc_subject; //제목
-	Integer tc_max_client; //최대인원
-	String tc_price_detail; //추가비용의 상세내용
-	String tc_tt_message; //튜터의 한마디 30자이내
-	String tc_tt_info; //튜터소개
-	String tc_class_info; //수업소개
-	String tc_class_taget; //수업 타겟 정보
-	String[] tc_curriculum; //수업 커리큘렴 
-	String tc_image_path; // 이미지경로
-	String tc_video_path; //비디오 경로
-	Integer tc_status; //승인여부 0 기본값 1일시 승인 
-	String tc_location; //대표위치의 대략적인 좌표값 x,y 로 들어감
+	private Integer tc_no; // 주요내용의 주요키 
+	private Integer talent_no; // talent 테이블의 주요키
+	private Integer tutor_no; //등록한 튜터의 넘버
+	private String tc_subject; //제목
+	private Integer tc_max_client; //최대인원
+	private String tc_price_detail; //추가비용의 상세내용
+	private String tc_tt_message; //튜터의 한마디 30자이내
+	private String tc_tt_info; //튜터소개
+	private String tc_class_info; //수업소개
+	private String tc_class_taget; //수업 타겟 정보
+	private String[] tc_curriculum; //수업 커리큘렴 
+	private String tc_image_path; // 이미지경로
+	private String tc_video_path; //비디오 경로
+	private Integer tc_status; //승인여부 0 기본값 1일시 승인 
+	private String tc_location; //대표위치의 대략적인 좌표값 x,y 로 들어감
 	
 	public Integer getTc_no() {
 		return tc_no;
@@ -112,6 +112,7 @@ public class Talent_contentVO {
 	public void setTc_location(String tc_location) {
 		this.tc_location = tc_location;
 	}
+	
 	@Override
 	public String toString() {
 		return "Talent_contentVO [tc_no=" + tc_no + ", talent_no=" + talent_no + ", tutor_no=" + tutor_no
@@ -121,8 +122,6 @@ public class Talent_contentVO {
 				+ Arrays.toString(tc_curriculum) + ", tc_image_path=" + tc_image_path + ", tc_video_path="
 				+ tc_video_path + ", tc_status=" + tc_status + ", tc_location=" + tc_location + "]";
 	}
-	
-	
-	
+
 	
 }

@@ -5,21 +5,21 @@ import java.security.Timestamp;
 /*수업의 모델*/
 public class TalentVO {
 	
-	Integer talent_no; // 수업의 주요키
-	Integer talent_price_hour; // 1시간당 가격
-	Integer talent_total_price; // 수업의 총가격
-	float talent_dc_rate; // 할인률
-	Integer talent_meet_time; //만나는 시간
-	Integer talent_meet_count; //만나는 횟수
-	Timestamp talent_reg_date; //등록일자
-	Timestamp talent_se_date; //삭제일자
-	Integer talent_acc_client; //누적인원
-	float talent_value; // 리뷰점수
-	Integer talent_sold_out; // 마감 했을시 기본값 0 에서 1로 바뀜
-	Integer talent_tt_no; // 강의를 신청한 튜터의 프라이머리키
-	Integer talent_category_id; // 강의의 대분류 코드
-	Integer talent_lecture_id; // 강의의 소분류 코드
-	Integer talent_status; // 강의의 승인 여부	
+	private Integer talent_no; // 수업의 주요키
+	private Integer talent_price_hour; // 1시간당 가격
+	private Integer talent_total_price; // 수업의 총가격
+	private float talent_dc_rate; // 할인률
+	private Integer talent_meet_time; //만나는 시간
+	private Integer talent_meet_count; //만나는 횟수
+	private Timestamp talent_reg_date; //등록일자
+	private Timestamp talent_se_date; //삭제일자
+	private Integer talent_acc_client; //누적인원
+	private float talent_value; // 리뷰점수
+	private Integer talent_sold_out; // 마감 했을시 기본값 0 에서 1로 바뀜
+	private Integer talent_tt_no; // 강의를 신청한 튜터의 프라이머리키
+	private Integer talent_category_id; // 강의의 대분류 코드
+	private Integer talent_lecture_id; // 강의의 소분류 코드
+	private Integer talent_status; // 강의의 승인 여부	
 	
 	public Integer getTalent_no() {
 		return talent_no;
@@ -111,6 +111,7 @@ public class TalentVO {
 	public void setTalent_status(Integer talent_status) {
 		this.talent_status = talent_status;
 	}
+	
 	@Override
 	public String toString() {
 		return "TalentVO [talent_no=" + talent_no + ", talent_price_hour=" + talent_price_hour + ", talent_total_price="
@@ -121,11 +122,5 @@ public class TalentVO {
 				+ ", talent_category_id=" + talent_category_id + ", talent_lecture_id=" + talent_lecture_id
 				+ ", talent_status=" + talent_status + "]";
 	}
-	
-	
-	
-	
-	
-	
 
 }
