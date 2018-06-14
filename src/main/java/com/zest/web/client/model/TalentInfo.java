@@ -1,5 +1,93 @@
 package com.zest.web.client.model;
 
+/*수업의 정보 모델 : 시간 데이터와 수업의 위치를 담고 있음*/
 public class TalentInfo {
-
+	Integer ti_no; // 주요키
+	Integer talent_no; // 수업테이블의 주요키
+	String zone_id; //위치 
+	String ti_zone_detail; //상세 위치 
+	Integer ti_mon; //코드가 들어감 0 일시 시간협의 월요일 화요일 순서
+	Integer ti_tue;
+	Integer ti_wed;
+	Integer ti_tur;
+	Integer ti_fri;
+	Integer ti_sat;
+	Integer ti_sun;
+	Integer tc_status; //상태 코드
+	
+	public Integer getTi_no() {
+		return ti_no;
+	}
+	public void setTi_no(Integer ti_no) {
+		this.ti_no = ti_no;
+	}
+	public Integer getTalent_no() {
+		return talent_no;
+	}
+	public void setTalent_no(Integer talent_no) {
+		this.talent_no = talent_no;
+	}
+	public String getZone_id() {
+		return zone_id;
+	}
+	public void setZone_id(String zone_id) {
+		this.zone_id = zone_id;
+	}
+	public String getTi_zone_detail() {
+		return ti_zone_detail;
+	}
+	public void setTi_zone_detail(String ti_zone_detail) {
+		this.ti_zone_detail = ti_zone_detail;
+	}
+	public Integer getTi_mon() {
+		return ti_mon;
+	}
+	public void setTi_mon(Integer ti_mon) {
+		this.ti_mon = ti_mon;
+	}
+	public Integer getTi_tue() {
+		return ti_tue;
+	}
+	public void setTi_tue(Integer ti_tue) {
+		this.ti_tue = ti_tue;
+	}
+	public Integer getTi_wed() {
+		return ti_wed;
+	}
+	public void setTi_wed(Integer ti_wed) {
+		this.ti_wed = ti_wed;
+	}
+	public Integer getTi_tur() {
+		return ti_tur;
+	}
+	public void setTi_tur(Integer ti_tur) {
+		this.ti_tur = ti_tur;
+	}
+	public Integer getTi_fri() {
+		return ti_fri;
+	}
+	public void setTi_fri(Integer ti_fri) {
+		this.ti_fri = ti_fri;
+	}
+	public Integer getTi_sat() {
+		return ti_sat;
+	}
+	public void setTi_sat(Integer ti_sat) {
+		this.ti_sat = ti_sat;
+	}
+	public Integer getTi_sun() {
+		return ti_sun;
+	}
+	public void setTi_sun(Integer ti_sun) {
+		this.ti_sun = ti_sun;
+	}
+	public Integer getTc_status() {
+		return tc_status;
+	}
+	public void setTc_status(Integer tc_status) {
+		this.tc_status = tc_status;
+	}
+	
+	
+	
 }
