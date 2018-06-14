@@ -2,6 +2,8 @@ package com.zest.web.client.model;
 
 import java.util.Arrays;
 
+import org.springframework.web.multipart.MultipartFile;
+
 /*수업의 주요 내용 
  * worker : J
  * */
@@ -21,7 +23,16 @@ public class Talent_contentVO {
 	private String tc_video_path; //비디오 경로
 	private Integer tc_status; //승인여부 0 기본값 1일시 승인 
 	private String tc_location; //대표위치의 대략적인 좌표값 x,y 로 들어감
+	private MultipartFile[] talentImg; // 수업 이미지 파일
 	
+	
+	
+	public MultipartFile[] getTalentImg() {
+		return talentImg;
+	}
+	public void setTalentImg(MultipartFile[] talentImg) {
+		this.talentImg = talentImg;
+	}
 	public Integer getTc_no() {
 		return tc_no;
 	}
@@ -112,7 +123,6 @@ public class Talent_contentVO {
 	public void setTc_location(String tc_location) {
 		this.tc_location = tc_location;
 	}
-	
 	@Override
 	public String toString() {
 		return "Talent_contentVO [tc_no=" + tc_no + ", talent_no=" + talent_no + ", tutor_no=" + tutor_no
@@ -120,8 +130,20 @@ public class Talent_contentVO {
 				+ tc_price_detail + ", tc_tt_message=" + tc_tt_message + ", tc_tt_info=" + tc_tt_info
 				+ ", tc_class_info=" + tc_class_info + ", tc_class_taget=" + tc_class_taget + ", tc_curriculum="
 				+ Arrays.toString(tc_curriculum) + ", tc_image_path=" + tc_image_path + ", tc_video_path="
-				+ tc_video_path + ", tc_status=" + tc_status + ", tc_location=" + tc_location + "]";
+				+ tc_video_path + ", tc_status=" + tc_status + ", tc_location=" + tc_location + ", talentImg="
+				+ Arrays.toString(talentImg) + ", getTalentImg()=" + Arrays.toString(getTalentImg()) + ", getTc_no()="
+				+ getTc_no() + ", getTalent_no()=" + getTalent_no() + ", getTutor_no()=" + getTutor_no()
+				+ ", getTc_subject()=" + getTc_subject() + ", getTc_max_client()=" + getTc_max_client()
+				+ ", getTc_price_detail()=" + getTc_price_detail() + ", getTc_tt_message()=" + getTc_tt_message()
+				+ ", getTc_tt_info()=" + getTc_tt_info() + ", getTc_class_info()=" + getTc_class_info()
+				+ ", getTc_class_taget()=" + getTc_class_taget() + ", getTc_curriculum()="
+				+ Arrays.toString(getTc_curriculum()) + ", getTc_image_path()=" + getTc_image_path()
+				+ ", getTc_video_path()=" + getTc_video_path() + ", getTc_status()=" + getTc_status()
+				+ ", getTc_location()=" + getTc_location() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
 	}
+	
+	
 
 	
 }
