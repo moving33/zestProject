@@ -17,8 +17,8 @@ public class TalentVO {
 	private float talent_value; // 리뷰점수
 	private Integer talent_sold_out; // 마감 했을시 기본값 0 에서 1로 바뀜
 	private Integer talent_tt_no; // 강의를 신청한 튜터의 프라이머리키
-	private Integer talent_category_id; // 강의의 대분류 코드
-	private Integer talent_lecture_id; // 강의의 소분류 코드
+	private String talent_category_id; // 강의의 대분류 코드
+	private String talent_lecture_id; // 강의의 소분류 코드
 	private Integer talent_status; // 강의의 승인 여부	
 	
 	public Integer getTalent_no() {
@@ -93,16 +93,16 @@ public class TalentVO {
 	public void setTalent_tt_no(Integer talent_tt_no) {
 		this.talent_tt_no = talent_tt_no;
 	}
-	public Integer getTalent_category_id() {
+	public String getTalent_category_id() {
 		return talent_category_id;
 	}
-	public void setTalent_category_id(Integer talent_category_id) {
+	public void setTalent_category_id(String talent_category_id) {
 		this.talent_category_id = talent_category_id;
 	}
-	public Integer getTalent_lecture_id() {
+	public String getTalent_lecture_id() {
 		return talent_lecture_id;
 	}
-	public void setTalent_lecture_id(Integer talent_lecture_id) {
+	public void setTalent_lecture_id(String talent_lecture_id) {
 		this.talent_lecture_id = talent_lecture_id;
 	}
 	public Integer getTalent_status() {
@@ -111,7 +111,6 @@ public class TalentVO {
 	public void setTalent_status(Integer talent_status) {
 		this.talent_status = talent_status;
 	}
-	
 	@Override
 	public String toString() {
 		return "TalentVO [talent_no=" + talent_no + ", talent_price_hour=" + talent_price_hour + ", talent_total_price="
@@ -122,5 +121,7 @@ public class TalentVO {
 				+ ", talent_category_id=" + talent_category_id + ", talent_lecture_id=" + talent_lecture_id
 				+ ", talent_status=" + talent_status + "]";
 	}
+	
+	
 
 }

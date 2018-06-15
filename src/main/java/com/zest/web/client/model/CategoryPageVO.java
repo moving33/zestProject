@@ -8,6 +8,7 @@ public class CategoryPageVO {
 	private String tc_image_path; // 이미지경로
 	private String zone_id; // 구역의 영어 약자
 	private String zone_name; // 구역의 한글 이름
+	private String talent_category_id; // 카테고리 아이디
 	
 	public Integer getTalent_no() {
 		return talent_no;
@@ -51,13 +52,22 @@ public class CategoryPageVO {
 	public void setZone_name(String zone_name) {
 		this.zone_name = zone_name;
 	}
-	
+	public String getTalent_category_id() {
+		return talent_category_id;
+	}
+	public void setTalent_category_id(String talent_category_id) {
+		this.talent_category_id = talent_category_id;
+	}
 	@Override
 	public String toString() {
 		return "CategoryPageVO [talent_no=" + talent_no + ", talent_price_hour=" + talent_price_hour
 				+ ", talent_acc_client=" + talent_acc_client + ", tc_subject=" + tc_subject + ", tc_image_path="
-				+ tc_image_path + ", zone_id=" + zone_id + ", zone_name=" + zone_name + "]";
+				+ tc_image_path + ", zone_id=" + zone_id + ", zone_name=" + zone_name + ", talent_category_id="
+				+ talent_category_id + "]";
 	}
+	
+	
+
 
 	
 }

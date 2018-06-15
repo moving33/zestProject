@@ -190,7 +190,7 @@ function getCategory(name){
 			/* for문 처리 */
 			$.each(data,function(index,value){
 				
-				listHtml += "<a class='colj' href='#' style='color: #ff7200; font-size: 15px;'>"+value.lecture_name+"</a>";
+				listHtml += "<a class='colj' href='/zest/category/"+ value.lecture_id + "'style='color: #ff7200; font-size: 15px;'>"+value.lecture_name+"</a>";
 			});
 			list.html(listHtml);
 		}).catch((e) => {
@@ -205,7 +205,7 @@ $(document).ready(function(){
        // window.open('http://localhost:8080/test/view/join.jsp','회원가입'); //새창에
 		// 해당 사이트 띄우기
        var test = 'width=400,height=500,scrollbars=yes,resizable=yes,top=100,left=500,toolbar=yes';
-       window.open('http://localhost:8080/web/common/loginPage','로그인',test); // 새창에
+       window.open('http://localhost:8080/zest/common/loginPage','로그인',test); // 새창에
 																				// 해당
 																				// 사이트
 																				// 띄우기
@@ -220,7 +220,7 @@ $(document).ready(function(){
        // window.open('http://localhost:8080/test/view/join.jsp','회원가입'); //새창에
 		// 해당 사이트 띄우기
        var test = 'width=400,height=487,scrollbars=yes,resizable=yes,top=250,left=700,toolbar=yes';
-       window.open('http://localhost:8080/web/common/regiPage','회원가입',test); // 새창에
+       window.open('http://localhost:8080/zest/common/regiPage','회원가입',test); // 새창에
 																				// 해당
 																				// 사이트
 																				// 띄우기

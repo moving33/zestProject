@@ -49,110 +49,110 @@ $("#login").on({
 $("#hot").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #hot").css("color", "#ff7200");
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#f0f0f0"),
-		$(this).css("color", "#000000");
+		$("div #hot").css("color", "#000000");
 	}
 });
 
 $("#sports").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #sports").css("color", "#ff7200");
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#f0f0f0"),
-		$(this).css("color", "#000000");
+		$("div #sports").css("color", "#000000");
 	}
 });
 
 $("#beauty").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #beauty").css("color", "#ff7200");
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#f0f0f0"),
-		$(this).css("color", "#000000");
+		$("div #beauty").css("color", "#000000");
 	}
 });
 
 $("#music").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #music").css("color", "#ff7200");
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#f0f0f0"),
-		$(this).css("color", "#000000");
+		$("div #music").css("color", "#000000");
 	}
 });
 
 $("#food").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #food").css("color", "#ff7200");
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#f0f0f0"),
-		$(this).css("color", "#000000");
+		$("div #food").css("color", "#000000");
 	}
 });
 
 $("#design").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #design").css("color", "#ff7200");
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#f0f0f0"),
-		$(this).css("color", "#000000");
+		$("div #design").css("color", "#000000");
 	}
 });
 
 $("#business").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #business").css("color", "#ff7200");
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#f0f0f0"),
-		$(this).css("color", "#000000");
+		$("div #business").css("color", "#000000");
 	}
 });
 
 $("#language").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #language").css("color", "#ff7200");
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#f0f0f0"),
-		$(this).css("color", "#000000");
+		$("div #language").css("color", "#000000");
 	}
 });
 
 $("#progam").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #progam").css("color", "#ff7200");
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#f0f0f0"),
-		$(this).css("color", "#000000");
+		$("div #progam").css("color", "#000000");
 	}
 });
 
 $("#life").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #life").css("color", "#ff7200");
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#f0f0f0"),
-		$(this).css("color", "#000000");
+		$("div #life").css("color", "#000000");
 	}
 });
 
@@ -175,9 +175,9 @@ function fetchPage(name){
 			$.each(data,function(index,value){
 				// var lecture = value.lecture_id;
 				if(index > 7){
-					listHtml2 += "<a href='#' class='list-group-item' style='font-size:smaller; right:-4px;'>"+value.lecture_name+"</a>";
+					listHtml2 += "<a href='/zest/category/" + value.lecture_id +"' class='list-group-item' style='font-size:middle; color:#000000 !important; right:-4px;'><b>"+value.lecture_name+"</b></a>";
 				}else{
-				listHtml1 += "<a href='#' class='list-group-item' style='font-size:smaller;'>"+value.lecture_name+"</a>";
+				listHtml1 += "<a href='/zest/category/" + value.lecture_id +"' class='list-group-item' style='font-size:middle; color:#000000 !important;'><b>"+value.lecture_name+"</b></a>";
 				}
 			});
 			list1.html(listHtml1);

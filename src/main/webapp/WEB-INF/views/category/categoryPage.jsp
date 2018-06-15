@@ -15,10 +15,10 @@
 	<title>Zest</title>
 	
 	<!-- 부트스트랩 CSS -->
-	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="../css/bootstrap.css" rel="stylesheet">
 
 	<!--  category css -->
-	<link href="css/category/categoryPage.css" rel="stylesheet">
+	<link href="../css/category/categoryPage.css" rel="stylesheet">
 	
 </head>
 
@@ -27,13 +27,13 @@
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bgj-dark fixedj-top">
 		<div class="container">
-			<a class="navbar-brand" href="/zest/main"> <img alt="Logo" src="images/logo2.png">
+			<a class="navbar-brand" href="/zest/main"> <img alt="Logo" src="../images/logo2.png">
 			</a>
 			<!-- 검색창 -->
 			<form class="flyout-search" action="#" name="search">
 				<div class="searchdiv" style="border: 2px solid #ff7200">
 					<div class="inputlmg">
-						<img src="images/돋보기.png" onclick='#' style="margin-left: 5px;">
+						<img src="../images/돋보기.png" onclick='#' style="margin-left: 5px;">
 						<!-- 검색 텍스트 -->
 						<input type="text" name="search" placeholder="배우고 싶은 수업 또는 튜터를 검색해보세요!" onclick="#"
 							value="" style="border-color: #ffffff00; width: 330px; outline: none; padding-top: 3px;">
@@ -66,15 +66,15 @@
 	<div class="container" align="center">
 		<div class="row">
 			<div id="hot" class="colj" onmouseover="#">인기수업</div>
-			<div id="sports" class="colj" data-toggle="tab" onmouseover="getCategory('main/sports')">스포츠</div>
-			<div id="beauty" class="colj" onmouseover="getCategory('main/beauty')">뷰티</div>
-			<div id="music" class="colj" onmouseover="getCategory('main/music')">음악</div>
-			<div id="food" class="colj" onmouseover="getCategory('main/food')">요리/음식</div>
-			<div id="design" class="colj" onmouseover="getCategory('main/design')">디자인</div>
-			<div id="business" class="colj" onmouseover="getCategory('main/business')">실무</div>
-			<div id="language" class="colj" onmouseover="getCategory('main/language')">외국어</div>
-			<div id="progam" class="colj" onmouseover="getCategory('main/program')">프로그래밍</div>
-			<div id="life" class="colj" onmouseover="getCategory('main/life')">라이프스타일</div>
+			<div id="sports" class="colj" onmouseover="getCategory('/zest/main/sports')"><a href="/zest/category/sports" style="color: #000000;">스포츠</a></div>
+			<div id="beauty" class="colj" onmouseover="getCategory('/zest/main/beauty')"><a href="/zest/category/beauty" style="color: #000000;">뷰티</a></div>
+			<div id="music" class="colj" onmouseover="getCategory('/zest/main/music')"><a href="/zest/category/music" style="color: #000000;">음악</a></div>
+			<div id="food" class="colj" onmouseover="getCategory('/zest/main/food')"><a href="/zest/category/food" style="color: #000000;">요리/음식</a></div>
+			<div id="design" class="colj" onmouseover="getCategory('/zest/main/design')"><a href="/zest/category/design" style="color: #000000;">디자인</a></div>
+			<div id="business" class="colj" onmouseover="getCategory('/zest/main/business')"><a href="/zest/category/business" style="color: #000000;">실무</a></div>
+			<div id="language" class="colj" onmouseover="getCategory('/zest/main/language')"><a href="/zest/category/language" style="color: #000000;">외국어</a></div>
+			<div id="progam" class="colj" onmouseover="getCategory('/zest/main/program')"><a href="/zest/category/program" style="color: #000000;">프로그래밍</a></div>
+			<div id="life" class="colj" onmouseover="getCategory('/zest/main/life')"><a href="/zest/category/life" style="color: #000000;">라이프스타일</a></div>
 		</div>
 	</div>
 	
@@ -89,102 +89,84 @@
     
       <!-- 페이지 헤딩 -->
       <div class="row">
+       <c:forEach var="item" items="${categoryPageList}" varStatus="status">
         <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+          <div class="card h-100" >
+            <a href="/zest/category/${item.talent_category_id }/${item.talent_no}" ><c:if test="${image0 ne '' }"><img class="card-img-top" src="${image0 }" alt=""></c:if>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#">Project One</a>
-              </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
-            </div>
+               <p style="color:#ffc107 !important;">${item.tc_subject}</p>
+              </h4><br>
+             
+              <p class="card-text" style="color:#000000 !important;">구역: ${item.zone_name}</p>
+              <p class="card-text" style="color:#000000 !important;">가격(1시간): ${item.talent_price_hour}</p>
+            </div></a>
           </div>
         </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Project Two</a>
-              </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Project Three</a>
-              </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Project Four</a>
-              </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Project Five</a>
-              </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Project Six</a>
-              </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
-            </div>
-          </div>
-        </div>
-      </div><br>
-     
+        </c:forEach>
+       </div><br>
       <!-- /.row -->
 
-      <!-- 페이징 처리 -->
-      <ul class="pagination justify-content-center">
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-            <span class="sr-only">Previous</span>
-          </a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">1</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">2</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">3</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-            <span class="sr-only">Next</span>
-          </a>
-        </li>
-      </ul>
+      <%--페이징처리--%>
+		<div>
+			<div class="row">
+				<div class="col-8">
+					<div class="pagePro"
+						style="text-align: center; margin: auto; display: table;">
+						<%-- pagination 사용 --%>
+						<ul class="pagination">
 
-    </div>
+							<%--이전버튼 --%>
+							<c:if test="${bp.isPre()}">
+								<li class="page-item">
+									<button class="page-link">
+										<a
+											href="/zest/category/${item.talent_category_id}?pageNum=${bp.getPage_Start()-bp.p_size}">
+											Previous </a>
+									</button>
+								</li>
+							</c:if>
+
+							<%--페이징처리 --%>
+
+							<c:forEach var="counter" begin="${bp.getPage_start()}"
+								end="${bp.getPage_end()}">
+								<c:if test="${search_text ne ''}">
+									<li class="page-item">
+										<button class="page-link"
+											onclick="window.location='/zest/category/${item.talent_category_id}?pageNum=${counter}&search_type=${search_type}&search_text=${search_text}'">
+											${counter}</button>
+									</li>
+								</c:if>
+
+								<c:if test="${search_text eq ''}">
+									<li class="page-item">
+										<button class="page-link"
+											onclick="window.location='/zest/category/${item.talent_category_id}?pageNum=${counter}&search_type=${search_type}&search_text=${search_text}'">
+											${counter}</button>
+									</li>
+								</c:if>
+							</c:forEach>
+
+
+							<%--다음버튼 --%>
+							<c:if test="${bp.isNext()}">
+								<li class="page-item">
+									<button class="page-link">
+										<a
+											href="/zest/category/${item.talent_category_id}?pageNum=${bp.getPage_Start()+bp.p_size}">
+											Next </a>
+									</button>
+								</li>
+							</c:if>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end Paging -->
+
+	</div>
     <!-- /.container -->
 
 	<!-- footer -->
@@ -219,7 +201,7 @@
 				<div class="info">
 					<b>드루와</b>
 					<ul>
-						<li><img src="images/yellow.png">&nbsp;KAKAO 옐로우ID / @Droowa</li>
+						<li><img src="../images/yellow.png">&nbsp;KAKAO 옐로우ID / @Droowa</li>
 						<li>운영시간 / 평일 10:00~19:00</li>
 					</ul>
 				</div>
@@ -232,9 +214,9 @@
 				</div>
 				<div class="logo_box">
 					<a href="#" target="_blank"><img
-						src="images/ic_sns_facebook_38_38.png"></a> <a href="#" target="_blank"><img
-						src="images/ic_sns_instagram_38_38.png"></a> <a href="#"
-						target="_blank"><img src="images/ic_sns_youtube_38_38.png"></a>
+						src="../images/ic_sns_facebook_38_38.png"></a> <a href="#" target="_blank"><img
+						src="../images/ic_sns_instagram_38_38.png"></a> <a href="#"
+						target="_blank"><img src="../images/ic_sns_youtube_38_38.png"></a>
 				</div>
 
 			</div>
@@ -244,10 +226,10 @@
 
 
 	<!-- Bootstrap core JavaScript -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.bundle.min.js"></script>
-	<script src="js/category/categoryPage.js"></script>
-	<script src="js/common.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.bundle.min.js"></script>
+	<script src="../js/category/categoryPage.js"></script>
+	<script src="../js/common.js"></script>
 
 
 </body>
