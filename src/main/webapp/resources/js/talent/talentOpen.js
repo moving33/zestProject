@@ -40,13 +40,13 @@ var onedayData1 = {zoneid: '', t1: '', t2: '', t3: '', day1: '', day2: '', day3:
 var onedayData2 = {zoneid: '', t1: '', t2: '', t3: '', day1: '', day2: '', day3: ''};
 var onedayData3 = {zoneid: '', t1: '', t2: '', t3: '', day1: '', day2: '', day3: ''};
 // 보낼 데이터 저장
-var monArray = ['시간협의', '시간협의', '시간협의'];
-var tueArray = ['시간협의', '시간협의', '시간협의'];
-var wedArray = ['시간협의', '시간협의', '시간협의'];
-var turArray = ['시간협의', '시간협의', '시간협의'];
-var friArray = ['시간협의', '시간협의', '시간협의'];
-var satArray = ['시간협의', '시간협의', '시간협의'];
-var sunArray = ['시간협의', '시간협의', '시간협의'];
+var monArray = ['시간협의', '', ''];
+var tueArray = ['시간협의', '', ''];
+var wedArray = ['시간협의', '', ''];
+var turArray = ['시간협의', '', ''];
+var friArray = ['시간협의', '', ''];
+var satArray = ['시간협의', '', ''];
+var sunArray = ['시간협의', '', ''];
 // 지역최대 3개
 var data1 = {'zoneId': '', 'mon': '', 'tue': '', 'wed': '', 'tur': '', 'fri': '', 'sat': '', 'sun': ''};
 var data2 = {'zoneId': '', 'mon': '', 'tue': '', 'wed': '', 'tur': '', 'fri': '', 'sat': '', 'sun': ''};
@@ -199,7 +199,7 @@ function search() {
 function cityPage(name) {
 
     var cityHtml = '';
-    var city1 = ["강남", "건대", "신촌/홍대", "종로", "노원", "사당", "신림", "성북"];
+    var city1 = ["강남", "건대", "신촌홍대", "종로", "노원", "사당", "신림", "성북"];
     var city2 = ["분당", "일산", "수원"];
 
     switch (name) {
@@ -1070,7 +1070,7 @@ function saveOneday(a) {
             });
             return;
         }
-        zoneid = $("#zoneA1").text().trim();
+        zoneid = $("#zoneA1").text().trim();        
         day1 = onedayCheckData1.day1;
         day1Time = onedayCheckData1.t1_start + "~" + onedayCheckData1.t1_end;
         day2 = onedayCheckData1.day2;

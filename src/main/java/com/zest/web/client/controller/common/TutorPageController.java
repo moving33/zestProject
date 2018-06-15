@@ -106,11 +106,16 @@ public class TutorPageController {
 	@RequestMapping(value = "/tutorPage/talentPropTime")
 	@ResponseBody
 	@SuppressWarnings("unchecked")
-	public String insertTimeData(@RequestBody Map<String, Object> timeMap, TalentTimeUtil talentTimeUtil,HttpSession session) {
+	public String insertTimeData(@RequestBody Map<String, Object> timeMap, TalentTimeUtil rootTalentTimeUtil,HttpSession session) {
 		// 전달 내용을 변수에 저장
 		HashMap<String, Object> zone1 = (HashMap<String, Object>) timeMap.get("zone1");
 		HashMap<String, Object> zone2 = (HashMap<String, Object>) timeMap.get("zone2");
 		HashMap<String, Object> zone3 = (HashMap<String, Object>) timeMap.get("zone3");
+		
+		System.out.println((String) zone1.get("zoneId"));
+		List<String> a = (ArrayList<String>) zone1.get("mon");
+		System.out.println(a.get(0));
+	
 
 		// 몇 개나 값이 저장되이었는지 확인
 		int count = 1;
@@ -122,11 +127,13 @@ public class TutorPageController {
 			count++;
 		}
 		// 간유틸클래스를 사용해서 해당 내용들을 담는다.
+		rootTalentTimeUtil.setCount(count);
+		Map<String, TalentTimeUtil> m = new HashMap<>();
+		
 		for (int i = 0; i < count; i++) {
-			Map<String, TalentTimeUtil> m = new HashMap<>();
-			if (i == 0) {
-				talentTimeUtil.setCount(1);
-				talentTimeUtil.setZone_id((String) zone1.get("zoneId"));
+			TalentTimeUtil talentTimeUtil = new TalentTimeUtil();
+			if (i == 0) {				
+				talentTimeUtil.setZone_id((String) zone1.get("zoneId"));			
 				if (!zone1.get("mon").equals("")) {
 					talentTimeUtil.setMon((ArrayList<String>) zone1.get("mon"));
 				}
@@ -149,10 +156,9 @@ public class TutorPageController {
 					talentTimeUtil.setSun((ArrayList<String>) zone1.get("sun"));
 				}
 				m.put("zone1", talentTimeUtil);
-				talentTimeUtil.setTimeData(m);
+				rootTalentTimeUtil.setTimeData(m);
 			}
 			if (i == 1) {
-				talentTimeUtil.setCount(2);
 				talentTimeUtil.setZone_id((String) zone2.get("zoneId"));
 				if (!zone2.get("mon").equals("")) {
 					talentTimeUtil.setMon((ArrayList<String>) zone2.get("mon"));
@@ -176,10 +182,9 @@ public class TutorPageController {
 					talentTimeUtil.setSun((ArrayList<String>) zone2.get("sun"));
 				}
 				m.put("zone2", talentTimeUtil);
-				talentTimeUtil.setTimeData(m);
+				rootTalentTimeUtil.setTimeData(m);
 			}
 			if (i == 2) {
-				talentTimeUtil.setCount(3);
 				talentTimeUtil.setZone_id((String) zone3.get("zoneId"));
 				if (!zone3.get("mon").equals("")) {
 					talentTimeUtil.setMon((ArrayList<String>) zone3.get("mon"));
@@ -203,14 +208,17 @@ public class TutorPageController {
 					talentTimeUtil.setSun((ArrayList<String>) zone3.get("sun"));
 				}
 				m.put("zone3", talentTimeUtil);
-				talentTimeUtil.setTimeData(m);
+				rootTalentTimeUtil.setTimeData(m);
 			}
 		}
 		//세션에 저장되어 있는 튜터 정보 가져오기
 		TuTorVO vo = (TuTorVO) session.getAttribute("tutorVO");
 		System.out.println(vo.toString());
 		// 해당 내용을 공용으로 사용할 hashmap에 튜터의 넘버키 값으로 저장;	
-		saveTimeData.put(vo.getTt_no(), talentTimeUtil);
+		saveTimeData.put(vo.getTt_no(), rootTalentTimeUtil);
+		
+		System.out.println(rootTalentTimeUtil.toString());		
+		//내용 추출해보기		
 		return "success";
 	}
 
