@@ -10,7 +10,9 @@
 		<typeAlias type="com.zest.web.client.model.Tutor_PropVO" alias="Tutor_PropVO" />	
 		<typeAlias type="com.zest.web.client.model.TuTorVO" alias="TutorVO" />
 		<typeAlias type="com.zest.web.admin.model.AdminVO" alias="AdminVO" />
+
 		<typeAlias type="com.zest.web.client.model.CategoryPageVO" alias="CategoryPageVO"/>		
+
 		<typeAlias type="com.zest.web.client.model.TalentVO" alias="TalentVO" />
 		<typeAlias type="com.zest.web.client.model.Talent_contentVO" alias="TC_VO" />
 		<typeAlias type="com.zest.web.client.model.Talent_notOneDayTime" alias="TT_notTimeVO" />
@@ -33,8 +35,10 @@
         <mapper resource="myBatis/tutor/tutor-sqlMapping.xml" />
         <!-- 관리자 -->
         <mapper resource="myBatis/admin/admin-sqlMapping.xml" />
+
         
         
+
         <!-- 강의 -->
         <mapper resource="myBatis/talent/talent-sqlMapping.xml" />
         <!-- 강의 내용 -->

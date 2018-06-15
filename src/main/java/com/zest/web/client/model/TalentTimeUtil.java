@@ -84,6 +84,14 @@ public class TalentTimeUtil {
 	public void setSun(List<String> sun) {
 		this.sun = sun;
 	}
+	@Override
+	public String toString() {
+		return "TalentTimeUtil [zone_id=" + zone_id + ", mon=" + mon + ", tue=" + tue + ", wed=" + wed + ", tur=" + tur
+				+ ", fri=" + fri + ", sat=" + sat + ", sun=" + sun + ", timeData=" + timeData + ", count=" + count
+				+ "]";
+	}
+	
+	
 	
 	
 }

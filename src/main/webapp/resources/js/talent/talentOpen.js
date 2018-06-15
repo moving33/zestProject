@@ -35,23 +35,23 @@ var onedayCheckData3 = {
     day2: '',
     day3: ''
 };
-//Json으로 보낼때의 데이터
+// Json으로 보낼때의 데이터
 var onedayData1 = {zoneid: '', t1: '', t2: '', t3: '', day1: '', day2: '', day3: ''};
 var onedayData2 = {zoneid: '', t1: '', t2: '', t3: '', day1: '', day2: '', day3: ''};
 var onedayData3 = {zoneid: '', t1: '', t2: '', t3: '', day1: '', day2: '', day3: ''};
-//보낼 데이터 저장
-var monArray = ['시간협의', '시간협의', '시간협의'];
-var tueArray = ['시간협의', '시간협의', '시간협의'];
-var wedArray = ['시간협의', '시간협의', '시간협의'];
-var turArray = ['시간협의', '시간협의', '시간협의'];
-var friArray = ['시간협의', '시간협의', '시간협의'];
-var satArray = ['시간협의', '시간협의', '시간협의'];
-var sunArray = ['시간협의', '시간협의', '시간협의'];
-//지역최대 3개
+// 보낼 데이터 저장
+var monArray = ['시간협의', '', ''];
+var tueArray = ['시간협의', '', ''];
+var wedArray = ['시간협의', '', ''];
+var turArray = ['시간협의', '', ''];
+var friArray = ['시간협의', '', ''];
+var satArray = ['시간협의', '', ''];
+var sunArray = ['시간협의', '', ''];
+// 지역최대 3개
 var data1 = {'zoneId': '', 'mon': '', 'tue': '', 'wed': '', 'tur': '', 'fri': '', 'sat': '', 'sun': ''};
 var data2 = {'zoneId': '', 'mon': '', 'tue': '', 'wed': '', 'tur': '', 'fri': '', 'sat': '', 'sun': ''};
 var data3 = {'zoneId': '', 'mon': '', 'tue': '', 'wed': '', 'tur': '', 'fri': '', 'sat': '', 'sun': ''};
-//선택한 zone이 몇번째인지 확인하는 변수
+// 선택한 zone이 몇번째인지 확인하는 변수
 var selectZonedata = 0;
 // json 방식으로 시간을 저장하는 함수
 var callbackData = {
@@ -103,10 +103,10 @@ var callbackData = {
 }
 // naver map 변수
 var map;
-//db에 넣을 좌표
+// db에 넣을 좌표
 var mapLocation = {'x':'','y':''};
-/*혜진*/
-//사진추가 버튼 눌렀을때
+/* 혜진 */
+// 사진추가 버튼 눌렀을때
 function addImg() {
     var count = 0;
 
@@ -143,7 +143,7 @@ $(function () {
     });
 });
 
-//네이버 지도 검색
+// 네이버 지도 검색
 function search() {
 
     var addr = $('#searchMap').val();
@@ -159,9 +159,10 @@ function search() {
         // 첫번째 결과 결과 주소: result.items[0].address
         // 첫번째 검색 결과 좌표: result.items[0].point.y, result.items[0].point.x
 
-        //db에 넣을 좌표 저장
+        // db에 넣을 좌표 저장
         mapLocation.x = result.items[0].point.x;
         mapLocation.y = result.items[0].point.y;
+        $("#locationXY").val(mapLocation.x+","+mapLocation.y);
 
         var myaddr = new naver.maps.Point(result.items[0].point.x, result.items[0].point.y);
         map.setCenter(myaddr); // 검색된 좌표로 지도 이동
@@ -172,35 +173,33 @@ function search() {
         });
         naver.maps.Event.addListener(map, 'click', function(e) {
             marker.setPosition(e.coord);
-            //db에 저장할 내용 변경
+            // db에 저장할 내용 변경
             var x = e.coord.x;
             var y = e.coord.y;
 
             mapLocation.x = x;
             mapLocation.y = y;
+            $("#locationXY").val(mapLocation.x+","+mapLocation.y);
 
         });
-        /*// 마커 클릭 이벤트 처리
-        naver.maps.Event.addListener(marker, "click", function (e) {
-            if (infowindow.getMap()) {
-                infowindow.close();
-            } else {
-                infowindow.open(map, marker);
-            }
-        });
-        // 마크 클릭시 인포윈도우 오픈
-        var infowindow = new naver.maps.InfoWindow({
-            content: '<h4> [네이버 개발자센터]</h4><a href="https://developers.naver.com" target="_blank"><img src="https://developers.naver.com/inc/devcenter/images/nd_img.png"></a>'
-        });*/
+        /*
+		 * // 마커 클릭 이벤트 처리 naver.maps.Event.addListener(marker, "click",
+		 * function (e) { if (infowindow.getMap()) { infowindow.close(); } else {
+		 * infowindow.open(map, marker); } }); // 마크 클릭시 인포윈도우 오픈 var infowindow =
+		 * new naver.maps.InfoWindow({ content: '<h4> [네이버 개발자센터]</h4><a
+		 * href="https://developers.naver.com" target="_blank"><img
+		 * src="https://developers.naver.com/inc/devcenter/images/nd_img.png"></a>'
+		 * });
+		 */
     });
 
 }
 
-//지역 선택
+// 지역 선택
 function cityPage(name) {
 
     var cityHtml = '';
-    var city1 = ["강남", "건대", "신촌/홍대", "종로", "노원", "사당", "신림", "성북"];
+    var city1 = ["강남", "건대", "신촌홍대", "종로", "노원", "사당", "신림", "성북"];
     var city2 = ["분당", "일산", "수원"];
 
     switch (name) {
@@ -220,7 +219,7 @@ function cityPage(name) {
     }
 }
 
-//날짜 추가 기능
+// 날짜 추가 기능
 function dateSave() {
 
     var saveHtml = '';
@@ -280,14 +279,14 @@ function dateSave() {
     }
 }
 
-//날짜삭제 기능
+// 날짜삭제 기능
 function dateDel() {
     var d = $("#timeSaveZone1").children().last();
     d.remove();
 }
 
 
-//지역 선택
+// 지역 선택
 function fetchPage(name){
 	var list = $('#ca_dt');
 	var listHtml = '';
@@ -299,16 +298,16 @@ function fetchPage(name){
 			}
 			return response.json();
 		}).then((data) => {
-			//for문 처리
+			// for문 처리
 			$.each(data,function(index,value){
-				listHtml += "<option value=''>"+value.lecture_name+"</option>";
+				listHtml += "<option value='"+value.lecture_id+"'>"+value.lecture_name+"</option>";
 			});
 			list.html(listHtml);
 		}).catch((e) => {
 			console.log(e);
 		});
 }
-//데이터 피커 만들기
+// 데이터 피커 만들기
 function createDatePicker(a) {
     a.datepicker({
         minDate: 0,
@@ -369,9 +368,9 @@ function createDatePicker(a) {
     });
 }
 
-//시간 체크
+// 시간 체크
 function checkTime(startTime, endTime, id) {
-    //시간 체크
+    // 시간 체크
     if (startTime > endTime || startTime == endTime) {
         alert('시간이 올바르지 않습니다 다시 설정해주세요');
         id.val('');
@@ -379,7 +378,7 @@ function checkTime(startTime, endTime, id) {
     }
 }
 
-//같은 날일시 잘못된 시간 체크
+// 같은 날일시 잘못된 시간 체크
 function checkDay(day1, day2, day3, id) {
     alert(day1 + '/' + day2 + '/' + day3);
     alert(onedayCheckData1.t1_end + "/" + onedayCheckData1.t2_start);
@@ -409,26 +408,26 @@ function checkDay(day1, day2, day3, id) {
 }
 
 
-/*재식*/
+/* 재식 */
 
-//a는 요일 체크박스의 ID b는 요일 Tap 패인의 ID e는 Tap 패인 안의 Content div 의 id
+// a는 요일 체크박스의 ID b는 요일 Tap 패인의 ID e는 Tap 패인 안의 Content div 의 id
 function checkConfirm(a, b, e) {
     var d = '#' + e + 'checkTime';
     var c = '#' + e;
     var f = 'saveTime' + e;
     var g = e + 'time0';
-    //체크 가 되있을시
+    // 체크 가 되있을시
     if (!$(a).prop("checked")) {
         if ($(d).val() == 1) {
             var con = confirm('저장된 데이터가 있습니다. 취소 하시겠습니까?');
             if (con == true) {
                 $(a).prop("checked", false);
-                //저장된 공간 삭제
+                // 저장된 공간 삭제
                 var item = document.getElementById(f);
                 if (item != null) {
                     item.parentNode.removeChild(item);
                 }
-                //데이터 리셋
+                // 데이터 리셋
                 for (var i = 1; i <= 6; i++) {
                     var temp = '#' + g + i;
                     if ($(temp).val() != null) {
@@ -459,11 +458,11 @@ function checkConfirm(a, b, e) {
 
     } else {
 
-        //체크가 안되있을시
+        // 체크가 안되있을시
         $(b).attr('href', '#' + e);
         $(b).removeAttr('onclick');
 
-        //저장될 공간 업데이트
+        // 저장될 공간 업데이트
         var html = '';
         html += '<div id="saveTime' + e + '">';
         html += '<input type="hidden" name="' + e + 'Time" value=0 id="' + e + 'Time1">';
@@ -482,14 +481,14 @@ function checkConfirm(a, b, e) {
     }
 }
 
-//날짜 타임 지우기
+// 날짜 타임 지우기
 function removeTime(idCount, day) {
     var a = '#' + day + 'checkPlusTime1';
     var b = '#' + day + 'checkPlusTime2';
     var c = '#' + day + 'divTime';
     var checkTime1 = $(a).val();
     var checkTime2 = $(b).val();
-    //div
+    // div
     var div = $(c).val();
     if (idCount == 1) {
         checkTime1 = checkTime1 - 2;
@@ -509,7 +508,7 @@ function removeTime(idCount, day) {
     }
 }
 
-//시간추가 a는 해당 요일일 ex) 월요일이면 mon 화요일이면 tue
+// 시간추가 a는 해당 요일일 ex) 월요일이면 mon 화요일이면 tue
 function addTime(a) {
 
     var checkTime1ID1 = '#' + a + 'checkPlusTime1';
@@ -518,14 +517,14 @@ function addTime(a) {
 
     var checkTime1 = $(checkTime1ID1).val();
     var checkTime2 = $(checkTime1ID2).val();
-    //div
+    // div
     var div = $(checkDivTime).val();
 
     if (div == 2) {
         alert("시간선택은 3개 까지 추가가 가능합니다.");
         return;
     }
-    //시간체크옵션 값 + ,value 값에 저장
+    // 시간체크옵션 값 + ,value 값에 저장
     checkTime1++;
     checkTime1++;
     checkTime2++;
@@ -534,12 +533,15 @@ function addTime(a) {
     $(checkTime1ID1).val(checkTime1);
     $(checkTime1ID2).val(checkTime2);
     $(checkDivTime).val(div);
-    //html 에 추가
+    // html 에 추가
     var timeDataDivId = '#' + a + 'timeData';
     var timedata = $(timeDataDivId);
     var html = '';
     html += '<div class="plusTimeClass" id=' + a + 'timeDate' + div + '>';
-    /*    html += '<input type="text" name="picker" id="picker' + (div + 1) + '" class="picker" readonly="readonly" value="날짜선택">';*/
+    /*
+	 * html += '<input type="text" name="picker" id="picker' + (div + 1) + '"
+	 * class="picker" readonly="readonly" value="날짜선택">';
+	 */
     html += '<select name="' + a + 'time0' + checkTime1 + '" ';
     html += 'id="' + a + 'time0' + checkTime1 + '" ';
     html += 'class="btn btn-default">\n' +
@@ -625,7 +627,7 @@ function addTime(a) {
         '                                        까지\n' +
         '                                        <input type="button" class="btn btn-primary" value="삭제" onclick="removeTime(' + div + ',\'' + a + '\')">';
 
-    //내용추가
+    // 내용추가
     html += '<br>';
     html += '</div>';
 
@@ -649,7 +651,7 @@ function addTime(a) {
         yearSuffix: '년'
     });
 
-    //change event 걸기
+    // change event 걸기
     var eventTime1 = '#' + a + 'time0' + checkTime1;
     var tempEventTime1 = a + 'time0' + checkTime1;
     var eventTime2 = '#' + a + 'time0' + checkTime2;
@@ -674,14 +676,14 @@ function addTime(a) {
     });
 }
 
-//시간 체크
+// 시간 체크
 function timeCheck(a, b) {
 
     var s1 = document.getElementById(a);
     var s2 = document.getElementById(b);
 
     var t1 = s1.options[s1.selectedIndex].value;
-    var t2 = s2.options[s2.selectedIndex].value; //두번째 선택시간
+    var t2 = s2.options[s2.selectedIndex].value; // 두번째 선택시간
 
     if (t1 == '시간협의') {
         if (t2 != '시간협의') {
@@ -700,11 +702,11 @@ function timeCheck(a, b) {
         }
     }
 
-    var t1Hours = parseInt(t1.substr(0, 2));  //시
-    var t1Min = parseInt(t1.substr(3, 2));  //분
+    var t1Hours = parseInt(t1.substr(0, 2));  // 시
+    var t1Min = parseInt(t1.substr(3, 2));  // 분
 
-    var t2Hours = parseInt(t2.substr(0, 2)); //시
-    var t2Min = parseInt(t2.substr(3, 2)); //분
+    var t2Hours = parseInt(t2.substr(0, 2)); // 시
+    var t2Min = parseInt(t2.substr(3, 2)); // 분
     // 시간분으로 바꾸기
     var t11 = t1Hours * 60 + t1Min;
     var t22 = t2Hours * 60 + t2Min;
@@ -718,7 +720,7 @@ function timeCheck(a, b) {
     return true;
 }
 
-//각 요일에 대한 정보 저장하기 a 는 각요일의 정보를 저장하는 곳의 id #을 제외한
+// 각 요일에 대한 정보 저장하기 a 는 각요일의 정보를 저장하는 곳의 id #을 제외한
 function dayTabBtn(a) {
     var id1 = '#' + a + "Time1";
     var id2 = '#' + a + "Time2";
@@ -733,7 +735,7 @@ function dayTabBtn(a) {
     }
 }
 
-//지역 추가 버튼 클릭시 발생
+// 지역 추가 버튼 클릭시 발생
 function addZone() {
     var checkZone = $("#ca_dt1 option:selected").text();
 
@@ -742,14 +744,14 @@ function addZone() {
         return;
     }
 
-    //지역 중복 검사
+    // 지역 중복 검사
     if ($("#zonSpan1").text() == checkZone || $("#zonSpan2").text() == checkZone || $("#zonSpan3").text() == checkZone) {
         swal('이미 선택하신 지역입니다.', {
             icon: "warning"
         });
         return;
     }
-    //지역 3개 검사
+    // 지역 3개 검사
     if ($("#zonSpan1").text() != '' && $("#zonSpan2").text() != '' && $("#zonSpan3").text() != '') {
         swal('지역은 3개까지 선택 가능합니다.', {
             icon: "warning"
@@ -757,7 +759,7 @@ function addZone() {
         return;
     }
 
-    //지역 추가
+    // 지역 추가
     if ($("#zonSpan1").text() == '') {
         $("#zonSpan1").text(checkZone);
         $("#zoneA1").css("display", "block");
@@ -778,16 +780,16 @@ function addZone() {
     }
 }
 
-//zone을 몇번을 선택했는지 구별해주는 함수, notoneDay 를 보이게 만들어줌
+// zone을 몇번을 선택했는지 구별해주는 함수, notoneDay 를 보이게 만들어줌
 function selectZoneNumber(a) {
-    //원데이 항목일 경우에 리턴
+    // 원데이 항목일 경우에 리턴
     if ($("#checkDayType").prop("checked")) {
         return;
     }
     if ($(".notOnedayDiv").css("display") == "none") {
         $(".notOnedayDiv").css("display", "block");
     }
-    //탭 화면을 전환시 내용 초기화
+    // 탭 화면을 전환시 내용 초기화
     if (selectZonedata != a) {
         var result = confirm("지역 탭을 이동하기전에 저장하셨습니까?");
         if (result) {
@@ -798,74 +800,74 @@ function selectZoneNumber(a) {
             $("#dayCheckFri").prop("checked", false);
             $("#dayCheckSat").prop("checked", false);
             $("#dayCheckSun").prop("checked", false);
-            //time값 리셋
-            $("#montime01").val(''); //월요일
+            // time값 리셋
+            $("#montime01").val(''); // 월요일
             $("#montime02").val('');
             $("#montime03").val('');
             $("#montime04").val('');
             $("#montime05").val('');
             $("#montime06").val('');
             
-            $("#tuetime01").val(''); //화요일
+            $("#tuetime01").val(''); // 화요일
             $("#tuetime02").val('');
             $("#tuetime03").val('');
             $("#tuetime04").val('');
             $("#tuetime05").val('');
             $("#tuetime06").val('');
                         
-            $("#wedtime01").val(''); //수요일 
+            $("#wedtime01").val(''); // 수요일
             $("#wedtime02").val('');
             $("#wedtime03").val('');
             $("#wedtime04").val('');
             $("#wedtime05").val('');
             $("#wedtime06").val('');            
             
-            $("#turtime01").val(''); //목요일 
+            $("#turtime01").val(''); // 목요일
             $("#turtime02").val('');
             $("#turtime03").val('');
             $("#turtime04").val('');
             $("#turtime05").val('');
             $("#turtime06").val('');       
             
-            $("#fritime01").val(''); //금요일            
+            $("#fritime01").val(''); // 금요일
             $("#fritime02").val('');
             $("#fritime03").val('');
             $("#fritime04").val('');
             $("#fritime05").val('');
             $("#fritime06").val('');
             
-            $("#sattime01").val(''); //토요일
+            $("#sattime01").val(''); // 토요일
             $("#sattime02").val('');
             $("#sattime03").val('');
             $("#sattime04").val('');
             $("#sattime05").val('');
             $("#sattime06").val('');
             
-            $("#suntime01").val(''); //일요일
+            $("#suntime01").val(''); // 일요일
             $("#suntime02").val('');
             $("#suntime03").val('');
             $("#suntime04").val('');
             $("#suntime05").val('');
             $("#suntime06").val('');
             
-            //자식노드 모두 지우기
+            // 자식노드 모두 지우기
             $("#saveTimeData").empty();
         } else {
             swal("꼭 저장해주세요.");
             return;
         }
     }
-    //선택한 지역의 넘버가 들어감.
+    // 선택한 지역의 넘버가 들어감.
     selectZonedata = a;
 
 }
 
 
-//지역을 클릭한 후 필요한 정보 저장 메서드 a는 실행시키는 input tag
+// 지역을 클릭한 후 필요한 정보 저장 메서드 a는 실행시키는 input tag
 function selectZone(a) {
-    var thisValue = a.value; //zone 의 이름
+    var thisValue = a.value; // zone 의 이름
     var thisId = a.id; // 버튼의 이름 저장
-    //해당 버튼이 어디에 위치있는지 구함
+    // 해당 버튼이 어디에 위치있는지 구함
     if (databtn1 == thisId) {
         selectZonedata = 1;
         alert(thisValue + " 의 시간설정을 해주세요.");
@@ -873,7 +875,7 @@ function selectZone(a) {
         $(a).css("color", "white");
         alert(data1.zoneId + ' / ' + data1.mon + ' / ' + data1.tue + ' / ' + data1.wed + ' / ' + data1.tur + ' / ' + data1.fri + ' / ' + data1.sat + ' / ' + data1.sun);
 
-        //나머지 버튼들 css 변환
+        // 나머지 버튼들 css 변환
         if ($("#zoneBtn2").length > 0) {
             $("#zoneBtn2").css("background", "white");
             $("#zoneBtn2").css("color", "#007bff");
@@ -891,7 +893,7 @@ function selectZone(a) {
         $(a).css("background", "blue");
         $(a).css("color", "white");
 
-        //나머지 버튼들 css 변환
+        // 나머지 버튼들 css 변환
         if ($("#zoneBtn1").length > 0) {
             $("#zoneBtn1").css("background", "white");
             $("#zoneBtn1").css("color", "#007bff");
@@ -911,7 +913,7 @@ function selectZone(a) {
         $(a).css("background", "blue");
         $(a).css("color", "white");
 
-        //나머지 버튼들 css 변환
+        // 나머지 버튼들 css 변환
         if ($("#zoneBtn1").length > 0) {
             $("#zoneBtn1").css("background", "white");
             $("#zoneBtn1").css("color", "#007bff");
@@ -926,10 +928,10 @@ function selectZone(a) {
 
 }
 
-//a는 저장하는 data 의 번호를 저장하고 있는 값의 value
+// a는 저장하는 data 의 번호를 저장하고 있는 값의 value
 function timeDataSave(a, name, time1, time2, time3) {
     if (a == 1) {
-        //zone id 저장.
+        // zone id 저장.
         data1.zoneId = $("#zonSpan1").text().trim();
         if (name == 'mon') {
             callbackData.setDataName(data1.mon, monArray);
@@ -962,7 +964,7 @@ function timeDataSave(a, name, time1, time2, time3) {
         callbackData.setData(data1, name);
     }
     if (a == 2) {
-        //zone id 저장.
+        // zone id 저장.
         data2.zoneId = $("#zonSpan2").text().trim();
         if (name == 'mon') {
             callbackData.setDataName(data2.mon, monArray);
@@ -996,7 +998,7 @@ function timeDataSave(a, name, time1, time2, time3) {
 
     }
     if (a == 3) {
-        //zone id 저장.
+        // zone id 저장.
         data3.zoneId = $("#zonSpan3").text().trim();
         if (name == 'mon') {
             callbackData.setDataName(data3.mon, monArray);
@@ -1030,7 +1032,7 @@ function timeDataSave(a, name, time1, time2, time3) {
     }
 }
 
-//oneday 시간 추가
+// oneday 시간 추가
 function addOnedayTime(a, b) {
     if ($(a).css("display") == "none") {
         $(a).show();
@@ -1039,7 +1041,7 @@ function addOnedayTime(a, b) {
     }
 }
 
-//oneday 시간 삭제
+// oneday 시간 삭제
 function delOnedayTime(a, b) {
     if ($(b).css("display") != "none") {
         $(b).hide();
@@ -1060,7 +1062,7 @@ function saveOneday(a) {
     var day3 = '';
     var day3Time = '';
     var text = '';
-    //1번 지역에서 실행될 코드
+    // 1번 지역에서 실행될 코드
     if (a == 1) {
         if (onedayCheckData1.day1 == '' || onedayCheckData1.t1_start == '' || onedayCheckData1.t1_end == '') {
             swal("입력을 올바르게 해주세요", {
@@ -1068,7 +1070,7 @@ function saveOneday(a) {
             });
             return;
         }
-        zoneid = $("#zoneA1").text().trim();
+        zoneid = $("#zoneA1").text().trim();        
         day1 = onedayCheckData1.day1;
         day1Time = onedayCheckData1.t1_start + "~" + onedayCheckData1.t1_end;
         day2 = onedayCheckData1.day2;
@@ -1092,7 +1094,7 @@ function saveOneday(a) {
             buttons: true
         }).then(function (value) {
             if (value) {
-                //실제로 저장하기
+                // 실제로 저장하기
                 onedayData1.zoneid = zoneid;
                 onedayData1.day1 = day1;
                 onedayData1.day2 = day2;
@@ -1139,7 +1141,7 @@ function saveOneday(a) {
             buttons: true
         }).then(function (value) {
             if (value) {
-                //실제로 저장하기
+                // 실제로 저장하기
                 onedayData2.zoneid = zoneid;
                 onedayData2.day1 = day1;
                 onedayData2.day2 = day2;
@@ -1186,7 +1188,7 @@ function saveOneday(a) {
             buttons: true
         }).then(function (value) {
             if (value) {
-                //실제로 저장하기
+                // 실제로 저장하기
                 onedayData3.zoneid = zoneid;
                 onedayData3.day1 = day1;
                 onedayData3.day2 = day2;
@@ -1282,7 +1284,7 @@ function deleteOneday(a) {
     }
 }
 
-//oneday 항목 리셋
+// oneday 항목 리셋
 function onedayReset(a) {
     if (a == 1) {
         $(".oneday1").val('');
@@ -1310,7 +1312,7 @@ function onedayReset(a) {
     }
 }
 
-//이미지파일
+// 이미지파일
 function viewImg() {
     if ($("#talentImgView").css("display") == "none") {
         $("#talentImgView").css("display", "block");
@@ -1327,7 +1329,7 @@ function test1() {
     alert($("#note_tutorinfo").val());
 }
 
-//커리큘렴 추가
+// 커리큘렴 추가
 function addCurri() {
     var count = $("#checkCurriCount").val();
     var html = '';
@@ -1336,7 +1338,7 @@ function addCurri() {
     html += '<div id="curri'+count+'">';
     html += '<h4>'+count+'회차</h4>';
     html += '<input type="button" onclick="delCurri(\'curri'+count+'\')" class="btn btn-outline-primary" value="삭제">';
-    html += '<textarea id="note_curri'+count+'"name="note_curri" class="summer" required></textarea>';
+    html += '<textarea id="note_curri'+count+'"name="tc_curriculum" class="summer" required></textarea>';
     html += '</div>';
     $("#curriDiv").append(html);
     $("#note_curri"+count).summernote({
@@ -1346,11 +1348,11 @@ function addCurri() {
     });
 }
 
-//커리큘럼 삭제
+// 커리큘럼 삭제
 function delCurri(a) {
     var count  = $("#checkCurriCount").val();
     var thisCount = a.substr(5,1);
-    //삭제하려는 커리큘럼이 전체 커리큘럼 텍스트의 숫자 밑일경우 리턴
+    // 삭제하려는 커리큘럼이 전체 커리큘럼 텍스트의 숫자 밑일경우 리턴
     if(thisCount != count){
         swal('마지막 커리큘럼의 내용 부터 삭제 해주세요',{
            icon:"warning"
@@ -1359,26 +1361,26 @@ function delCurri(a) {
     }else{
         count --;
         $("#checkCurriCount").val(count);
-        //해당 div 삭제
+        // 해당 div 삭제
         $("#"+a).remove();
     }
 
 
-   /* var divId = "#"+a;
-    if (a >= count) {
-        $("#curri2").remove();
-        return;
-    }*/
+   /*
+	 * var divId = "#"+a; if (a >= count) { $("#curri2").remove(); return; }
+	 */
 }
 
 
-//최종으로 보내기전에 체크 및 체크 완료시 ajax로 data전송
-function lastSubmit(){	
-	//원데이 인지 아닌지 여부 판단
-	if(!$("#checkDayType").prop("checked")){//해당 항목이 체크가 안되있으면  즉 원데이 항목이 아님,
-		//저장된 항목을 보낼 변수 작성
+// 최종으로 보내기전에 체크 및 체크 완료시 ajax로 data전송
+function lastSubmit(){
+	
+	alert($("#talent_lecture_id option:selected").val());
+	// 원데이 인지 아닌지 여부 판단
+	if(!$("#checkDayType").prop("checked")){// 해당 항목이 체크가 안되있으면 즉 원데이 항목이 아님,
+		// 저장된 항목을 보낼 변수 작성
 		var sendData ={'zone1':'','zone2':'','zone3':''};
-		//보낼 내용이 담겨져 있는지 확인
+		// 보낼 내용이 담겨져 있는지 확인
 		if(data1.zoneid != ''){
 			sendData.zone1 = data1;
 			console.log(sendData.zone1.zoneId);
@@ -1389,7 +1391,7 @@ function lastSubmit(){
 		if(data3.zoneid != ''){
 			sendData.zone3 = data1;
 		}
-		//저장된 timeData controller로 내용 보내기 
+		// 저장된 timeData controller로 내용 보내기
 		var myHeaders = new Headers();
 		myHeaders.append("Content-Type",
 				"application/json;Charset=UTF-8");	
@@ -1409,35 +1411,35 @@ function lastSubmit(){
 		});
 		
 	}
-	return false;
+	
+	return true;
 }
 
 $(document).ready(function () {
 
-    //이미지 슬라이드 기능
+    // 이미지 슬라이드 기능
     $("#talentImg1").change(function () {
         var imgFile = document.querySelector('#talentImg1');
-        var maxSize = 2 * 1024 * 1024; //2M
+        var maxSize = 2 * 1024 * 1024; // 2M
         var fileSize = 0;
 
         fileSize = imgFile.files.size;
-        //내용을 빼었을시
-        if (imgFile.files.length == 0) {
+        // 내용을 빼었을시
             $("#Img1").remove();
-        }
-        //사이즈 체크
+     
+        // 사이즈 체크
         if (fileSize > maxSize) {
             swal("첨부파일 사이즈는 2MB 이내로 등록 가능합니다.");
             return;
         }
 
         var fileList = imgFile.files;
-        //읽기
+        // 읽기
         var reader = new FileReader();
         reader.readAsDataURL(fileList[0]);
 
         reader.onload = function () {
-            //해당 이미지 슬라이쇼 추가
+            // 해당 이미지 슬라이쇼 추가
             html = '';
             html += '<div class="carousel-item active" id="Img1">';
             html += '<img class="d-block w-100" src="' + reader.result + '">';
@@ -1447,25 +1449,25 @@ $(document).ready(function () {
     });
     $("#talentImg2").change(function () {
         var imgFile = document.querySelector('#talentImg2');
-        var maxSize = 2 * 1024 * 1024; //2M
+        var maxSize = 2 * 1024 * 1024; // 2M
         var fileSize = 0;
         fileSize = imgFile.files.size;
         if (imgFile.files.length == 0) {
             $("#Img2").remove();
         }
-        //사이즈 체크
+        // 사이즈 체크
         if (fileSize > maxSize) {
             swal("첨부파일 사이즈는 2MB 이내로 등록 가능합니다.");
             return;
         }
 
         var fileList = imgFile.files;
-        //읽기
+        // 읽기
         var reader = new FileReader();
         reader.readAsDataURL(fileList[0]);
 
         reader.onload = function () {
-            //해당 이미지 슬라이쇼 추가
+            // 해당 이미지 슬라이쇼 추가
             html = '';
             html += '<div class="carousel-item" id="Img2">';
             html += '<img class="d-block w-100" src="' + reader.result + '">';
@@ -1475,25 +1477,25 @@ $(document).ready(function () {
     });
     $("#talentImg3").change(function () {
         var imgFile = document.querySelector('#talentImg3');
-        var maxSize = 2 * 1024 * 1024; //2M
+        var maxSize = 2 * 1024 * 1024; // 2M
         var fileSize = 0;
         fileSize = imgFile.files.size;
         if (imgFile.files.length == 0) {
             $("#Img3").remove();
         }
-        //사이즈 체크
+        // 사이즈 체크
         if (fileSize > maxSize) {
             swal("첨부파일 사이즈는 2MB 이내로 등록 가능합니다.");
             return;
         }
 
         var fileList = imgFile.files;
-        //읽기
+        // 읽기
         var reader = new FileReader();
         reader.readAsDataURL(fileList[0]);
 
         reader.onload = function () {
-            //해당 이미지 슬라이쇼 추가
+            // 해당 이미지 슬라이쇼 추가
             html = '';
             html += '<div class="carousel-item" id="Img3">';
             html += '<img class="d-block w-100" src="' + reader.result + '">';
@@ -1503,25 +1505,25 @@ $(document).ready(function () {
     });
     $("#talentImg4").change(function () {
         var imgFile = document.querySelector('#talentImg4');
-        var maxSize = 2 * 1024 * 1024; //2M
+        var maxSize = 2 * 1024 * 1024; // 2M
         var fileSize = 0;
         fileSize = imgFile.files.size;
         if (imgFile.files.length == 0) {
             $("#Img4").remove();
         }
-        //사이즈 체크
+        // 사이즈 체크
         if (fileSize > maxSize) {
             swal("첨부파일 사이즈는 2MB 이내로 등록 가능합니다.");
             return;
         }
 
         var fileList = imgFile.files;
-        //읽기
+        // 읽기
         var reader = new FileReader();
         reader.readAsDataURL(fileList[0]);
 
         reader.onload = function () {
-            //해당 이미지 슬라이쇼 추가
+            // 해당 이미지 슬라이쇼 추가
             html = '';
             html += '<div class="carousel-item" id="Img4">';
             html += '<img class="d-block w-100" src="' + reader.result + '">';
@@ -1531,25 +1533,25 @@ $(document).ready(function () {
     });
     $("#talentImg5").change(function () {
         var imgFile = document.querySelector('#talentImg5');
-        var maxSize = 2 * 1024 * 1024; //2M
+        var maxSize = 2 * 1024 * 1024; // 2M
         var fileSize = 0;
         fileSize = imgFile.files.size;
         if (imgFile.files.length == 0) {
             $("#Img5").remove();
         }
-        //사이즈 체크
+        // 사이즈 체크
         if (fileSize > maxSize) {
             swal("첨부파일 사이즈는 2MB 이내로 등록 가능합니다.");
             return;
         }
 
         var fileList = imgFile.files;
-        //읽기
+        // 읽기
         var reader = new FileReader();
         reader.readAsDataURL(fileList[0]);
 
         reader.onload = function () {
-            //해당 이미지 슬라이쇼 추가
+            // 해당 이미지 슬라이쇼 추가
             html = '';
             html += '<div class="carousel-item" id="Img5">';
             html += '<img class="d-block w-100" src="' + reader.result + '">';
@@ -1559,25 +1561,25 @@ $(document).ready(function () {
     });
     $("#talentImg6").change(function () {
         var imgFile = document.querySelector('#talentImg6');
-        var maxSize = 2 * 1024 * 1024; //2M
+        var maxSize = 2 * 1024 * 1024; // 2M
         var fileSize = 0;
         fileSize = imgFile.files.size;
         if (imgFile.files.length == 0) {
             $("#Img6").remove();
         }
-        //사이즈 체크
+        // 사이즈 체크
         if (fileSize > maxSize) {
             swal("첨부파일 사이즈는 2MB 이내로 등록 가능합니다.");
             return;
         }
 
         var fileList = imgFile.files;
-        //읽기
+        // 읽기
         var reader = new FileReader();
         reader.readAsDataURL(fileList[0]);
 
         reader.onload = function () {
-            //해당 이미지 슬라이쇼 추가
+            // 해당 이미지 슬라이쇼 추가
             html = '';
             html += '<div class="carousel-item" id="Img6">';
             html += '<img class="d-block w-100" src="' + reader.result + '">';
@@ -1587,25 +1589,25 @@ $(document).ready(function () {
     });
     $("#talentImg7").change(function () {
         var imgFile = document.querySelector('#talentImg7');
-        var maxSize = 2 * 1024 * 1024; //2M
+        var maxSize = 2 * 1024 * 1024; // 2M
         var fileSize = 0;
         fileSize = imgFile.files.size;
         if (imgFile.files.length == 0) {
             $("#Img7").remove();
         }
-        //사이즈 체크
+        // 사이즈 체크
         if (fileSize > maxSize) {
             swal("첨부파일 사이즈는 2MB 이내로 등록 가능합니다.");
             return;
         }
 
         var fileList = imgFile.files;
-        //읽기
+        // 읽기
         var reader = new FileReader();
         reader.readAsDataURL(fileList[0]);
 
         reader.onload = function () {
-            //해당 이미지 슬라이쇼 추가
+            // 해당 이미지 슬라이쇼 추가
             html = '';
             html += '<div class="carousel-item" id="Img7">';
             html += '<img class="d-block w-100" src="' + reader.result + '">';
@@ -1615,25 +1617,25 @@ $(document).ready(function () {
     });
     $("#talentImg8").change(function () {
         var imgFile = document.querySelector('#talentImg8');
-        var maxSize = 2 * 1024 * 1024; //2M
+        var maxSize = 2 * 1024 * 1024; // 2M
         var fileSize = 0;
         fileSize = imgFile.files.size;
         if (imgFile.files.length == 0) {
             $("#Img8").remove();
         }
-        //사이즈 체크
+        // 사이즈 체크
         if (fileSize > maxSize) {
             swal("첨부파일 사이즈는 2MB 이내로 등록 가능합니다.");
             return;
         }
 
         var fileList = imgFile.files;
-        //읽기
+        // 읽기
         var reader = new FileReader();
         reader.readAsDataURL(fileList[0]);
 
         reader.onload = function () {
-            //해당 이미지 슬라이쇼 추가
+            // 해당 이미지 슬라이쇼 추가
             html = '';
             html += '<div class="carousel-item" id="Img8">';
             html += '<img class="d-block w-100" src="' + reader.result + '">';
@@ -1643,25 +1645,25 @@ $(document).ready(function () {
     });
     $("#talentImg9").change(function () {
         var imgFile = document.querySelector('#talentImg9');
-        var maxSize = 2 * 1024 * 1024; //2M
+        var maxSize = 2 * 1024 * 1024; // 2M
         var fileSize = 0;
         fileSize = imgFile.files.size;
         if (imgFile.files.length == 0) {
             $("#Img9").remove();
         }
-        //사이즈 체크
+        // 사이즈 체크
         if (fileSize > maxSize) {
             swal("첨부파일 사이즈는 2MB 이내로 등록 가능합니다.");
             return;
         }
 
         var fileList = imgFile.files;
-        //읽기
+        // 읽기
         var reader = new FileReader();
         reader.readAsDataURL(fileList[0]);
 
         reader.onload = function () {
-            //해당 이미지 슬라이쇼 추가
+            // 해당 이미지 슬라이쇼 추가
             html = '';
             html += '<div class="carousel-item" id="Img9">';
             html += '<img class="d-block w-100" src="' + reader.result + '">';
@@ -1670,7 +1672,7 @@ $(document).ready(function () {
         }
     });
 
-    //시간가격체크
+    // 시간가격체크
     $("#price").change(function () {
         var regexp = /^[0-9]*$/;
         price = $("#price").val();
@@ -1684,20 +1686,20 @@ $(document).ready(function () {
         }
     });
 
-    //oneDay 인지 아닌지 체크 항목
+    // oneDay 인지 아닌지 체크 항목
     $("#checkDayType").change(function () {
-        if ($(this).prop("checked")) {//체크 되었을시
+        if ($(this).prop("checked")) {// 체크 되었을시
             $(".oneDayDiv").show();
             $(".notOnedayDiv").hide();
             alert(onedayData1.zoneid + "/" + onedayData1.day1 + "/" + onedayData1.day2 + "/" + onedayData1.day3 + "/" + onedayData1.t1 + "/" + onedayData1.t2 + "/" + onedayData1.t3);
             alert(onedayData2.zoneid + "/" + onedayData2.day1 + "/" + onedayData2.day2 + "/" + onedayData2.day3 + "/" + onedayData2.t1 + "/" + onedayData2.t2 + "/" + onedayData2.t3);
             alert(onedayData3.zoneid + "/" + onedayData3.day1 + "/" + onedayData3.day2 + "/" + onedayData3.day3 + "/" + onedayData3.t1 + "/" + onedayData3.t2 + "/" + onedayData3.t3);
-        } else {//체크가 안되있을시
+        } else {// 체크가 안되있을시
             $(".notOnedayDiv").show();
             $(".oneDayDiv").hide();
         }
     });
-    //각 요일에대한 값 저장 및 체크
+    // 각 요일에대한 값 저장 및 체크
     $("#montime02").change(function () {
         var s1 = 'montime01';
         var s2 = 'montime02';
@@ -1770,20 +1772,20 @@ $(document).ready(function () {
     });
 
 
-    //datePicker - zone 1
+    // datePicker - zone 1
     createDatePicker($("#ondDayDate1-1"));
     createDatePicker($("#ondDayDate2-1"));
     createDatePicker($("#ondDayDate3-1"));
-    //datePicker - zone 2
+    // datePicker - zone 2
     createDatePicker($("#ondDayDate1-2"));
     createDatePicker($("#ondDayDate2-2"));
     createDatePicker($("#ondDayDate3-2"));
-    //datePicker - zone 3
+    // datePicker - zone 3
     createDatePicker($("#ondDayDate1-3"));
     createDatePicker($("#ondDayDate2-3"));
     createDatePicker($("#ondDayDate3-3"));
 
-    //timePicker - zone 1
+    // timePicker - zone 1
     $("#oneDayTime1_1-1").timepicker({
         startTime: new Date(0, 0, 0, 06, 0, 0),
         interval: 60,
@@ -1797,7 +1799,7 @@ $(document).ready(function () {
         interval: 60,
         change: function (time) {
             onedayCheckData1.t1_end = time.getHours();
-            //시간이 올바르지 않을때 설정항목
+            // 시간이 올바르지 않을때 설정항목
             if (!checkTime(onedayCheckData1.t1_start, onedayCheckData1.t1_end, this)) {
             }
         }
@@ -1816,7 +1818,7 @@ $(document).ready(function () {
         interval: 60,
         change: function (time) {
             onedayCheckData1.t2_end = time.getHours();
-            //시간이 올바르지 않을때 설정항목
+            // 시간이 올바르지 않을때 설정항목
             if (!checkTime(onedayCheckData1.t2_start, onedayCheckData1.t2_end, this)) {
             }
         }
@@ -1835,13 +1837,13 @@ $(document).ready(function () {
         interval: 60,
         change: function (time) {
             onedayCheckData1.t3_end = time.getHours();
-            //시간이 올바르지 않을때 설정항목
+            // 시간이 올바르지 않을때 설정항목
             if (!checkTime(onedayCheckData1.t3_start, onedayCheckData1.t3_end, this)) {
             }
         }
     });
 
-    //timePicker - zone 2
+    // timePicker - zone 2
     $("#oneDayTime1_1-2").timepicker({
         startTime: new Date(0, 0, 0, 06, 0, 0),
         interval: 60,
@@ -1855,7 +1857,7 @@ $(document).ready(function () {
         interval: 60,
         change: function (time) {
             onedayCheckData2.t1_end = time.getHours();
-            //시간이 올바르지 않을때 설정항목
+            // 시간이 올바르지 않을때 설정항목
             if (!checkTime(onedayCheckData2.t1_start, onedayCheckData2.t1_end, this)) {
             }
         }
@@ -1874,7 +1876,7 @@ $(document).ready(function () {
         interval: 60,
         change: function (time) {
             onedayCheckData2.t2_end = time.getHours();
-            //시간이 올바르지 않을때 설정항목
+            // 시간이 올바르지 않을때 설정항목
             if (!checkTime(onedayCheckData2.t2_start, onedayCheckData2.t2_end, this)) {
             }
         }
@@ -1893,13 +1895,13 @@ $(document).ready(function () {
         interval: 60,
         change: function (time) {
             onedayCheckData2.t3_end = time.getHours();
-            //시간이 올바르지 않을때 설정항목
+            // 시간이 올바르지 않을때 설정항목
             if (!checkTime(onedayCheckData2.t3_start, onedayCheckData2.t3_end, this)) {
             }
         }
     });
 
-    //timePicker - zone 3
+    // timePicker - zone 3
     $("#oneDayTime1_1-3").timepicker({
         startTime: new Date(0, 0, 0, 06, 0, 0),
         interval: 60,
@@ -1913,7 +1915,7 @@ $(document).ready(function () {
         interval: 60,
         change: function (time) {
             onedayCheckData3.t1_end = time.getHours();
-            //시간이 올바르지 않을때 설정항목
+            // 시간이 올바르지 않을때 설정항목
             if (!checkTime(onedayCheckData3.t1_start, onedayCheckData3.t1_end, this)) {
             }
         }
@@ -1932,7 +1934,7 @@ $(document).ready(function () {
         interval: 60,
         change: function (time) {
             onedayCheckData3.t2_end = time.getHours();
-            //시간이 올바르지 않을때 설정항목
+            // 시간이 올바르지 않을때 설정항목
             if (!checkTime(onedayCheckData3.t2_start, onedayCheckData3.t2_end, this)) {
             }
         }
@@ -1951,20 +1953,20 @@ $(document).ready(function () {
         interval: 60,
         change: function (time) {
             onedayCheckData3.t3_end = time.getHours();
-            //시간이 올바르지 않을때 설정항목
+            // 시간이 올바르지 않을때 설정항목
             if (!checkTime(onedayCheckData3.t3_start, onedayCheckData3.t3_end, this)) {
             }
         }
     });
 
-    //섬머노트
+    // 섬머노트
     $(".summer").summernote({
         height: 300,
         minheight: null,
         maxHeight: null
     });
 
-    //지도
+    // 지도
     var mapDiv = document.getElementById('map');
     map = new naver.maps.Map(mapDiv);
 

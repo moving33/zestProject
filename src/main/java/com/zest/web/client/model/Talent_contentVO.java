@@ -2,6 +2,8 @@ package com.zest.web.client.model;
 
 import java.util.Arrays;
 
+import org.springframework.web.multipart.MultipartFile;
+
 /*수업의 주요 내용 
  * worker : J
  * */
@@ -16,12 +18,29 @@ public class Talent_contentVO {
 	private String tc_tt_info; //튜터소개
 	private String tc_class_info; //수업소개
 	private String tc_class_taget; //수업 타겟 정보
-	private String[] tc_curriculum; //수업 커리큘렴 
+	private String[] tc_curriculum; //수업 커리큘렴
+	private String tc_curri; //실제로 db에 들어가는 컬럼 "!@#%" 구분자 로 커리큘럼 내용을 나눈다.
 	private String tc_image_path; // 이미지경로
 	private String tc_video_path; //비디오 경로
 	private Integer tc_status; //승인여부 0 기본값 1일시 승인 
 	private String tc_location; //대표위치의 대략적인 좌표값 x,y 로 들어감
+	private MultipartFile[] talentImg; // 수업 이미지 파일
+
 	
+	
+	
+	public String getTc_curri() {
+		return tc_curri;
+	}
+	public void setTc_curri(String tc_curri) {
+		this.tc_curri = tc_curri;
+	}
+	public MultipartFile[] getTalentImg() {
+		return talentImg;
+	}
+	public void setTalentImg(MultipartFile[] talentImg) {
+		this.talentImg = talentImg;
+	}
 	public Integer getTc_no() {
 		return tc_no;
 	}
@@ -112,16 +131,21 @@ public class Talent_contentVO {
 	public void setTc_location(String tc_location) {
 		this.tc_location = tc_location;
 	}
-	
 	@Override
 	public String toString() {
 		return "Talent_contentVO [tc_no=" + tc_no + ", talent_no=" + talent_no + ", tutor_no=" + tutor_no
 				+ ", tc_subject=" + tc_subject + ", tc_max_client=" + tc_max_client + ", tc_price_detail="
 				+ tc_price_detail + ", tc_tt_message=" + tc_tt_message + ", tc_tt_info=" + tc_tt_info
 				+ ", tc_class_info=" + tc_class_info + ", tc_class_taget=" + tc_class_taget + ", tc_curriculum="
-				+ Arrays.toString(tc_curriculum) + ", tc_image_path=" + tc_image_path + ", tc_video_path="
-				+ tc_video_path + ", tc_status=" + tc_status + ", tc_location=" + tc_location + "]";
+				+ Arrays.toString(tc_curriculum) + ", tc_curri=" + tc_curri + ", tc_image_path=" + tc_image_path
+				+ ", tc_video_path=" + tc_video_path + ", tc_status=" + tc_status + ", tc_location=" + tc_location
+				+ ", talentImg=" + Arrays.toString(talentImg) + "]";
 	}
+	
+	
+	
+	
+	
 
 	
 }
