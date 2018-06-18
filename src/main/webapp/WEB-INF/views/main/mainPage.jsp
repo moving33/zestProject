@@ -154,7 +154,7 @@
 			<div class="row">
 				<!-- 카테고리 사이드바  -->
 				<div class="col-lg-3 class_cont">
-					<h3 class="my-4">카테고리</h3>
+					<h4 class="my-4">카테고리</h4>
 					<div class="list-group"
 						style="border: 1px solid black; height: 400px; position: relative;">
 						<div class="list-group1" style="position: absolute; width: 125px;"></div>
@@ -164,7 +164,7 @@
 				</div>
 				<!--  추천 수업 -->
 				<div class="col-lg-9 class_cont">
-					<h3 class="my-4">추천수업</h3>
+					<h4 class="my-4">추천수업</h4>
 					<div style="border: 1px solid black; height: 400px">
 						<!-- 1순위 항목 -->
 						<a>

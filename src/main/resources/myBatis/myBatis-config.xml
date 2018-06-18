@@ -25,6 +25,7 @@
         <!--위치값을 줄때 루트 폴터는 resources 폴더이다.-->
         <mapper resource="myBatis/test/test.xml"></mapper>
         <mapper resource="myBatis/category/category-sqlMapping.xml"/>
+        <mapper resource="myBatis/category/categoryPage-sqlMapping.xml"/>
         <mapper resource="myBatis/category/lecture-sqlMapping.xml" />        
         <!-- 클라이언트 -->
         <mapper resource="myBatis/client/client-sqlMapping.xml" />

@@ -1,6 +1,7 @@
 package com.zest.web.client.controller.category;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -122,6 +123,7 @@ public class CategoryController {
 		
 		
 		// View에 넘기는 데이터
+		model.put("category", category);
 		model.put("count", count);
 		model.put("categoryPageList", categoryPageList);
 		model.put("pageNum", pageNum);

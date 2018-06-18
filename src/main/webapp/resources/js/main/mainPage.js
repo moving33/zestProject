@@ -14,7 +14,7 @@ $("#service").on({
 		$(this).css("color", "#000000");
 	}
 });
-$("#regi").on({
+$("#insert").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
 		$(this).css("color", "#ff7200");
@@ -24,7 +24,7 @@ $("#regi").on({
 		$(this).css("color", "#000000");
 	}
 });
-$("#join").on({
+$("#regi").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
 		$(this).css("color", "#ff7200");

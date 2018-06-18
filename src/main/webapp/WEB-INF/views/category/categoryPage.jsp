@@ -66,15 +66,15 @@
 	<div class="container" align="center">
 		<div class="row">
 			<div id="hot" class="colj" onmouseover="#">인기수업</div>
-			<div id="sports" class="colj" onmouseover="getCategory('/zest/main/sports')"><a href="/zest/category/sports" style="color: #000000;">스포츠</a></div>
-			<div id="beauty" class="colj" onmouseover="getCategory('/zest/main/beauty')"><a href="/zest/category/beauty" style="color: #000000;">뷰티</a></div>
-			<div id="music" class="colj" onmouseover="getCategory('/zest/main/music')"><a href="/zest/category/music" style="color: #000000;">음악</a></div>
-			<div id="food" class="colj" onmouseover="getCategory('/zest/main/food')"><a href="/zest/category/food" style="color: #000000;">요리/음식</a></div>
-			<div id="design" class="colj" onmouseover="getCategory('/zest/main/design')"><a href="/zest/category/design" style="color: #000000;">디자인</a></div>
-			<div id="business" class="colj" onmouseover="getCategory('/zest/main/business')"><a href="/zest/category/business" style="color: #000000;">실무</a></div>
-			<div id="language" class="colj" onmouseover="getCategory('/zest/main/language')"><a href="/zest/category/language" style="color: #000000;">외국어</a></div>
-			<div id="progam" class="colj" onmouseover="getCategory('/zest/main/program')"><a href="/zest/category/program" style="color: #000000;">프로그래밍</a></div>
-			<div id="life" class="colj" onmouseover="getCategory('/zest/main/life')"><a href="/zest/category/life" style="color: #000000;">라이프스타일</a></div>
+			<div id="sports" class="colj" onmouseover="getCategory('/zest/main/sports')"><a id="sports" href="/zest/category/sports" style="color: #000000;">스포츠</a></div>
+			<div id="beauty" class="colj" onmouseover="getCategory('/zest/main/beauty')"><a id="beauty" href="/zest/category/beauty" style="color: #000000;">뷰티</a></div>
+			<div id="music" class="colj" onmouseover="getCategory('/zest/main/music')"><a id="music" href="/zest/category/music" style="color: #000000;">음악</a></div>
+			<div id="food" class="colj" onmouseover="getCategory('/zest/main/food')"><a id="food" href="/zest/category/food" style="color: #000000;">요리/음식</a></div>
+			<div id="design" class="colj" onmouseover="getCategory('/zest/main/design')"><a id="design" href="/zest/category/design" style="color: #000000;">디자인</a></div>
+			<div id="business" class="colj" onmouseover="getCategory('/zest/main/business')"><a id="business" href="/zest/category/business" style="color: #000000;">실무</a></div>
+			<div id="language" class="colj" onmouseover="getCategory('/zest/main/language')"><a id="language" href="/zest/category/language" style="color: #000000;">외국어</a></div>
+			<div id="progam" class="colj" onmouseover="getCategory('/zest/main/program')"><a id="progam" href="/zest/category/program" style="color: #000000;">프로그래밍</a></div>
+			<div id="life" class="colj" onmouseover="getCategory('/zest/main/life')"><a id="life" href="/zest/category/life" style="color: #000000;">라이프스타일</a></div>
 		</div>
 	</div>
 	
@@ -120,21 +120,18 @@
 							<c:if test="${bp.isPre()}">
 								<li class="page-item">
 									<button class="page-link">
-										<a
-											href="/zest/category/${item.talent_category_id}?pageNum=${bp.getPage_Start()-bp.p_size}">
-											Previous </a>
+										<a	href="/zest/category/${category}?pageNum=${bp.getPage_Start()-bp.p_size}">Previous </a>
 									</button>
 								</li>
 							</c:if>
 
 							<%--페이징처리 --%>
 
-							<c:forEach var="counter" begin="${bp.getPage_start()}"
-								end="${bp.getPage_end()}">
+							<c:forEach var="counter" begin="${bp.getPage_start()}" end="${bp.getPage_end()}">
 								<c:if test="${search_text ne ''}">
 									<li class="page-item">
 										<button class="page-link"
-											onclick="window.location='/zest/category/${item.talent_category_id}?pageNum=${counter}&search_type=${search_type}&search_text=${search_text}'">
+											onclick="window.location='/zest/category/${category}?pageNum=${counter}&search_type=${search_type}&search_text=${search_text}'">
 											${counter}</button>
 									</li>
 								</c:if>
@@ -142,7 +139,7 @@
 								<c:if test="${search_text eq ''}">
 									<li class="page-item">
 										<button class="page-link"
-											onclick="window.location='/zest/category/${item.talent_category_id}?pageNum=${counter}&search_type=${search_type}&search_text=${search_text}'">
+											onclick="window.location='/zest/category/${category}?pageNum=${counter}&search_type=${search_type}&search_text=${search_text}'">
 											${counter}</button>
 									</li>
 								</c:if>
@@ -153,9 +150,7 @@
 							<c:if test="${bp.isNext()}">
 								<li class="page-item">
 									<button class="page-link">
-										<a
-											href="/zest/category/${item.talent_category_id}?pageNum=${bp.getPage_Start()+bp.p_size}">
-											Next </a>
+										<a href="/zest/category/${category}?pageNum=${bp.getPage_Start()+bp.p_size}">Next </a>
 									</button>
 								</li>
 							</c:if>

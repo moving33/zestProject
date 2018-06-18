@@ -59,12 +59,12 @@ $("#hot").on({
 $("#sports").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #sports").css("color", "#ff7200");
 
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#000000");
+		$("div #sports").css("color", "#000000");
 
 	}
 });
@@ -72,12 +72,12 @@ $("#sports").on({
 $("#beauty").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #beauty").css("color", "#ff7200");
 
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#000000");
+		$("div #beauty").css("color", "#000000");
 
 	}
 });
@@ -85,12 +85,12 @@ $("#beauty").on({
 $("#music").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #music").css("color", "#ff7200");
 
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#000000");
+		$("div #music").css("color", "#000000");
 
 	}
 });
@@ -98,12 +98,12 @@ $("#music").on({
 $("#food").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #food").css("color", "#ff7200");
 
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#000000");
+		$("div #food").css("color", "#000000");
 
 	}
 });
@@ -111,13 +111,13 @@ $("#food").on({
 $("#design").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #design").css("color", "#ff7200");
 
 		
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#000000");
+		$("div #design").css("color", "#000000");
 
 	}
 });
@@ -125,12 +125,12 @@ $("#design").on({
 $("#business").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #business").css("color", "#ff7200");
 
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#000000");
+		$("div #business").css("color", "#000000");
 
 	}
 });
@@ -138,12 +138,12 @@ $("#business").on({
 $("#language").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #language").css("color", "#ff7200");
 
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#000000");
+		$("div #language").css("color", "#000000");
 
 	}
 });
@@ -151,12 +151,12 @@ $("#language").on({
 $("#progam").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #progam").css("color", "#ff7200");
 
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#000000");
+		$("div #progam").css("color", "#000000");
 	
 	}
 });
@@ -164,12 +164,12 @@ $("#progam").on({
 $("#life").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #life").css("color", "#ff7200");
 
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#000000");
+		$("div #life").css("color", "#000000");
 		
 	}
 });
