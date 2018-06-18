@@ -1383,17 +1383,22 @@ function lastSubmit(){
 	// 원데이 인지 아닌지 여부 판단
 	if(!$("#checkDayType").prop("checked")){// 해당 항목이 체크가 안되있으면 즉 원데이 항목이 아님,
 		// 저장된 항목을 보낼 변수 작성
-		var sendData ={'zone1':'','zone2':'','zone3':''};
+		var sendData ={'zone1':'','zone2':'','zone3':'','count':''};
 		// 보낼 내용이 담겨져 있는지 확인
-		if(data1.zoneid != ''){
+		if(data1.zoneId != ''){
 			sendData.zone1 = data1;
-			console.log(sendData.zone1.zoneId);
+			sendData.count = 1;
+			alert('1');
 		}
-		if(data2.zoneid != ''){
+		if(data2.zoneId != ''){
 			sendData.zone2 = data2;
+			sendData.count = 2;
+			alert('2');
 		}
-		if(data3.zoneid != ''){
+		if(data3.zoneId != ''){
 			sendData.zone3 = data1;
+			sendData.count = 3;
+			alert('3');
 		}
 		// 저장된 timeData controller로 내용 보내기
 		var myHeaders = new Headers();
@@ -1429,7 +1434,7 @@ function lastSubmit(){
 		var myHeaders = new Headers();
 		myHeaders.append("Content-Type",
 				"application/json;Charset=UTF-8");	
-		fetch('/zest/tutorPage/talentPropTime', {
+		fetch('/zest/tutorPage/talentPropTime2', {
 			method : 'POST',
 			credentials : 'same-origin',
 			headers : myHeaders,

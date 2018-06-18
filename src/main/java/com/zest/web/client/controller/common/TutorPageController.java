@@ -107,24 +107,31 @@ public class TutorPageController {
 	@SuppressWarnings("unchecked")
 	public String insertTimeData(@RequestBody Map<String, Object> timeMap, TalentTimeUtil rootTalentTimeUtil,
 			HttpSession session) {
-		// 전달 내용을 변수에 저장
-		HashMap<String, Object> zone1 = (HashMap<String, Object>) timeMap.get("zone1");
-		HashMap<String, Object> zone2 = (HashMap<String, Object>) timeMap.get("zone2");
-		HashMap<String, Object> zone3 = (HashMap<String, Object>) timeMap.get("zone3");
+		
+		int count = (int) timeMap.get("count");
+		System.out.println(count);
+		HashMap<String, Object> zone1 = null;
+		HashMap<String, Object> zone2 = null;
+		HashMap<String, Object> zone3 = null;
 
-		System.out.println((String) zone1.get("zoneId"));
-		List<String> a = (ArrayList<String>) zone1.get("mon");
-		System.out.println(a.get(0));
+		if (count == 1) {
+			zone1 = (HashMap<String, Object>) timeMap.get("zone1");
+		} else if (count == 2) {
+			zone1 = (HashMap<String, Object>) timeMap.get("zone1");
+			zone2 = (HashMap<String, Object>) timeMap.get("zone2");
+		} else if (count == 3) {
+			zone1 = (HashMap<String, Object>) timeMap.get("zone1");
+			zone2 = (HashMap<String, Object>) timeMap.get("zone2");
+			zone3 = (HashMap<String, Object>) timeMap.get("zone3");
+		}
 
-		// 몇 개나 값이 저장되이었는지 확인
-		int count = 1;
-		// null 값 여부 확인
-		if (zone2.containsKey("zoneId")) {
-			count++;
-		}
-		if (zone3.containsKey("zoneId")) {
-			count++;
-		}
+		/*
+		 * // 전달 내용을 변수에 저장 HashMap<String, Object> zone1 = (HashMap<String, Object>)
+		 * timeMap.get("zone1"); HashMap<String, Object> zone2 = (HashMap<String,
+		 * Object>) timeMap.get("zone2"); HashMap<String, Object> zone3 =
+		 * (HashMap<String, Object>) timeMap.get("zone3");
+		 */
+
 		// 간유틸클래스를 사용해서 해당 내용들을 담는다.
 		rootTalentTimeUtil.setCount(count);
 		Map<String, TalentTimeUtil> m = new HashMap<>();
@@ -215,7 +222,6 @@ public class TutorPageController {
 		System.out.println(vo.toString());
 		// 해당 내용을 공용으로 사용할 hashmap에 튜터의 넘버키 값으로 저장;
 		saveTimeData.put(vo.getTt_no(), rootTalentTimeUtil);
-
 		System.out.println(rootTalentTimeUtil.toString());
 		// 내용 추출해보기
 		return "success";
@@ -238,9 +244,6 @@ public class TutorPageController {
 		if (zone3.containsKey("zoneid")) {
 			count++;
 		}
-		
-		
-		
 
 		return "success";
 	}

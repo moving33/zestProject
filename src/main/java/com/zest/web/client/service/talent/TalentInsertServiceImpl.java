@@ -49,6 +49,8 @@ public class TalentInsertServiceImpl implements TalentInsertService {
 		// talent 내용 넣고 넣은 talent의 primary key 받아오기
 		System.out.println(talentVO.toString());
 		int no = talentDAO.insertTalent(talentVO);
+		
+	//	int no = 3;
 		/*
 		 * talent_content 저장
 		 */
@@ -107,6 +109,9 @@ public class TalentInsertServiceImpl implements TalentInsertService {
 			zoneVo.setZone_name(z1.getZone_id());
 			System.out.println(z1.getZone_id());
 			zoneVo = zoneSearch.getZoneVOforName(zoneVo);
+			
+			System.out.println(zoneVo.toString());
+			
 			// db에 검색해서 해당 id값 저장
 			tt_infoVO.setZone_id(zoneVo.getZone_id());
 			// timeData 항목 처리 하기
