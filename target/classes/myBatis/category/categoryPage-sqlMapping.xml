@@ -19,19 +19,29 @@
 		    TALENT_ACC_CLIENT, 
 		    TC_SUBJECT, 
 		    TC_IMAGE_PATH, 
-		    GROUP_CONCAT(ZONE_ID) AS ZONE_ID, 
-		    GROUP_CONCAT(ZONE_NAME) AS ZONE_NAME,
+		    ZONE_ID, 
+		    ZONE_NAME,
 		    TALENT_CATEGORY_ID
 						FROM (SELECT @rownum := 0)dummy,
-		  						 (SELECT * FROM 
+		  						 (SELECT 
+		  						 TALENT_NO, 
+								 TALENT_PRICE_HOUR,
+								 TALENT_ACC_CLIENT, 
+								 TC_SUBJECT, 
+								 TC_IMAGE_PATH, 
+								 GROUP_CONCAT(ZONE_ID) AS ZONE_ID, 
+								 GROUP_CONCAT(ZONE_NAME) AS ZONE_NAME,
+								 TALENT_CATEGORY_ID 
+								 FROM 
 		  						 	TALENT 
 		  						 		JOIN TALENT_CONTENT USING(TALENT_NO) 
 		  						 		JOIN TALENT_INFO USING(TALENT_NO) 
 		  						 		JOIN ZONE USING(ZONE_ID)
 		   							WHERE TALENT_CATEGORY_ID = #{talent_category_id}
+		   							GROUP BY TALENT_NO
        								ORDER BY TALENT.TALENT_ACC_CLIENT DESC limit 111111)rootMVC
      			  	 			where (@rownum := 0) = 0)rnumMVC
-        		 where #{startRow} and rownum<= #{endRow}
+        		 where rownum >= #{startRow} and rownum<= #{endRow}
         	 ]]>
  	</select>
  	
