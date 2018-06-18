@@ -1,0 +1,37 @@
+package com.zest.web.client.dao.category;
+
+import java.util.List;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import com.zest.web.client.model.CategoryPageVO;
+import com.zest.web.client.model.CategoryVO;
+
+@Controller
+public class CategoryDAOImpl implements CategoryDAO {
+
+	@Autowired
+	SqlSessionTemplate sqlSessionTemplate;
+	
+	//카테고리 리스트를 불러오는 DAO
+	@Override
+	public List<CategoryVO> getCategoryList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	// 카테고리 페이지 리스트를 불러오는 메서드
+	@Override
+	public List<CategoryPageVO> getCategoryPageList(Object obj) {
+		System.out.println("dao 진입");
+		return sqlSessionTemplate.selectList("com.zest.categoryPage.getCategoryPageList", obj);
+	}
+	
+	@Override
+	public Integer getCategoryPageListCount(Object obj) {
+		return sqlSessionTemplate.selectOne("com.zest.categoryPage.getCategoryPageListCount",obj);
+	}
+
+}

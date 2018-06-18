@@ -12,25 +12,34 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 
-	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<tx:annotation-driven
+		transaction-manager="transactionManager" />
 	<!-- 클라이언트 -->
-	<context:component-scan base-package="com.zest.web.client.aop" />
-	<context:component-scan base-package="com.zest.web.client.dao" />
-	<context:component-scan base-package="com.zest.web.client.service" />
-	
+	<context:component-scan
+		base-package="com.zest.web.client.aop" />
+	<context:component-scan
+		base-package="com.zest.web.client.dao" />
+	<context:component-scan
+		base-package="com.zest.web.client.service" />
+
 	<!-- 관리자 -->
-	<context:component-scan base-package="com.zest.web.admin.service" />
-	<context:component-scan base-package="com.zest.web.admin.dao" />
-	
+	<context:component-scan
+		base-package="com.zest.web.admin.service" />
+	<context:component-scan
+		base-package="com.zest.web.admin.dao" />
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!--해당 위치에서 properties 파일을 읽어와라 -->
-	<!-- <context:property-placeholder
-		location="classpath:prop/db/*.properties" /> -->
-		
+	<!-- <context:property-placeholder location="classpath:prop/db/*.properties" 
+		/> -->
+
 	<bean
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
-		<property name="driverClassName" value="org.mariadb.jdbc.Driver" />
-		<property name="url" value="jdbc:mariadb://zest.cmz2ikcdxqw8.ap-northeast-2.rds.amazonaws.com:3306/ZEST?allowMultiQueries=true" />
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		id="dataSource">
+		<property name="driverClassName"
+			value="org.mariadb.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mariadb://zest.cmz2ikcdxqw8.ap-northeast-2.rds.amazonaws.com:3306/ZEST?allowMultiQueries=true" />
 		<property name="username" value="root" />
 		<property name="password" value="20180514" />
 	</bean>
@@ -47,44 +56,32 @@
 	<bean class="org.mybatis.spring.SqlSessionTemplate"
 		id="sqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactoryBean" />
-	</bean>	
-	
+	</bean>
+
 	<bean class="com.zest.web.client.model.Paging"></bean>
 	
 
-	<bean id="transactionManager"
+<!-- transaction 설정 -->
+	<tx:annotation-driven
+		transaction-manager="transactionManager" />
+	<bean id="txManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
+		<property name="dataSource" ref="dataSource"></property>
 	</bean>
-	
-	
-	
-	<!-- 
-
-	<tx:advice id="txAdvice"
-		transaction-manager="transactionManager">
+	<tx:advice id="txAdvice" transaction-manager="txManager">
 		<tx:attributes>
-			<tx:method name="get*" read-only="true" />
 			<tx:method name="*" />
 		</tx:attributes>
-	</tx:advice> -->
-
-
-	<!-- <aop:config>
-		모든 point-cut
-		<aop:pointcut id="allControllerPointcut"
-			expression="execution(* com.zest.web.controller.*.*(..))" />
-		db관련 point-cut
-		<aop:pointcut id="txPointcut"
-			expression="execution(* com.zest.web.dao.*.*(..))" />
-
+	</tx:advice>
+	<aop:config>
+		<aop:pointcut expression="execution( * com.zest.web.client.service..*.*(..)) || execution( * com.zest.web.admin.service..*.*(..))" 
+			id="txPointcut" />
 		<aop:advisor advice-ref="txAdvice"
-			pointcut-ref="txPointcut" />
-			
-		<aop:aspect ref="aopAdvice">			
-			<aop:before method="beforeLog" pointcut-ref="allControllerPointcut" />
-		</aop:aspect>
-	</aop:config> -->
+			pointcut-ref="txPointcut" />	
+	</aop:config>
+
+
+
 
 
 

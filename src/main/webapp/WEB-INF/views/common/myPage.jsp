@@ -44,7 +44,7 @@
 									src="images/common/icon_sjoin.png">
 							</span> <span>마이페이지</span>
 						</a></li>
-						<li><a href="#"> <span> <img
+						<li><a href="main/logout"> <span> <img
 									src="images/common/icon_slogout.png">
 							</span> <span>로그아웃</span>
 						</a></li>

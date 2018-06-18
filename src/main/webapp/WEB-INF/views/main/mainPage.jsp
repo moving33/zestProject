@@ -113,37 +113,37 @@
 	<!-- 메뉴바 -->
 	<div class="container" align="center">
 		<div class="row" style="background-color: #f0f0f0; min-height: 50px;">
-			<div id="hot" class="colj" onmouseover="#">
+			<div id="hot" class="colj" onmouseover="#" style="cursor:pointer">
 				<a id="hot" href="#" style="color: #000000;"><b>인기수업</b></a>
 			</div>
-			<div id="sports" class="colj" onmouseover="fetchPage('main/sports')">
-				<a id="sports" href="/zest/category" style="color: #000000;"><b>스포츠</b></a>
+			<div id="sports" class="colj" onmouseover="fetchPage('main/sports')" style="cursor:pointer" onclick="location.href='/zest/category/sports'">
+				<a id="sports" href="/zest/category/sports" style="color: #000000;"><b>스포츠</b></a>
 			</div>
-			<div id="beauty" class="colj" onmouseover="fetchPage('main/beauty')">
-				<a id="beauty" href="#" style="color: #000000;"><b>뷰티</b></a>
+			<div id="beauty" class="colj" onmouseover="fetchPage('main/beauty')" style="cursor:pointer" onclick="location.href='/zest/category/beauty'">
+				<a id="beauty" href="/zest/category/beauty" style="color: #000000;"><b>뷰티</b></a>
 			</div>
-			<div id="music" class="colj" onmouseover="fetchPage('main/music')">
-				<a id="music" href="#" style="color: #000000;"><b>음악</b></a>
+			<div id="music" class="colj" onmouseover="fetchPage('main/music')" style="cursor:pointer" onclick="location.href='/zest/category/music'">
+				<a id="music" href="/zest/category/music" style="color: #000000;"><b>음악</b></a>
 			</div>
-			<div id="food" class="colj" onmouseover="fetchPage('main/food')">
-				<a id="food" href="#" style="color: #000000;"><b>요리/음식</b></a>
+			<div id="food" class="colj" onmouseover="fetchPage('main/food')" style="cursor:pointer" onclick="location.href='/zest/category/food'">
+				<a id="food" href="/zest/category/food" style="color: #000000;"><b>요리/음식</b></a>
 			</div>
-			<div id="design" class="colj" onmouseover="fetchPage('main/design')">
-				<a id="design" href="#" style="color: #000000;"><b>디자인</b></a>
+			<div id="design" class="colj" onmouseover="fetchPage('main/design')" style="cursor:pointer" onclick="location.href='/zest/category/design'">
+				<a id="design" href="/zest/category/design" style="color: #000000;"><b>디자인</b></a>
 			</div>
 			<div id="business" class="colj"
-				onmouseover="fetchPage('main/business')">
-				<a id="business" href="#" style="color: #000000;"><b>실무</b></a>
+				onmouseover="fetchPage('main/business')" style="cursor:pointer" onclick="location.href='/zest/category/business'">
+				<a id="business" href="/zest/category/business" style="color: #000000;"><b>실무</b></a>
 			</div>
 			<div id="language" class="colj"
-				onmouseover="fetchPage('main/language')">
-				<a id="language" href="#" style="color: #000000;"><b>외국어</b></a>
+				onmouseover="fetchPage('main/language')" style="cursor:pointer" onclick="location.href='/zest/category/language'">
+				<a id="language" href="/zest/category/language" style="color: #000000;"><b>외국어</b></a>
 			</div>
-			<div id="progam" class="colj" onmouseover="fetchPage('main/program')">
-				<a id="progam" href="#" style="color: #000000;"><b>프로그래밍</b></a>
+			<div id="progam" class="colj" onmouseover="fetchPage('main/program')" style="cursor:pointer" onclick="location.href='/zest/category/program'">
+				<a id="progam" href="/zest/category/program" style="color: #000000;"><b>프로그래밍</b></a>
 			</div>
-			<div id="life" class="colj" onmouseover="fetchPage('main/life')">
-				<a id="life" href="#" style="color: #000000;"><b>라이프스타일</b></a>
+			<div id="life" class="colj" onmouseover="fetchPage('main/life')" style="cursor:pointer" onclick="location.href='/zest/category/life'">
+				<a id="life" href="/zest/category/life" style="color: #000000;"><b>라이프스타일</b></a>
 			</div>
 		</div>
 	</div>
@@ -154,7 +154,7 @@
 			<div class="row">
 				<!-- 카테고리 사이드바  -->
 				<div class="col-lg-3 class_cont">
-					<h1 class="my-4">카테고리</h1>
+					<h4 class="my-4">카테고리</h4>
 					<div class="list-group"
 						style="border: 1px solid black; height: 400px; position: relative;">
 						<div class="list-group1" style="position: absolute; width: 125px;"></div>
@@ -164,7 +164,7 @@
 				</div>
 				<!--  추천 수업 -->
 				<div class="col-lg-9 class_cont">
-					<h1 class="my-4">추천수업</h1>
+					<h4 class="my-4">추천수업</h4>
 					<div style="border: 1px solid black; height: 400px">
 						<!-- 1순위 항목 -->
 						<a>

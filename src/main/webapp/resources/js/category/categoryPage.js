@@ -59,12 +59,12 @@ $("#hot").on({
 $("#sports").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #sports").css("color", "#ff7200");
 
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#000000");
+		$("div #sports").css("color", "#000000");
 
 	}
 });
@@ -72,12 +72,12 @@ $("#sports").on({
 $("#beauty").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #beauty").css("color", "#ff7200");
 
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#000000");
+		$("div #beauty").css("color", "#000000");
 
 	}
 });
@@ -85,12 +85,12 @@ $("#beauty").on({
 $("#music").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #music").css("color", "#ff7200");
 
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#000000");
+		$("div #music").css("color", "#000000");
 
 	}
 });
@@ -98,12 +98,12 @@ $("#music").on({
 $("#food").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #food").css("color", "#ff7200");
 
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#000000");
+		$("div #food").css("color", "#000000");
 
 	}
 });
@@ -111,13 +111,13 @@ $("#food").on({
 $("#design").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #design").css("color", "#ff7200");
 
 		
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#000000");
+		$("div #design").css("color", "#000000");
 
 	}
 });
@@ -125,12 +125,12 @@ $("#design").on({
 $("#business").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #business").css("color", "#ff7200");
 
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#000000");
+		$("div #business").css("color", "#000000");
 
 	}
 });
@@ -138,12 +138,12 @@ $("#business").on({
 $("#language").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #language").css("color", "#ff7200");
 
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#000000");
+		$("div #language").css("color", "#000000");
 
 	}
 });
@@ -151,12 +151,12 @@ $("#language").on({
 $("#progam").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #progam").css("color", "#ff7200");
 
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#000000");
+		$("div #progam").css("color", "#000000");
 	
 	}
 });
@@ -164,12 +164,12 @@ $("#progam").on({
 $("#life").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #life").css("color", "#ff7200");
 
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#000000");
+		$("div #life").css("color", "#000000");
 		
 	}
 });
@@ -190,7 +190,7 @@ function getCategory(name){
 			/* for문 처리 */
 			$.each(data,function(index,value){
 				
-				listHtml += "<a class='colj' href='#' style='color: #ff7200; font-size: 15px;'>"+value.lecture_name+"</a>";
+				listHtml += "<a class='colj' href='/zest/category/"+ value.lecture_id + "'style='color: #ff7200; font-size: 15px;'>"+value.lecture_name+"</a>";
 			});
 			list.html(listHtml);
 		}).catch((e) => {
@@ -205,7 +205,7 @@ $(document).ready(function(){
        // window.open('http://localhost:8080/test/view/join.jsp','회원가입'); //새창에
 		// 해당 사이트 띄우기
        var test = 'width=400,height=500,scrollbars=yes,resizable=yes,top=100,left=500,toolbar=yes';
-       window.open('http://localhost:8080/web/common/loginPage','로그인',test); // 새창에
+       window.open('http://localhost:8080/zest/common/loginPage','로그인',test); // 새창에
 																				// 해당
 																				// 사이트
 																				// 띄우기
@@ -220,7 +220,7 @@ $(document).ready(function(){
        // window.open('http://localhost:8080/test/view/join.jsp','회원가입'); //새창에
 		// 해당 사이트 띄우기
        var test = 'width=400,height=487,scrollbars=yes,resizable=yes,top=250,left=700,toolbar=yes';
-       window.open('http://localhost:8080/web/common/regiPage','회원가입',test); // 새창에
+       window.open('http://localhost:8080/zest/common/regiPage','회원가입',test); // 새창에
 																				// 해당
 																				// 사이트
 																				// 띄우기

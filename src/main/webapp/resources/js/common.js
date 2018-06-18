@@ -24,7 +24,7 @@ $(document).ready(function(){
 			"<li class='nav-item'>"+
 			"<a class='nav-linkj' id='insert' href='#' style='font-size: 20px;'><b>튜터 등록</b></a></li>" +
 			"<li class='nav-item'>"+
-			"<a class='nav-linkj' id='myPage' href='clientPage' style='font-size: 20px;'><b>마이페이지</b></a></li>" +
+			"<a class='nav-linkj' id='myPage' href='/zest/clientPage' style='font-size: 20px;'><b>마이페이지</b></a></li>" +
 			"<li class='nav-item'>"+
 			"<a class='nav-linkj' id='logout' href='main/logout' style='font-size: 20px;'>"+			
 			"<b>로그아웃</b></a></li>" +

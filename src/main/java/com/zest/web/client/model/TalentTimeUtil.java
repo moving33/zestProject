@@ -7,17 +7,17 @@ import java.util.Map;
 //수업을 등록할때 시간관련 유틸 클래스
 public class TalentTimeUtil {
 	
-	String zone_id; //zone_id
-	List<String> mon;     //월요일 내용 저장
-	List<String> tue;
-	List<String> wed;
-	List<String> tur;
-	List<String> fri;
-	List<String> sat;
-	List<String> sun;
+	private String zone_id; //zone_id
+	private List<String> mon;     //월요일 내용 저장
+	private List<String> tue;
+	private List<String> wed;
+	private List<String> tur;
+	private List<String> fri;
+	private List<String> sat;
+	private List<String> sun;
 	
-	Map<String, TalentTimeUtil> timeData; //해당지역의 timeData가 저장되는 hashMap
-	int count; // 해쉬맵안에 몇개의 주머니가 있는지 확인시 저장되는 변수	
+	private Map<String, TalentTimeUtil> timeData; //해당지역의 timeData가 저장되는 hashMap
+	private int count; // 해쉬맵안에 몇개의 주머니가 있는지 확인시 저장되는 변수	
 	
 	
 
@@ -84,6 +84,14 @@ public class TalentTimeUtil {
 	public void setSun(List<String> sun) {
 		this.sun = sun;
 	}
+	@Override
+	public String toString() {
+		return "TalentTimeUtil [zone_id=" + zone_id + ", mon=" + mon + ", tue=" + tue + ", wed=" + wed + ", tur=" + tur
+				+ ", fri=" + fri + ", sat=" + sat + ", sun=" + sun + ", timeData=" + timeData + ", count=" + count
+				+ "]";
+	}
+	
+	
 	
 	
 }

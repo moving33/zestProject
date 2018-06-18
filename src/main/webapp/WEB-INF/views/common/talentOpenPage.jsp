@@ -14,6 +14,7 @@
     <link href="/zest/css/talent/talentOpen.css" rel="stylesheet">
     <!-- 썸머노트CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <%--데이터피커 다른녀석--%>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
     <!-- 시멘틱 ui css -->
@@ -61,33 +62,36 @@
 <!-- 수업 정보 -->
 <div id="content">
     <div class="box eventAdd" style="width: 1050px;">
-        <form id="openAdd" name="writeForm" action="/zest/talentOpen/regi" method="post" enctype="multipart/form-data"
+        <form id="openAdd" name="writeForm" action="/zest/tutorPage/talentRegi" method="post" enctype="multipart/form-data"
               class="innerBorder" onsubmit="return lastSubmit()">
             <div class="Information">
                 <!-- 수업 제목 -->
                 <div class="openName ui input">
                     <span class="req">*</span><b style="font-size: 20px; padding-right: 20px;"> 수업제목</b>
-                    <input id="title" type="text" name="title" class="title" placeholder=" 수업제목을 입력해 주세요. (30자 이내)"
+                    <!-- 수업 제목 input tag-->
+                    <input id="title" type="text" name="tc_subject" class="title" placeholder=" 수업제목을 입력해 주세요. (30자 이내)"
                            maxlength="64" autofocus="autofocus" style="margin-top: -14px; height: 45px;">
                 </div>
                 <!-- 대표이미지 -->
                 <div class="row" style="display: block;">
                     <div class="col-lg-6 openCate">
                         <span class="req">*</span><b style="font-size: 20px; padding-right: 20px;"> 카테고리</b>
-                        <select name="ca_id" id="ca_id" class="form-control" multiple style="text-align: center">
+                        <!-- 카테고리 대 분류 인풋테그 -->
+                        <select name="talent_category_id" id="ca_id" class="form-control" multiple style="text-align: center" required="required">
                             <option value>선택하세요</option>
-                            <option value="1" onclick="fetchPage('/zest/main/sports')">스포츠</option>
-                            <option value="2" onclick="fetchPage('/zest/main/beauty')">뷰티</option>
-                            <option value="3" onclick="fetchPage('/zest/main/music')">음악</option>
-                            <option value="4" onclick="fetchPage('/zest/main/food')">요리/음식</option>
-                            <option value="5" onclick="fetchPage('/zest/main/design')">디자인</option>
-                            <option value="6" onclick="fetchPage('/zest/main/business')">실무</option>
-                            <option value="7" onclick="fetchPage('/zest/main/language')">외국어</option>
-                            <option value="8" onclick="fetchPage('/zest/main/program')">프로그래밍</option>
-                            <option value="9" onclick="fetchPage('/zest/main/life')">라이프스타일</option>
+                            <option value="SPORTS" onclick="fetchPage('/zest/main/sports')">스포츠</option>
+                            <option value="BEAUTY" onclick="fetchPage('/zest/main/beauty')">뷰티</option>
+                            <option value="MUSIC" onclick="fetchPage('/zest/main/music')">음악</option>
+                            <option value="FOOD" onclick="fetchPage('/zest/main/food')">요리/음식</option>
+                            <option value="DESIGN" onclick="fetchPage('/zest/main/design')">디자인</option>
+                            <option value="BUSINESS" onclick="fetchPage('/zest/main/business')">실무</option>
+                            <option value="LANGUAGE" onclick="fetchPage('/zest/main/language')">외국어</option>
+                            <option value="PROGRAM" onclick="fetchPage('/zest/main/program')">프로그래밍</option>
+                            <option value="LIFE" onclick="fetchPage('/zest/main/life')">라이프스타일</option>
                         </select>
                         <br>
-                        <select name="ca_dt" id="ca_dt" class="form-control" multiple style="text-align: center">
+                        <!-- 카테고리 소 분류인풋테그 -->
+                        <select name="talent_lecture_id" id="ca_dt" class="form-control" multiple style="text-align: center" required="required">
                             <option value>세부카테고리</option>
                         </select>
                     </div>
@@ -1344,14 +1348,20 @@
                 <!-- 가격(시간) -->
                 <div style="margin-bottom: 20px;">
                     <span class="req">*</span><b style="font-size: 20px; padding-right: 20px;"> 가격(시간)</b>
-                    <input id="price" type="text" name="price" class="form-control" placeholder="시간당 가격을 입력" id="price"
+                    <input id="price" type="text" name="talent_price_hour" class="form-control" placeholder="시간당 가격을 입력"
                            maxlength="6" autofocus="autofocus" required style="margin-top: 5px; width: 200px;">
+                </div>
+               	<!-- 만나는 시간 -->
+               <div style="margin-bottom: 20px;">
+                    <span class="req">*</span><b style="font-size: 20px; padding-right: 20px;"> 1회 수업 시간을 입력</b>
+                    <input id="meet_count" type="number" name="talent_meet_time" class="form-control" placeholder="한 회차에 수업시간을 입력"
+                           maxlength="6" autofocus="autofocus" required style="margin-top: 5px; width: 200px;" min="1">
                 </div>
 
                 <!-- 최소최대인원 -->
                 <div class="people-group">
                     <span class="req">*</span><b style="font-size: 20px; padding-right: 20px;"> 최대인원</b>
-                    <input id="people" type="number" name="people" class="form-control people" placeholder=" 최대인원 ex)10" autofocus="autofocus" required>
+                    <input id="people" type="number" name="tc_max_client" class="form-control people" placeholder=" 최대인원 ex)10" autofocus="autofocus" min="1" required>
                 </div>
 
                 <!-- 장소 -->
@@ -1364,14 +1374,14 @@
                 <!-- 추가비용  -->
                 <div class="add-group">
                     <span class="req">*</span><b style="font-size: 20px; padding-right: 20px;">추가비용 발생시 이유와 금액을 적어주세요 </b>
-                    <input id="add" type="text" name="add" class="form-control add" placeholder="ex)스터디룸 대여료 별도 15000" maxlength="30" style="width: 500px" required
+                    <input id="add" type="text" name="tc_price_detail" class="form-control add" placeholder="ex)스터디룸 대여료 별도 15000" maxlength="30" style="width: 500px" required
                            autofocus="autofocus">
                 </div>
 
                 <!-- 튜터한마디  -->
                 <div class="word-group">
                     <span class="req">*</span><b style="font-size: 20px; padding-right: 20px;"> 튜터한마디</b>
-                    <input id="word" type="text" name="word" class="word form-control" placeholder=" 수강생에게 튜터의 한마디를 입력해 주세요.(30자 이내)" style="width: 800px" required
+                    <input id="word" type="text" name="tc_tt_message" class="word form-control" placeholder=" 수강생에게 튜터의 한마디를 입력해 주세요.(30자 이내)" style="width: 800px" required
                            maxlength="60" autofocus="autofocus">
                 </div>
 
@@ -1379,16 +1389,16 @@
                 <!-- 썸머노트  -->
                 <span class="req">*</span><b style="font-size: 20px; padding-right: 20px;"> 튜터정보</b>
                 <input type="button" onclick="test1()">
-                <textarea id="note_tutorinfo" name="note_tutorinfo" class="summer" required ></textarea>
+                <textarea id="note_tutorinfo" name="tc_tt_info" class="summer" required ></textarea>
                 <br>
 
 
                 <span class="req">*</span><b style="font-size: 20px; padding-right: 20px;"> 수업소개</b>
-                <textarea id="note_classinfo" name="note_classinfo" class="summer" required></textarea>
+                <textarea id="note_classinfo" name="tc_class_info" class="summer" required></textarea>
                 <br>
 
                 <span class="req">*</span><b style="font-size: 20px; padding-right: 20px;"> 수업대상</b>
-                <textarea id="note_target" name="note_target" class="summer" required></textarea>
+                <textarea id="note_target" name="tc_class_taget" class="summer" required></textarea>
                 <br>
                 <div id="curriDiv">
                     <input type="hidden" id="checkCurriCount" value="1">
@@ -1396,7 +1406,7 @@
                 <h6>1 회차 이상시 추가버튼을 눌러서 내용을 입력해주세요</h6>
                 <input type="button" onclick="addCurri()" class="btn btn-outline-primary" value="추가">
                 <h4>1회차</h4>
-                <textarea id="note_curri1" name="note_curri" class="summer" required></textarea>
+                <textarea id="note_curri1" name="tc_curriculum" class="summer" required></textarea>
                 </div>
                 <br>
 
@@ -1405,6 +1415,8 @@
                 <h6>대략적인 위치를 검색해서 설정해주세요.</h6>
                 <input type="text" id="searchMap" name="searchMap" class="form-control" style="width: 300px">
                 <input class="btn btn-primary" type="button" id="searchMapbtn" onclick="search()" value="찾기">
+                <!-- 지도 좌표 위치값 저장 인풋 태그 -->
+                <input type="hidden" id="locationXY" name="tc_location">
                 <div id="map" style="width:100%;height:400px;"></div>
 
                 <!-- 개설/취소 버튼 -->
@@ -1424,8 +1436,10 @@
 
 <!-- 부트스트랩 자바 스크립트 -->
 
-
+<%--날짜 피커--%>
 <script src="/zest/js/jquery-3.3.1.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
 <script src="/zest/js/bootstrap.js"></script>
 <script src="/zest/js/popper.js"></script>
  <!-- 네이버지도 혜진 -->
@@ -1436,8 +1450,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js"></script>
 <%--타임피커--%>
 <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
-<%--날짜 피커--%>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
 <%--sweet alert--%>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- 아이콘 -->
