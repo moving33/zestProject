@@ -44,10 +44,9 @@ public class TutorPageController {
 	// 강의 등록 서비스
 	@Autowired
 	private TalentInsertService talentInsertService;
-	
 
 	// 해당 튜터의 등록내용을 잠시 저장해두는 해쉬맵
-	Map<Integer,TalentTimeUtil> saveTimeData = new HashMap<>(); 
+	Map<Integer, TalentTimeUtil> saveTimeData = new HashMap<>();
 
 	@RequestMapping(value = "/tutorPage")
 	public ModelAndView viewTutorPageController(ModelAndView modelAndView, HttpSession session, Tutor_PropVO vo) {
@@ -90,7 +89,7 @@ public class TutorPageController {
 		System.out.println(tuTorVO.toString());
 		// 해당 튜터 객체 세션에 추가
 		session.setAttribute("tutorVO", tuTorVO);
-		// 해당 내용 모델에 추가	
+		// 해당 내용 모델에 추가
 		model.addAttribute("tutorVO", tuTorVO);
 		return "success";
 
@@ -102,20 +101,20 @@ public class TutorPageController {
 		return "/common/talentOpenPage";
 	}
 
-	// 튜터등록 페이지에서 시간 내용 db에처리하는 컨트롤러
+	// 튜터등록 페이지에서 시간 내용 db에처리하는 컨트롤러 not Oneday
 	@RequestMapping(value = "/tutorPage/talentPropTime")
 	@ResponseBody
 	@SuppressWarnings("unchecked")
-	public String insertTimeData(@RequestBody Map<String, Object> timeMap, TalentTimeUtil rootTalentTimeUtil,HttpSession session) {
+	public String insertTimeData(@RequestBody Map<String, Object> timeMap, TalentTimeUtil rootTalentTimeUtil,
+			HttpSession session) {
 		// 전달 내용을 변수에 저장
 		HashMap<String, Object> zone1 = (HashMap<String, Object>) timeMap.get("zone1");
 		HashMap<String, Object> zone2 = (HashMap<String, Object>) timeMap.get("zone2");
 		HashMap<String, Object> zone3 = (HashMap<String, Object>) timeMap.get("zone3");
-		
+
 		System.out.println((String) zone1.get("zoneId"));
 		List<String> a = (ArrayList<String>) zone1.get("mon");
 		System.out.println(a.get(0));
-	
 
 		// 몇 개나 값이 저장되이었는지 확인
 		int count = 1;
@@ -129,11 +128,11 @@ public class TutorPageController {
 		// 간유틸클래스를 사용해서 해당 내용들을 담는다.
 		rootTalentTimeUtil.setCount(count);
 		Map<String, TalentTimeUtil> m = new HashMap<>();
-		
+
 		for (int i = 0; i < count; i++) {
 			TalentTimeUtil talentTimeUtil = new TalentTimeUtil();
-			if (i == 0) {				
-				talentTimeUtil.setZone_id((String) zone1.get("zoneId"));			
+			if (i == 0) {
+				talentTimeUtil.setZone_id((String) zone1.get("zoneId"));
 				if (!zone1.get("mon").equals("")) {
 					talentTimeUtil.setMon((ArrayList<String>) zone1.get("mon"));
 				}
@@ -211,25 +210,50 @@ public class TutorPageController {
 				rootTalentTimeUtil.setTimeData(m);
 			}
 		}
-		//세션에 저장되어 있는 튜터 정보 가져오기
+		// 세션에 저장되어 있는 튜터 정보 가져오기
 		TuTorVO vo = (TuTorVO) session.getAttribute("tutorVO");
 		System.out.println(vo.toString());
-		// 해당 내용을 공용으로 사용할 hashmap에 튜터의 넘버키 값으로 저장;	
+		// 해당 내용을 공용으로 사용할 hashmap에 튜터의 넘버키 값으로 저장;
 		saveTimeData.put(vo.getTt_no(), rootTalentTimeUtil);
+
+		System.out.println(rootTalentTimeUtil.toString());
+		// 내용 추출해보기
+		return "success";
+	}
+
+	// 튜터등록 페이지 에서 시간내용 db에서 처리 하는 컨트롤러 Onday
+	@RequestMapping(value = "/tutorPage/talentPropTime2")
+	@SuppressWarnings({ "unused", "unchecked" })
+	public String insertTimeData2(@RequestBody Map<String, Object> timeMap) {
+		HashMap<String, Object> zone1 = (HashMap<String, Object>) timeMap.get("zone1");
+		HashMap<String, Object> zone2 = (HashMap<String, Object>) timeMap.get("zone2");
+		HashMap<String, Object> zone3 = (HashMap<String, Object>) timeMap.get("zone3");
+
+		// 몇 개나 값이 저장되이었는지 확인
+		int count = 1;
+		// null 값 여부 확인
+		if (zone2.containsKey("zoneid")) {
+			count++;
+		}
+		if (zone3.containsKey("zoneid")) {
+			count++;
+		}
 		
-		System.out.println(rootTalentTimeUtil.toString());		
-		//내용 추출해보기		
+		
+		
+
 		return "success";
 	}
 
 	// 튜터등록 버튼 클릭시 처리해주는 녀석
 	@RequestMapping(value = "/tutorPage/talentRegi", method = RequestMethod.POST)
-	public String regiTalent(TalentVO talentVO, Talent_contentVO contentVO, HttpSession session,TalentInfo talentInfo) {
+	public String regiTalent(TalentVO talentVO, Talent_contentVO contentVO, HttpSession session,
+			TalentInfo talentInfo) {
 
-		//hash map 에 저장되어있는 시간 가져오기
+		// hash map 에 저장되어있는 시간 가져오기
 		TuTorVO vo = (TuTorVO) session.getAttribute("tutorVO");
 		TalentTimeUtil timeUtil = saveTimeData.get(vo.getTt_no());
-		//내용 등록 서비스		
+		// 내용 등록 서비스
 		talentInsertService.insertTalent(talentVO, contentVO, talentInfo, vo, timeUtil);
 		return null;
 	}

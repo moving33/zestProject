@@ -328,6 +328,10 @@ function createDatePicker(a) {
             switch (thidID) {
                 case 'ondDayDate1-1': {
                     onedayCheckData1.day1 = $(a).val();
+                    var week = new Array('일', '월', '화', '수', '목', '금', '토');                    
+                    var today = new Date(dateText).getDay();
+                    var todayLabel = week[today];
+                    alert(todayLabel);
                     break;
                 }
                 case 'ondDayDate2-1': {
@@ -1410,6 +1414,35 @@ function lastSubmit(){
 			alert(text);			
 		});
 		
+	}else{//원데이 항목 처리 
+		var sendData ={'zone1':'','zone2':'','zone3':''};
+		if(onedayData1.zoneid != ''){
+			sendData.zone1 = onedayData1;
+		}
+		if(onedayData2.zoneid != ''){
+			sendData.zone2 = onedayData2;
+		}
+		if(onedayData3.zoneid != ''){
+			sendData.zone3 = onedayData3;
+		}
+		
+		var myHeaders = new Headers();
+		myHeaders.append("Content-Type",
+				"application/json;Charset=UTF-8");	
+		fetch('/zest/tutorPage/talentPropTime', {
+			method : 'POST',
+			credentials : 'same-origin',
+			headers : myHeaders,
+			body : JSON.stringify(sendData)
+		}).then(function(response) {
+			if (!response.ok) {
+				throw Error(response.statusText);
+			}
+			// 텍스트 기반으로 처리
+			return response.text();
+		}).then(function(text) {
+			alert(text);			
+		});
 	}
 	
 	return true;

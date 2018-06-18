@@ -27,7 +27,7 @@ public class TalentInsertServiceImpl implements TalentInsertService {
 
 	@Autowired
 	private TalentDAO talentDAO;
-	
+
 	@Autowired
 	private ZoneSearchService zoneSearch;
 
@@ -43,45 +43,53 @@ public class TalentInsertServiceImpl implements TalentInsertService {
 		int meet_count = contentVO.getTc_curriculum().length;
 		talentVO.setTalent_meet_count(meet_count);
 		// total Price 넣기
-		talentVO.setTalent_total_price(
-				talentVO.getTalent_price_hour() * talentVO.getTalent_meet_count() * talentVO.getTalent_meet_time());
+		talentVO.setTalent_total_price(talentVO.getTalent_price_hour() * talentVO.getTalent_meet_count() * talentVO.getTalent_meet_time());
 		// 등록한 튜터의 no 넣기com
 		talentVO.setTalent_tt_no(tutorVO.getTt_no());
 		// talent 내용 넣고 넣은 talent의 primary key 받아오기
 		System.out.println(talentVO.toString());
-
-		// int no = talentDAO.insertTalent(talentVO);
-
-		int no = 3;
-
+		int no = talentDAO.insertTalent(talentVO);
 		/*
 		 * talent_content 저장
 		 */
 		// Talent_Content table에 내용 넣기
-		/*
-		 * contentVO.setTalent_no(no); contentVO.setTutor_no(tutorVO.getTt_no());
-		 * 
-		 * //이미지경로 업데이트하기 File talentFolder = new
-		 * File("c:/zest/talent/"+talentVO.getTalent_category_id()+"/"+no); if
-		 * (!talentFolder.exists()) { // 해당 폴더가 없으면 생성 talentFolder.mkdirs(); } //업로드
-		 * 파일,사진 로컬에 저장하기 for(int i=0; i<contentVO.getTalentImg().length; i++) {
-		 * MultipartFile file = contentVO.getTalentImg()[i]; if(!file.isEmpty()) {
-		 * String talentImgOriginalFileName = file.getOriginalFilename(); String
-		 * localFileName =
-		 * "c:/zest/talent/"+talentVO.getTalent_category_id()+"/"+no+"/img"+i+"."+
-		 * getFileExtension(talentImgOriginalFileName); try { file.transferTo(new
-		 * File(localFileName)); } catch (IllegalStateException | IOException e) { //
-		 * TODO Auto-generated catch block e.printStackTrace(); } } } //사진경로 vo객체에 넣어주기
-		 * String imagePath =
-		 * "c:/zest/talent/"+talentVO.getTalent_category_id()+"/"+no+"/";
-		 * contentVO.setTc_image_path(imagePath); String html = ""; //배열 처리되어있는 커리큘럼 항목
-		 * 나누기 for(int j=0;j<contentVO.getTc_curriculum().length;j++) { //해당 커리큘럼이 마지막일시
-		 * if( j == contentVO.getTc_curriculum().length -1) { html +=
-		 * contentVO.getTc_curriculum()[j]; contentVO.setTc_curri(html); }else { html +=
-		 * contentVO.getTc_curriculum()[j]+"!@#%"; } } //Talnet_content table에 집어넣기
-		 * System.out.println(contentVO.toString()); talentDAO.insertTC(contentVO);
-		 */
+		contentVO.setTalent_no(no);
+		contentVO.setTutor_no(tutorVO.getTt_no());
 
+		// 이미지경로 업데이트하기
+		File talentFolder = new File("c:/zest/talent/" + talentVO.getTalent_category_id() + "/" + no);
+		if (!talentFolder.exists()) { // 해당 폴더가 없으면 생성
+			talentFolder.mkdirs();
+		} // 업로드
+
+		// 파일,사진 로컬에 저장하기
+		for (int i = 0; i < contentVO.getTalentImg().length; i++) {
+			MultipartFile file = contentVO.getTalentImg()[i];
+			if (!file.isEmpty()) {
+				String talentImgOriginalFileName = file.getOriginalFilename();
+				String localFileName = "c:/zest/talent/" + talentVO.getTalent_category_id() + "/" + no + "/img" + i
+						+ "." + getFileExtension(talentImgOriginalFileName);
+				try {
+					file.transferTo(new File(localFileName));
+				} catch (IllegalStateException | IOException e) { //
+					e.printStackTrace();
+				}
+			}
+		} 
+		// 사진경로  vo 객체에 넣어주기
+		String imagePath = "c:/zest/talent/" + talentVO.getTalent_category_id() + "/" + no + "/";
+		contentVO.setTc_image_path(imagePath);
+		String html = ""; // 배열 처리되어있는 커리큘럼 항목 나누기
+		for (int j = 0; j < contentVO.getTc_curriculum().length; j++) { // 해당 커리큘럼이 마지막일시
+			if (j == contentVO.getTc_curriculum().length - 1) {
+				html += contentVO.getTc_curriculum()[j];
+				contentVO.setTc_curri(html);
+			} else {
+				html += contentVO.getTc_curriculum()[j] + "!@#%";
+			}
+		} // Talnet_content table에 집어넣기
+		System.out.println(contentVO.toString());
+		talentDAO.insertTC(contentVO);
 		/*
 		 * talent_info 저장
 		 */
@@ -96,10 +104,10 @@ public class TalentInsertServiceImpl implements TalentInsertService {
 			TalentTimeUtil z1 = timeUtil.getTimeData().get(key);
 			// info 테이블에 zone id 값 가져오기
 			ZoneVO zoneVo = new ZoneVO();
-			zoneVo.setZone_name(z1.getZone_id());		
+			zoneVo.setZone_name(z1.getZone_id());
 			System.out.println(z1.getZone_id());
-			zoneVo = zoneSearch.getZoneVOforName(zoneVo);			
-			//db에 검색해서 해당 id값 저장
+			zoneVo = zoneSearch.getZoneVOforName(zoneVo);
+			// db에 검색해서 해당 id값 저장
 			tt_infoVO.setZone_id(zoneVo.getZone_id());
 			// timeData 항목 처리 하기
 			if (z1.getMon() != null) {// 월요일
@@ -130,7 +138,7 @@ public class TalentInsertServiceImpl implements TalentInsertService {
 					}
 				}
 			} // end 월
-			
+
 			if (z1.getTue() != null) {// 화요일
 				Talent_notOneDayTime tt_notOneTimeData = new Talent_notOneDayTime();
 				for (int x = 0; x < z1.getTue().size(); x++) {
@@ -159,7 +167,7 @@ public class TalentInsertServiceImpl implements TalentInsertService {
 					}
 				}
 			} // end 화
-			
+
 			if (z1.getWed() != null) {// 수요일
 				Talent_notOneDayTime tt_notOneTimeData = new Talent_notOneDayTime();
 				for (int x = 0; x < z1.getWed().size(); x++) {
@@ -188,7 +196,7 @@ public class TalentInsertServiceImpl implements TalentInsertService {
 					}
 				}
 			} // end 수
-			
+
 			if (z1.getTur() != null) {// 목요일
 				Talent_notOneDayTime tt_notOneTimeData = new Talent_notOneDayTime();
 				for (int x = 0; x < z1.getTur().size(); x++) {
@@ -217,7 +225,6 @@ public class TalentInsertServiceImpl implements TalentInsertService {
 					}
 				}
 			} // end 목
-			
 
 			if (z1.getFri() != null) {// 금요일
 				Talent_notOneDayTime tt_notOneTimeData = new Talent_notOneDayTime();
@@ -247,7 +254,6 @@ public class TalentInsertServiceImpl implements TalentInsertService {
 					}
 				}
 			} // end 금
-			
 
 			if (z1.getSat() != null) {// 토요일
 				Talent_notOneDayTime tt_notOneTimeData = new Talent_notOneDayTime();
@@ -277,7 +283,6 @@ public class TalentInsertServiceImpl implements TalentInsertService {
 					}
 				}
 			} // end 토요일
-			
 
 			if (z1.getSun() != null) {// 일요일
 				Talent_notOneDayTime tt_notOneTimeData = new Talent_notOneDayTime();
@@ -306,21 +311,20 @@ public class TalentInsertServiceImpl implements TalentInsertService {
 						tt_infoVO.setTi_sun(talentDAO.insertNotOneDayTime(tt_notOneTimeData));
 					}
 				}
-			} // end 일	
-			
+			} // end 일
+
 			// info 객체를 List에 저장한다
 			tt_infoVO.setTalent_no(no);
 			tt_infoList.add(tt_infoVO);
-			
 
 		} // end for문
 
 		// Talent Info 테이블에 내용을 db에 저장한다.
 		for (Talent_info ti : tt_infoList) {
-			System.out.println(ti.toString());			
+			System.out.println(ti.toString());
 		}
 		for (Talent_info ti : tt_infoList) {
-			talentDAO.insertTI(ti);			
+			talentDAO.insertTI(ti);
 		}
 
 	}
