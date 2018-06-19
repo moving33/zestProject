@@ -31,7 +31,7 @@ public class ClassDetailVO {
 	private String tc_tt_info; //튜터소개
 	private String tc_class_info; //수업소개
 	private String tc_class_taget; //수업 타겟 정보
-	private String[] tc_curriculum; //수업 커리큘렴 
+	private String tc_curriculum; //수업 커리큘렴 
 	private String tc_image_path; // 이미지경로
 	private String tc_video_path; //비디오 경로
 	private String tc_location; //대표위치의 대략적인 좌표값 x,y 로 들어감
@@ -207,12 +207,7 @@ public class ClassDetailVO {
 	public void setTc_class_taget(String tc_class_taget) {
 		this.tc_class_taget = tc_class_taget;
 	}
-	public String[] getTc_curriculum() {
-		return tc_curriculum;
-	}
-	public void setTc_curriculum(String[] tc_curriculum) {
-		this.tc_curriculum = tc_curriculum;
-	}
+
 	public String getTc_image_path() {
 		return tc_image_path;
 	}
@@ -375,30 +370,15 @@ public class ClassDetailVO {
 	public void setTc_status(Integer tc_status) {
 		this.tc_status = tc_status;
 	}
-	
-	
-	@Override
-	public String toString() {
-		return "ClassDetailVO [talent_no=" + talent_no + ", talent_price_hour=" + talent_price_hour
-				+ ", talent_total_price=" + talent_total_price + ", talent_dc_rate=" + talent_dc_rate
-				+ ", talent_meet_time=" + talent_meet_time + ", talent_meet_count=" + talent_meet_count
-				+ ", talent_reg_date=" + talent_reg_date + ", talent_se_date=" + talent_se_date + ", talent_acc_client="
-				+ talent_acc_client + ", talent_value=" + talent_value + ", talent_sold_out=" + talent_sold_out
-				+ ", talent_tt_no=" + talent_tt_no + ", talent_category_id=" + talent_category_id
-				+ ", talent_lecture_id=" + talent_lecture_id + ", talent_status=" + talent_status + ", tc_no=" + tc_no
-				+ ", tutor_no=" + tutor_no + ", tc_subject=" + tc_subject + ", tc_max_client=" + tc_max_client
-				+ ", tc_price_detail=" + tc_price_detail + ", tc_tt_message=" + tc_tt_message + ", tc_tt_info="
-				+ tc_tt_info + ", tc_class_info=" + tc_class_info + ", tc_class_taget=" + tc_class_taget
-				+ ", tc_curriculum=" + Arrays.toString(tc_curriculum) + ", tc_image_path=" + tc_image_path
-				+ ", tc_video_path=" + tc_video_path + ", tc_location=" + tc_location + ", tt_no=" + tt_no
-				+ ", tt_email=" + tt_email + ", tt_name=" + tt_name + ", tt_pass=" + tt_pass + ", tt_hp=" + tt_hp
-				+ ", tt_nn=" + tt_nn + ", tt_categroy_id=" + tt_categroy_id + ", tt_reg_date=" + tt_reg_date
-				+ ", tt_se_date=" + tt_se_date + ", tt_tutoring=" + tt_tutoring + ", tt_acc_money=" + tt_acc_money
-				+ ", tt_ac_no=" + tt_ac_no + ", tt_im_path=" + tt_im_path + ", ti_no=" + ti_no + ", zone_id=" + zone_id
-				+ ", ti_zone_detail=" + ti_zone_detail + ", ti_mon=" + ti_mon + ", ti_tue=" + ti_tue + ", ti_wed="
-				+ ti_wed + ", ti_tur=" + ti_tur + ", ti_fri=" + ti_fri + ", ti_sat=" + ti_sat + ", ti_sun=" + ti_sun
-				+ ", tc_status=" + tc_status + "]";
+	public String getTc_curriculum() {
+		return tc_curriculum;
 	}
+	public void setTc_curriculum(String tc_curriculum) {
+		this.tc_curriculum = tc_curriculum;
+	}
+	
+	
+
 	
 	
 	

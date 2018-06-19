@@ -25,7 +25,7 @@ public class ClassDetailServiceImpl implements ClassDetailService {
 	}
 	
 	@Override
-	public Talent_contentVO contentCall(Integer talent_no) {
+	public ClassDetailVO contentCall(Integer talent_no) {
 		System.out.println("contentCall 메소드 : " + talent_no);
 		return dao.contentCall(talent_no);
 	}
