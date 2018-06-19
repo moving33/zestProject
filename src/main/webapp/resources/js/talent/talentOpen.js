@@ -1420,15 +1420,18 @@ function lastSubmit(){
 		});
 		
 	}else{//원데이 항목 처리 
-		var sendData ={'zone1':'','zone2':'','zone3':''};
+		var sendData ={'zone1':'','zone2':'','zone3':'','count':''};
 		if(onedayData1.zoneid != ''){
 			sendData.zone1 = onedayData1;
+			sendData.count = 1;
 		}
 		if(onedayData2.zoneid != ''){
 			sendData.zone2 = onedayData2;
+			sendData.count = 2;
 		}
 		if(onedayData3.zoneid != ''){
 			sendData.zone3 = onedayData3;
+			sendData.count = 3;
 		}
 		
 		var myHeaders = new Headers();

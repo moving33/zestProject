@@ -43,14 +43,15 @@ public class TalentInsertServiceImpl implements TalentInsertService {
 		int meet_count = contentVO.getTc_curriculum().length;
 		talentVO.setTalent_meet_count(meet_count);
 		// total Price 넣기
-		talentVO.setTalent_total_price(talentVO.getTalent_price_hour() * talentVO.getTalent_meet_count() * talentVO.getTalent_meet_time());
+		talentVO.setTalent_total_price(
+				talentVO.getTalent_price_hour() * talentVO.getTalent_meet_count() * talentVO.getTalent_meet_time());
 		// 등록한 튜터의 no 넣기com
 		talentVO.setTalent_tt_no(tutorVO.getTt_no());
 		// talent 내용 넣고 넣은 talent의 primary key 받아오기
 		System.out.println(talentVO.toString());
 		int no = talentDAO.insertTalent(talentVO);
-		
-	//	int no = 3;
+
+		// int no = 3;
 		/*
 		 * talent_content 저장
 		 */
@@ -77,8 +78,8 @@ public class TalentInsertServiceImpl implements TalentInsertService {
 					e.printStackTrace();
 				}
 			}
-		} 
-		// 사진경로  vo 객체에 넣어주기
+		}
+		// 사진경로 vo 객체에 넣어주기
 		String imagePath = "c:/zest/talent/" + talentVO.getTalent_category_id() + "/" + no + "/";
 		contentVO.setTc_image_path(imagePath);
 		String html = ""; // 배열 처리되어있는 커리큘럼 항목 나누기
@@ -101,226 +102,263 @@ public class TalentInsertServiceImpl implements TalentInsertService {
 		List<Talent_info> tt_infoList = new ArrayList<>();
 		// 시간 항목 넣기
 		for (int z = 0; z < timeUtil.getCount(); z++) {
-			Talent_info tt_infoVO = new Talent_info();
-			String key = "zone" + (z + 1);
-			TalentTimeUtil z1 = timeUtil.getTimeData().get(key);
-			// info 테이블에 zone id 값 가져오기
-			ZoneVO zoneVo = new ZoneVO();
-			zoneVo.setZone_name(z1.getZone_id());
-			System.out.println(z1.getZone_id());
-			zoneVo = zoneSearch.getZoneVOforName(zoneVo);
-			
-			System.out.println(zoneVo.toString());
-			
-			// db에 검색해서 해당 id값 저장
-			tt_infoVO.setZone_id(zoneVo.getZone_id());
-			// timeData 항목 처리 하기
-			if (z1.getMon() != null) {// 월요일
-				Talent_notOneDayTime tt_notOneTimeData = new Talent_notOneDayTime();
-				for (int x = 0; x < z1.getMon().size(); x++) {
-					// 시간 협의 일때
-					if (x == 0) {
-						if (z1.getMon().get(x).contains("시간협의")) {
-							tt_infoVO.setTi_mon(0);
-							break;
-						}
-						tt_notOneTimeData.setTime1(z1.getMon().get(x));
-					}
-					if (x == 1) {
-						if (!z1.getMon().get(x).equals("")) {
-							tt_notOneTimeData.setTime2(z1.getMon().get(x));
-						}
-					}
-					if (x == 2) {
-						if (!z1.getMon().get(x).equals("")) {
-							tt_notOneTimeData.setTime3(z1.getMon().get(x));
-						}
-					}
-					// 마지막 data일시 해당 내용을 db에 저장하고 저장된 primary key값을 talent_info 에 저장한다.
-					if (x == z1.getMon().size() - 1) {
-						System.out.println(tt_notOneTimeData.toString());
-						tt_infoVO.setTi_mon(talentDAO.insertNotOneDayTime(tt_notOneTimeData));
-					}
-				}
-			} // end 월
+			if (timeUtil.getOneday() != 1) { // 원데이 아닌 항목
+				Talent_info tt_infoVO = new Talent_info();
+				String key = "zone" + (z + 1);
+				TalentTimeUtil z1 = timeUtil.getTimeData().get(key);
+				// info 테이블에 zone id 값 가져오기
+				ZoneVO zoneVo = new ZoneVO();
+				zoneVo.setZone_name(z1.getZone_id());
+				System.out.println(z1.getZone_id());
+				zoneVo = zoneSearch.getZoneVOforName(zoneVo);
 
-			if (z1.getTue() != null) {// 화요일
-				Talent_notOneDayTime tt_notOneTimeData = new Talent_notOneDayTime();
-				for (int x = 0; x < z1.getTue().size(); x++) {
-					// 시간 협의 일때
-					if (x == 0) {
-						if (z1.getTue().get(x).contains("시간협의")) {
-							tt_infoVO.setTi_tue(0);
-							break;
-						}
-						tt_notOneTimeData.setTime1(z1.getTue().get(x));
-					}
-					if (x == 1) {
-						if (!z1.getTue().get(x).equals("")) {
-							tt_notOneTimeData.setTime2(z1.getTue().get(x));
-						}
-					}
-					if (x == 2) {
-						if (!z1.getTue().get(x).equals("")) {
-							tt_notOneTimeData.setTime3(z1.getTue().get(x));
-						}
-					}
-					// 마지막 data일시 해당 내용을 db에 저장하고 저장된 primary key값을 talent_info 에 저장한다.
-					if (x == z1.getTue().size() - 1) {
-						System.out.println(tt_notOneTimeData.toString());
-						tt_infoVO.setTi_tue(talentDAO.insertNotOneDayTime(tt_notOneTimeData));
-					}
-				}
-			} // end 화
+				System.out.println(zoneVo.toString());
 
-			if (z1.getWed() != null) {// 수요일
-				Talent_notOneDayTime tt_notOneTimeData = new Talent_notOneDayTime();
-				for (int x = 0; x < z1.getWed().size(); x++) {
-					// 시간 협의 일때
-					if (x == 0) {
-						if (z1.getWed().get(x).contains("시간협의")) {
-							tt_infoVO.setTi_wed(0);
-							break;
+				// db에 검색해서 해당 id값 저장
+				tt_infoVO.setZone_id(zoneVo.getZone_id());
+				// timeData 항목 처리 하기
+				if (z1.getMon() != null) {// 월요일
+					Talent_notOneDayTime tt_notOneTimeData = new Talent_notOneDayTime();
+					for (int x = 0; x < z1.getMon().size(); x++) {
+						// 시간 협의 일때
+						if (x == 0) {
+							if (z1.getMon().get(x).contains("시간협의")) {
+								tt_infoVO.setTi_mon(0);
+								break;
+							}
+							tt_notOneTimeData.setTime1(z1.getMon().get(x));
 						}
-						tt_notOneTimeData.setTime1(z1.getWed().get(x));
-					}
-					if (x == 1) {
-						if (!z1.getWed().get(x).equals("")) {
-							tt_notOneTimeData.setTime2(z1.getWed().get(x));
+						if (x == 1) {
+							if (!z1.getMon().get(x).equals("")) {
+								tt_notOneTimeData.setTime2(z1.getMon().get(x));
+							}
+						}
+						if (x == 2) {
+							if (!z1.getMon().get(x).equals("")) {
+								tt_notOneTimeData.setTime3(z1.getMon().get(x));
+							}
+						}
+						// 마지막 data일시 해당 내용을 db에 저장하고 저장된 primary key값을 talent_info 에 저장한다.
+						if (x == z1.getMon().size() - 1) {
+							System.out.println(tt_notOneTimeData.toString());
+							tt_infoVO.setTi_mon(talentDAO.insertNotOneDayTime(tt_notOneTimeData));
 						}
 					}
-					if (x == 2) {
-						if (!z1.getWed().get(x).equals("")) {
-							tt_notOneTimeData.setTime3(z1.getWed().get(x));
-						}
-					}
-					// 마지막 data일시 해당 내용을 db에 저장하고 저장된 primary key값을 talent_info 에 저장한다.
-					if (x == z1.getWed().size() - 1) {
-						System.out.println(tt_notOneTimeData.toString());
-						tt_infoVO.setTi_wed(talentDAO.insertNotOneDayTime(tt_notOneTimeData));
-					}
-				}
-			} // end 수
+				} // end 월
 
-			if (z1.getTur() != null) {// 목요일
-				Talent_notOneDayTime tt_notOneTimeData = new Talent_notOneDayTime();
-				for (int x = 0; x < z1.getTur().size(); x++) {
-					// 시간 협의 일때
-					if (x == 0) {
-						if (z1.getTur().get(x).contains("시간협의")) {
-							tt_infoVO.setTi_tur(0);
-							break;
+				if (z1.getTue() != null) {// 화요일
+					Talent_notOneDayTime tt_notOneTimeData = new Talent_notOneDayTime();
+					for (int x = 0; x < z1.getTue().size(); x++) {
+						// 시간 협의 일때
+						if (x == 0) {
+							if (z1.getTue().get(x).contains("시간협의")) {
+								tt_infoVO.setTi_tue(0);
+								break;
+							}
+							tt_notOneTimeData.setTime1(z1.getTue().get(x));
 						}
-						tt_notOneTimeData.setTime1(z1.getTur().get(x));
-					}
-					if (x == 1) {
-						if (!z1.getTur().get(x).equals("")) {
-							tt_notOneTimeData.setTime2(z1.getTur().get(x));
+						if (x == 1) {
+							if (!z1.getTue().get(x).equals("")) {
+								tt_notOneTimeData.setTime2(z1.getTue().get(x));
+							}
+						}
+						if (x == 2) {
+							if (!z1.getTue().get(x).equals("")) {
+								tt_notOneTimeData.setTime3(z1.getTue().get(x));
+							}
+						}
+						// 마지막 data일시 해당 내용을 db에 저장하고 저장된 primary key값을 talent_info 에 저장한다.
+						if (x == z1.getTue().size() - 1) {
+							System.out.println(tt_notOneTimeData.toString());
+							tt_infoVO.setTi_tue(talentDAO.insertNotOneDayTime(tt_notOneTimeData));
 						}
 					}
-					if (x == 2) {
-						if (!z1.getTur().get(x).equals("")) {
-							tt_notOneTimeData.setTime3(z1.getTur().get(x));
-						}
-					}
-					// 마지막 data일시 해당 내용을 db에 저장하고 저장된 primary key값을 talent_info 에 저장한다.
-					if (x == z1.getTur().size() - 1) {
-						System.out.println(tt_notOneTimeData.toString());
-						tt_infoVO.setTi_tur(talentDAO.insertNotOneDayTime(tt_notOneTimeData));
-					}
-				}
-			} // end 목
+				} // end 화
 
-			if (z1.getFri() != null) {// 금요일
-				Talent_notOneDayTime tt_notOneTimeData = new Talent_notOneDayTime();
-				for (int x = 0; x < z1.getFri().size(); x++) {
-					// 시간 협의 일때
-					if (x == 0) {
-						if (z1.getFri().get(x).contains("시간협의")) {
-							tt_infoVO.setTi_fri(0);
-							break;
+				if (z1.getWed() != null) {// 수요일
+					Talent_notOneDayTime tt_notOneTimeData = new Talent_notOneDayTime();
+					for (int x = 0; x < z1.getWed().size(); x++) {
+						// 시간 협의 일때
+						if (x == 0) {
+							if (z1.getWed().get(x).contains("시간협의")) {
+								tt_infoVO.setTi_wed(0);
+								break;
+							}
+							tt_notOneTimeData.setTime1(z1.getWed().get(x));
 						}
-						tt_notOneTimeData.setTime1(z1.getFri().get(x));
-					}
-					if (x == 1) {
-						if (!z1.getFri().get(x).equals("")) {
-							tt_notOneTimeData.setTime2(z1.getFri().get(x));
+						if (x == 1) {
+							if (!z1.getWed().get(x).equals("")) {
+								tt_notOneTimeData.setTime2(z1.getWed().get(x));
+							}
+						}
+						if (x == 2) {
+							if (!z1.getWed().get(x).equals("")) {
+								tt_notOneTimeData.setTime3(z1.getWed().get(x));
+							}
+						}
+						// 마지막 data일시 해당 내용을 db에 저장하고 저장된 primary key값을 talent_info 에 저장한다.
+						if (x == z1.getWed().size() - 1) {
+							System.out.println(tt_notOneTimeData.toString());
+							tt_infoVO.setTi_wed(talentDAO.insertNotOneDayTime(tt_notOneTimeData));
 						}
 					}
-					if (x == 2) {
-						if (!z1.getFri().get(x).equals("")) {
-							tt_notOneTimeData.setTime3(z1.getFri().get(x));
-						}
-					}
-					// 마지막 data일시 해당 내용을 db에 저장하고 저장된 primary key값을 talent_info 에 저장한다.
-					if (x == z1.getFri().size() - 1) {
-						System.out.println(tt_notOneTimeData.toString());
-						tt_infoVO.setTi_fri(talentDAO.insertNotOneDayTime(tt_notOneTimeData));
-					}
-				}
-			} // end 금
+				} // end 수
 
-			if (z1.getSat() != null) {// 토요일
-				Talent_notOneDayTime tt_notOneTimeData = new Talent_notOneDayTime();
-				for (int x = 0; x < z1.getSat().size(); x++) {
-					// 시간 협의 일때
-					if (x == 0) {
-						if (z1.getSat().get(x).contains("시간협의")) {
-							tt_infoVO.setTi_sat(0);
-							break;
+				if (z1.getTur() != null) {// 목요일
+					Talent_notOneDayTime tt_notOneTimeData = new Talent_notOneDayTime();
+					for (int x = 0; x < z1.getTur().size(); x++) {
+						// 시간 협의 일때
+						if (x == 0) {
+							if (z1.getTur().get(x).contains("시간협의")) {
+								tt_infoVO.setTi_tur(0);
+								break;
+							}
+							tt_notOneTimeData.setTime1(z1.getTur().get(x));
 						}
-						tt_notOneTimeData.setTime1(z1.getSat().get(x));
-					}
-					if (x == 1) {
-						if (!z1.getSat().get(x).equals("")) {
-							tt_notOneTimeData.setTime2(z1.getSat().get(x));
+						if (x == 1) {
+							if (!z1.getTur().get(x).equals("")) {
+								tt_notOneTimeData.setTime2(z1.getTur().get(x));
+							}
+						}
+						if (x == 2) {
+							if (!z1.getTur().get(x).equals("")) {
+								tt_notOneTimeData.setTime3(z1.getTur().get(x));
+							}
+						}
+						// 마지막 data일시 해당 내용을 db에 저장하고 저장된 primary key값을 talent_info 에 저장한다.
+						if (x == z1.getTur().size() - 1) {
+							System.out.println(tt_notOneTimeData.toString());
+							tt_infoVO.setTi_tur(talentDAO.insertNotOneDayTime(tt_notOneTimeData));
 						}
 					}
-					if (x == 2) {
-						if (!z1.getSat().get(x).equals("")) {
-							tt_notOneTimeData.setTime3(z1.getSat().get(x));
-						}
-					}
-					// 마지막 data일시 해당 내용을 db에 저장하고 저장된 primary key값을 talent_info 에 저장한다.
-					if (x == z1.getSat().size() - 1) {
-						System.out.println(tt_notOneTimeData.toString());
-						tt_infoVO.setTi_sat(talentDAO.insertNotOneDayTime(tt_notOneTimeData));
-					}
-				}
-			} // end 토요일
+				} // end 목
 
-			if (z1.getSun() != null) {// 일요일
-				Talent_notOneDayTime tt_notOneTimeData = new Talent_notOneDayTime();
-				for (int x = 0; x < z1.getSun().size(); x++) {
-					// 시간 협의 일때
-					if (x == 0) {
-						if (z1.getSun().get(x).contains("시간협의")) {
-							tt_infoVO.setTi_sun(0);
-							break;
+				if (z1.getFri() != null) {// 금요일
+					Talent_notOneDayTime tt_notOneTimeData = new Talent_notOneDayTime();
+					for (int x = 0; x < z1.getFri().size(); x++) {
+						// 시간 협의 일때
+						if (x == 0) {
+							if (z1.getFri().get(x).contains("시간협의")) {
+								tt_infoVO.setTi_fri(0);
+								break;
+							}
+							tt_notOneTimeData.setTime1(z1.getFri().get(x));
 						}
-						tt_notOneTimeData.setTime1(z1.getSun().get(x));
-					}
-					if (x == 1) {
-						if (!z1.getSun().get(x).equals("")) {
-							tt_notOneTimeData.setTime2(z1.getSun().get(x));
+						if (x == 1) {
+							if (!z1.getFri().get(x).equals("")) {
+								tt_notOneTimeData.setTime2(z1.getFri().get(x));
+							}
+						}
+						if (x == 2) {
+							if (!z1.getFri().get(x).equals("")) {
+								tt_notOneTimeData.setTime3(z1.getFri().get(x));
+							}
+						}
+						// 마지막 data일시 해당 내용을 db에 저장하고 저장된 primary key값을 talent_info 에 저장한다.
+						if (x == z1.getFri().size() - 1) {
+							System.out.println(tt_notOneTimeData.toString());
+							tt_infoVO.setTi_fri(talentDAO.insertNotOneDayTime(tt_notOneTimeData));
 						}
 					}
-					if (x == 2) {
-						if (!z1.getSun().get(x).equals("")) {
-							tt_notOneTimeData.setTime3(z1.getSun().get(x));
-						}
-					}
-					// 마지막 data일시 해당 내용을 db에 저장하고 저장된 primary key값을 talent_info 에 저장한다.
-					if (x == z1.getSun().size() - 1) {
-						System.out.println(tt_notOneTimeData.toString());
-						tt_infoVO.setTi_sun(talentDAO.insertNotOneDayTime(tt_notOneTimeData));
-					}
-				}
-			} // end 일
+				} // end 금
 
-			// info 객체를 List에 저장한다
-			tt_infoVO.setTalent_no(no);
-			tt_infoList.add(tt_infoVO);
+				if (z1.getSat() != null) {// 토요일
+					Talent_notOneDayTime tt_notOneTimeData = new Talent_notOneDayTime();
+					for (int x = 0; x < z1.getSat().size(); x++) {
+						// 시간 협의 일때
+						if (x == 0) {
+							if (z1.getSat().get(x).contains("시간협의")) {
+								tt_infoVO.setTi_sat(0);
+								break;
+							}
+							tt_notOneTimeData.setTime1(z1.getSat().get(x));
+						}
+						if (x == 1) {
+							if (!z1.getSat().get(x).equals("")) {
+								tt_notOneTimeData.setTime2(z1.getSat().get(x));
+							}
+						}
+						if (x == 2) {
+							if (!z1.getSat().get(x).equals("")) {
+								tt_notOneTimeData.setTime3(z1.getSat().get(x));
+							}
+						}
+						// 마지막 data일시 해당 내용을 db에 저장하고 저장된 primary key값을 talent_info 에 저장한다.
+						if (x == z1.getSat().size() - 1) {
+							System.out.println(tt_notOneTimeData.toString());
+							tt_infoVO.setTi_sat(talentDAO.insertNotOneDayTime(tt_notOneTimeData));
+						}
+					}
+				} // end 토요일
+
+				if (z1.getSun() != null) {// 일요일
+					Talent_notOneDayTime tt_notOneTimeData = new Talent_notOneDayTime();
+					for (int x = 0; x < z1.getSun().size(); x++) {
+						// 시간 협의 일때
+						if (x == 0) {
+							if (z1.getSun().get(x).contains("시간협의")) {
+								tt_infoVO.setTi_sun(0);
+								break;
+							}
+							tt_notOneTimeData.setTime1(z1.getSun().get(x));
+						}
+						if (x == 1) {
+							if (!z1.getSun().get(x).equals("")) {
+								tt_notOneTimeData.setTime2(z1.getSun().get(x));
+							}
+						}
+						if (x == 2) {
+							if (!z1.getSun().get(x).equals("")) {
+								tt_notOneTimeData.setTime3(z1.getSun().get(x));
+							}
+						}
+						// 마지막 data일시 해당 내용을 db에 저장하고 저장된 primary key값을 talent_info 에 저장한다.
+						if (x == z1.getSun().size() - 1) {
+							System.out.println(tt_notOneTimeData.toString());
+							tt_infoVO.setTi_sun(talentDAO.insertNotOneDayTime(tt_notOneTimeData));
+						}
+					}
+				} // end 일
+
+				// info 객체를 List에 저장한다
+				tt_infoVO.setTalent_no(no);
+				tt_infoList.add(tt_infoVO);
+			}else {//원데이 항목
+				Talent_info tt_infoVO = new Talent_info();
+				String key = "zone" + (z + 1);
+				TalentTimeUtil z1 = timeUtil.getTimeData().get(key);
+				// info 테이블에 zone id 값 가져오기
+				ZoneVO zoneVo = new ZoneVO();
+				zoneVo.setZone_name(z1.getZone_id());
+				
+				zoneVo = zoneSearch.getZoneVOforName(zoneVo);
+				System.out.println("oneDayTime에서 저장되는 지역"+zoneVo.toString());
+				tt_infoVO.setZone_id(zoneVo.getZone_id()); //info에 해당 id값 저장
+				if(z1.getMon_onday() != 0) {//각각의 요일항목 저장
+					tt_infoVO.setTi_mon(z1.getMon_onday());
+				}
+				if(z1.getTue_onday() != 0) {
+					tt_infoVO.setTi_tue(z1.getTue_onday());
+				}
+				if(z1.getWed_onday() != 0) {
+					tt_infoVO.setTi_wed(z1.getWed_onday());
+				}
+				if(z1.getTur_onday() != 0) {
+					tt_infoVO.setTi_tur(z1.getTur_onday());
+				}
+				if(z1.getFri_onday() != 0) {
+					tt_infoVO.setTi_fri(z1.getFri_onday());
+				}
+				if(z1.getSat_onday() != 0) {
+					tt_infoVO.setTi_sat(z1.getSat_onday());
+				}
+				if(z1.getSun_onday() != 0) {
+					tt_infoVO.setTi_sun(z1.getSun_onday());
+				}
+				// info 객체를 List에 저장한다
+				tt_infoVO.setTalent_no(no);
+				tt_infoList.add(tt_infoVO);
+			}
 
 		} // end for문
 

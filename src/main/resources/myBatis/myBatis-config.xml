@@ -18,6 +18,8 @@
 		<typeAlias type="com.zest.web.client.model.Talent_notOneDayTime" alias="TT_notTimeVO" />
 		<typeAlias type="com.zest.web.client.model.Talent_info" alias="TI_VO" />
 		<typeAlias type="com.zest.web.client.model.ZoneVO" alias="ZoneVO" />
+		<!-- 원데이 타임 vo -->
+		<typeAlias type="com.zest.web.client.model.Talent_OneDayTimeVO" alias="TT_TimeVO" />
 	</typeAliases>
 	
     <!--Sql Mapper 설정-->
@@ -48,6 +50,8 @@
          <mapper resource="myBatis/talent/talent_Info-sqlMapping.xml" />
          <!-- 강의 notOneday 시간 -->
          <mapper resource="myBatis/talent/talent_notOnedayTime-sqlMapping.xml" />
+         <!-- 강의 Oneday 시간 -->
+         <mapper resource="myBatis/talent/talent_OnedayTime-sqlMapping.xml" />
          <!-- 지역  -->
          <mapper resource="myBatis/zone/zone-sqlMapping.xml" />
     </mappers>

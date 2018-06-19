@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.zest.web.client.model.TalentVO;
+import com.zest.web.client.model.Talent_OneDayTimeVO;
 import com.zest.web.client.model.Talent_contentVO;
 import com.zest.web.client.model.Talent_info;
 import com.zest.web.client.model.Talent_notOneDayTime;
@@ -37,6 +38,14 @@ public class TalentDAOImpl implements TalentDAO {
 	public void insertTI(Talent_info vo) {
 		session.insert("com.zest.talent_Info.insertTI",vo);		
 	}
+
+	@Override
+	public int insertOneDayTime(Talent_OneDayTimeVO vo) {
+		session.insert("com.zest.talent_OneDay.insertOneDayTime",vo);
+		return vo.getTt_od_no();
+	}
+	
+	
 	
 	
 	
