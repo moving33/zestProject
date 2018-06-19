@@ -10,14 +10,15 @@
 		<typeAlias type="com.zest.web.client.model.Tutor_PropVO" alias="Tutor_PropVO" />	
 		<typeAlias type="com.zest.web.client.model.TuTorVO" alias="TutorVO" />
 		<typeAlias type="com.zest.web.admin.model.AdminVO" alias="AdminVO" />
-
+		<typeAlias type="com.zest.web.client.model.ClassDetailVO" alias="DetailVO" />
 		<typeAlias type="com.zest.web.client.model.CategoryPageVO" alias="CategoryPageVO"/>		
-
+		<typeAlias type="com.zest.web.client.model.ClassDetail_TutorVO" alias="ClassDetail_TutorVO"/>
 		<typeAlias type="com.zest.web.client.model.TalentVO" alias="TalentVO" />
 		<typeAlias type="com.zest.web.client.model.Talent_contentVO" alias="TC_VO" />
 		<typeAlias type="com.zest.web.client.model.Talent_notOneDayTime" alias="TT_notTimeVO" />
 		<typeAlias type="com.zest.web.client.model.Talent_info" alias="TI_VO" />
 		<typeAlias type="com.zest.web.client.model.ZoneVO" alias="ZoneVO" />
+		<typeAlias type="com.zest.web.client.model.ReviewVO" alias="ReviewVO" />
 	</typeAliases>
 	
     <!--Sql Mapper 설정-->
@@ -50,5 +51,10 @@
          <mapper resource="myBatis/talent/talent_notOnedayTime-sqlMapping.xml" />
          <!-- 지역  -->
          <mapper resource="myBatis/zone/zone-sqlMapping.xml" />
+         
+        <!-- 강의상세 -->
+        <mapper resource="myBatis/category/classDetail-sqlMapping.xml" />
+        <!-- 리뷰 -->
+        <mapper resource="myBatis/client/review-sqlMapping.xml" />
     </mappers>
 </configuration>

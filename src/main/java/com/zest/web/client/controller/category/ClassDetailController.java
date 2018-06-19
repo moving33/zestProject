@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.zest.web.client.model.ClassDetailVO;
 import com.zest.web.client.model.ClassDetail_TutorVO;
 import com.zest.web.client.model.TalentVO;
-import com.zest.web.client.model.Talent_contentVO;
 import com.zest.web.client.service.client.ClassDetailService;
 
 @Controller
@@ -24,22 +24,23 @@ public class ClassDetailController {
 	ClassDetailService classDetailService;
 
 	// 상세수업페이지
-	@RequestMapping(value = "/classDetail")
+	/*@RequestMapping(value = "/classDetail")
 	public ModelAndView viewMainPage() {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("category/classDetail");
 		System.out.println("11111111111111111");
 		return modelAndView;
-	}
+	}*/
 
-	@RequestMapping(value = "/classDetail/{talent_no}")
-	public ModelAndView classDetail(@PathVariable int talent_no, ModelAndView modelAndView, Talent_contentVO vo,
+	@RequestMapping(value = "/category/{category}/{talent_no}")
+	public ModelAndView classDetail(@PathVariable int talent_no, ModelAndView modelAndView, ClassDetailVO vo,
 			TalentVO Tvo, ClassDetail_TutorVO Cvo) {
 		System.out.println("2222222222222");
-
+		System.out.println(talent_no);
 		vo = classDetailService.contentCall(talent_no);
 		Tvo = classDetailService.talentCall(talent_no);
 		Cvo = classDetailService.tutorCall(talent_no);
+
 		
 		
 		// View에서 사용할 이미지
@@ -48,12 +49,12 @@ public class ClassDetailController {
 
 		File dirFile = new File(vo.getTc_image_path()); // 파일경로 c:\zest\talent\MUSIC\3
 		File[] files = dirFile.listFiles(); //파일 담기
+		List<String> images = new ArrayList<String>();
 		
 		for (int i = 0; i < files.length; i++) {
 			if (files[i].isFile()) {
 				String tempPath = files[i].getParent();
 				String tempFileName = files[i].getName();
-				int lastDot = tempFileName.lastIndexOf('.');
 				
 				String subPath = tempPath.substring(8);
 				System.out.println("sub Path : " + subPath);
@@ -61,11 +62,16 @@ public class ClassDetailController {
 				System.out.println("tempPtah 값 : " + tempPath);
 				System.out.println("tempFileName 값: " + tempFileName);
 				
+				String imagePath = "/LocalImage/" + subPath + "/" + tempFileName;
 				
-				model.put("image" + i, "/LocalImage/" + subPath + "/" + tempFileName);
-
+				//model.put("image" + i, "/LocalImage/" + subPath + "/" + tempFileName);
+				
+				images.add(imagePath);
+						
+				
 			}
 		}
+
 		
 		// 커리큘럼 회차 나누기
 		String date = vo.getTc_curriculum(); //커리큘럼 뽑아오기
@@ -105,6 +111,7 @@ public class ClassDetailController {
 			}
 			
 		}
+		modelAndView.addObject("imgPath", images);
 		
 
 		modelAndView.addObject("detail", vo);

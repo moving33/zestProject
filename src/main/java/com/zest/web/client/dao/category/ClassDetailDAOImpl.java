@@ -28,8 +28,8 @@ public class ClassDetailDAOImpl implements ClassDetailDAO {
 	
 	
 	@Override
-	public Talent_contentVO contentCall(Integer talent_no) {
-		Talent_contentVO vo = sqlSession.selectOne("com.zest.classDetail.ContentClass", talent_no);
+	public ClassDetailVO contentCall(Integer talent_no) {
+		ClassDetailVO vo = sqlSession.selectOne("com.zest.classDetail.ContentClass", talent_no);
 		System.out.println("DAO Impl" + vo.toString());
 		return vo;
 	}

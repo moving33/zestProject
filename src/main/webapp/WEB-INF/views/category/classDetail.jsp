@@ -13,16 +13,13 @@
 
 
 <!-- 부트스트랩 CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="/zest/css/bootstrap.css" rel="stylesheet">
 <!-- classDetail css -->
-<link href="../css/category/classDetail.css" rel="stylesheet">
+<link href="/zest/css/category/classDetail.css" rel="stylesheet">
 
 <title>수업상세 페이지</title>
 </head>
 <body>
-
-
-
 <!-- 헤더 -->
 <div id="header_subn">
 	<div class="gnb">
@@ -33,17 +30,17 @@
 				<li><a href=""><span>수업검색</span></a></li>
 			</ul>
 		</div>
-		<div class="logo"><a href="/"><img src="../	images/logo2.png" alt="Logo"/></a></div>
+		<div class="logo"><a href="/zest/main"><img src="/zest/images/logo2.png" alt="Logo"/></a></div>
             <div class="rightmenu">
             	<ul>
             		<li style="width:180px;"></li>
 					<li>
-						<a href="" id="btn-menu-join" onmousemove="join01.src='../images/join2.png'" onmouseout="join01.src='../images/join1.png'">
-						<span><img src="../images/join1.png" name="join01"/></span><span>회원가입</span></a>
+						<a href="#" id="regi" onmousemove="join01.src='/zest/images/join2.png'" onmouseout="join01.src='/zest/images/join1.png'">
+						<span><img src="/zest/images/join1.png" name="join01"/></span><span>회원가입</span></a>
 					</li>
 					<li>
-						<a href="" id="btn-menu-login" onmousemove="join02.src='../images/login2.png'" onmouseout="join02.src='../images/login1.png'">
-						<span><img src="../images/login1.png" name="join02"/></span><span>로그인</span></a>
+						<a href="#" id="login" onmousemove="join02.src='/zest/images/login2.png'" onmouseout="join02.src='/zest/images/login1.png'">
+						<span><img src="/zest/images/login1.png" name="join02"/></span><span>로그인</span></a>
 					</li>
             		
             	</ul>
@@ -76,8 +73,8 @@
 					<div class="tp1">￦${talent.talent_total_price } / 총 ${talent.talent_meet_count }회 8시간</div>
 				</div>
 				<div class="btn_area">
-					<a class="btn_qna" onclick="#"><img src="../images/classDetail/icon_btn_qna.png"> 실시간 톡하기</a>
-					<a class="btn_wish" onclick="#"><img src="../images/classDetail/icon_btn_wish.png"> 찜하기</a>
+					<a class="btn_qna" onclick="#"><img src="/zest/images/classDetail/icon_btn_qna.png"> 실시간 톡하기</a>
+					<a class="btn_wish" onclick="#"><img src="/zest/images/classDetail/icon_btn_wish.png"> 찜하기</a>
 				</div>
 			</div>
 		</div>
@@ -94,16 +91,22 @@
             </ol>
            
             <div class="carousel-inner" role="listbox">
-              <div class="carousel-item active">
-                <img class="d-block img-fluid" src="${image0}" alt="First slide">
+              <c:forEach var="images" items="${imgPath}" varStatus="status">
+              <c:choose>
+              <c:when test="${status.index == 0}">
+              <div class="carousel-item active">	
+                <img class="d-block img-fluid" src="${images}" alt="First slide">
               </div>
+              </c:when>
+              <c:otherwise>
               <div class="carousel-item">
-                <img class="d-block img-fluid" src="${image1}" alt="Second slide">
+                <img class="d-block img-fluid" src="${images}" alt="Second slide">
               </div>
-              <div class="carousel-item">
-                <img class="d-block img-fluid" src="${image2}" alt="Third slide">
-              </div>
+              </c:otherwise>
+              </c:choose>
+             </c:forEach>
             </div>
+            
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="sr-only">Previous</span>
@@ -140,10 +143,10 @@
 				<div class="info">별점부분</div>
 				<div class="info">
 					<ul>
-						<li class="ar"><div class="icon1"><img src="../images/classDetail/icon_info01.png"></div>강남</li>							
-						<li class="hu"><div class="icon2"><img src="../images/classDetail/icon_info02.png"></div><font color="#ff005a">2</font>시간/회</li>
-						<li class="gr"><div class="icon3"><img src="../images/classDetail/icon_info03.png"></div>최대인원:<font color="#ff005a">${detail.tc_max_client}</font>명</li>
-						<li class="ohu"><div class="icon4"><img src="../images/classDetail/icon_info04.png"></div><font color="#ff005a">￦20,000</font>/시간</li>
+						<li class="ar"><div class="icon1"><img src="/zest/images/classDetail/icon_info01.png"></div>강남</li>							
+						<li class="hu"><div class="icon2"><img src="/zest/images/classDetail/icon_info02.png"></div><font color="#ff005a">2</font>시간/회</li>
+						<li class="gr"><div class="icon3"><img src="/zest/images/classDetail/icon_info03.png"></div>최대인원:<font color="#ff005a">${detail.tc_max_client}</font>명</li>
+						<li class="ohu"><div class="icon4"><img src="/zest/images/classDetail/icon_info04.png"></div><font color="#ff005a">￦20,000</font>/시간</li>
 					</ul>
 				</div>
 				</div>
@@ -201,9 +204,10 @@
 </div>
 
 	<!-- Bootstrap core JavaScript -->
-	<script src="../js/jquery.min.js"></script>
-	<script src="../js/bootstrap.bundle.min.js"></script>
-	<script src="../js/category/classDetail.js"></script>
+	<script src="/zest/js/jquery.min.js"></script>
+	<script src="/zest/js/bootstrap.bundle.min.js"></script>
+	<script src="/zest/js/category/classDetail.js"></script>
+	<script src="/zest/js/main/mainPage.js"></script>
 
 </body>
 </html>
