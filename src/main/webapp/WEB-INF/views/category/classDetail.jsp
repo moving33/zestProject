@@ -145,25 +145,11 @@
 				<div class="title">${detail.tc_subject}</div>
 				<div class="info">
 				<!-- 별점총점 -->
-				<div class="review-scores-detail review-scores-price">
-					<span class="star-input1">
-					<span class="input">
-					<input type="radio" name="total_value" value="1" checked id="curri1">
-					<label for="curri1">1</label>
-					<input type="radio" name="total_value" value="2" id="curri2">
-					<label for="curri2">2</label>
-					<input type="radio" name="total_value" value="3" id="curri3">
-					<label for="curri3">3</label>
-					<input type="radio" name="total_value" value="4" id="curri4">
-					<label for="curri4">4</label>
-					<input type="radio" name="total_value" value="5" id="curri5">
-					<label for="curri5">5</label>
-					</span>
-					</span>
-				</div>
+				
 				
 			<c:choose>
 			<c:when test="${1 eq avg.total_value }">
+			<div class="star_comment">
 				<div class="review-scores-detail review-scores-price">
 					<span class="star-input1">
 					<span class="input">
@@ -259,6 +245,7 @@
 					</span>
 					</span>
 				</div>
+				
 				</c:when>
 				
 				</c:choose>
