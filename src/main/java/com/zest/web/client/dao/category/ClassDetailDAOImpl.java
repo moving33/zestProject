@@ -8,8 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import com.zest.web.client.model.ClassDetailVO;
 import com.zest.web.client.model.ClassDetail_TutorVO;
+import com.zest.web.client.model.ReviewVO;
 import com.zest.web.client.model.TalentVO;
-import com.zest.web.client.model.Talent_contentVO;
+
 
 
 @Repository
@@ -43,6 +44,18 @@ public class ClassDetailDAOImpl implements ClassDetailDAO {
 	@Override
 	public ClassDetail_TutorVO tutorCall(Integer talent_no) {
 		ClassDetail_TutorVO vo = sqlSession.selectOne("com.zest.classDetail.talentInfo", talent_no);
+		return vo;
+	}
+	
+	@Override
+	public List<ReviewVO> reviewCall(Integer talent_no){
+		List<ReviewVO> vo = sqlSession.selectList("com.zest.classDetail.reviewInfo", talent_no);
+		return vo;
+	}
+	
+	@Override
+	public ReviewVO reviewValue(Integer talent_no) {
+		ReviewVO vo = sqlSession.selectOne("com.zest.classDetail.reviewValue", talent_no);
 		return vo;
 	}
 	

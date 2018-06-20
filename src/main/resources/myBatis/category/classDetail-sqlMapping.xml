@@ -26,19 +26,37 @@
 		TALENT_INFO.TALENT_NO and TALENT.TALENT_NO = #{talent_no}
 	</select>
 	
-	
+	<!-- talent_content 내용  -->
 	<select id="ContentClass" resultType="DetailVO">
 	SELECT * FROM TALENT_CONTENT WHERE TALENT_NO = #{talent_no}
 	</select>
 	
+	<!-- talent 내용  -->
 	<select id="talentClass" resultType="TalentVO">
 	SELECT * FROM TALENT WHERE TALENT_NO = #{talent_no}
 	</select>
 	
+	<!-- 튜터정보  -->
 	<select id="talentInfo" resultType="ClassDetail_TutorVO">
 	select TALENT_CONTENT.TALENT_NO, TUTOR.TT_NO, TUTOR.TT_NAME, TUTOR.TT_NN, TUTOR.TT_IM_PATH
 	from TALENT_CONTENT, TUTOR
 	where TALENT_CONTENT.TUTOR_NO = TUTOR.TT_NO and TALENT_CONTENT.TALENT_NO = #{talent_no}
+	</select>
+	
+	<!-- 리뷰정보 -->
+	<select id="reviewInfo" resultType="ReviewVO">
+	SELECT TALENT_REVIEW.TALENT_NO, TALENT_REVIEW.TT_NO, CLIENT.CL_NAME, TALENT_REVIEW.TOTAL_VALUE, TALENT_REVIEW.TR_CONTENT
+	from TALENT_REVIEW, CLIENT
+	where TALENT_REVIEW.TR_CLIENT_NO = CLIENT.CL_NO and TALENT_REVIEW.TALENT_NO = #{talent_no}
+	</select>
+	
+	<!-- 리뷰별점 -->
+	<select id="reviewValue" resultType="ReviewVO">
+	SELECT TALENT_NO, TT_NO, ROUND(AVG(TR_CURRI_VALUE),0) as TR_CURRI_VALUE, ROUND(AVG(TR_COMMU_VALUE), 0) as TR_COMMU_VALUE,
+	ROUND(AVG(TR_READY_VALUE),0) as TR_READY_VALUE, ROUND(AVG(TC_KIND_VALUE),0) as TC_KIND_VALUE,
+	ROUND(AVG(TC_TIME_VALUE),0) as TC_TIME_VALUE, ROUND(AVG(TOTAL_VALUE),0) as TOTAL_VALUE
+	FROM TALENT_REVIEW
+	WHERE TALENT_NO = #{talent_no}
 	</select>
 	
 	

@@ -10,10 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.zest.web.client.model.CategoryPageVO;
 import com.zest.web.client.model.ClassDetailVO;
 import com.zest.web.client.model.ClassDetail_TutorVO;
+import com.zest.web.client.model.ReviewVO;
 import com.zest.web.client.model.TalentVO;
 import com.zest.web.client.service.client.ClassDetailService;
 
@@ -40,8 +43,8 @@ public class ClassDetailController {
 		vo = classDetailService.contentCall(talent_no);
 		Tvo = classDetailService.talentCall(talent_no);
 		Cvo = classDetailService.tutorCall(talent_no);
-
 		
+	
 		
 		// View에서 사용할 이미지
 		
@@ -104,8 +107,8 @@ public class ClassDetailController {
 		
 		String subPro = proimg.substring(8);
 		
-		System.out.println("서브프로로로로로로로로로 = " + subPro);
-		System.out.println("프로네임임  : " + proname);
+		//System.out.println("서브프로로로로로로로로로 = " + subPro);
+		//System.out.println("프로네임임  : " + proname);
 		
 		model.put("pro" + i, "/LocalImage/" + subPro + "/" + proname);
 			}
@@ -113,6 +116,16 @@ public class ClassDetailController {
 		}
 		modelAndView.addObject("imgPath", images);
 		
+		
+		// 리뷰 보여주기
+		List<ReviewVO> Rvo = classDetailService.reviewCall(talent_no);
+		model.put("review", Rvo);
+
+		
+		//리뷰 평균 값
+		ReviewVO avgReview = classDetailService.reviewValue(talent_no);
+		model.put("avg", avgReview);
+
 
 		modelAndView.addObject("detail", vo);
 		modelAndView.addObject("talent", Tvo);

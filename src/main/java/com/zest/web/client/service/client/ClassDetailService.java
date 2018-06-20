@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.zest.web.client.model.ClassDetailVO;
 import com.zest.web.client.model.ClassDetail_TutorVO;
+import com.zest.web.client.model.ReviewVO;
 import com.zest.web.client.model.TalentVO;
 import com.zest.web.client.model.Talent_contentVO;
 
@@ -17,5 +18,9 @@ public interface ClassDetailService {
 	TalentVO talentCall(Integer talent_no);
 	//tutor 정보 불러오기
 	ClassDetail_TutorVO tutorCall(Integer talent_no);
+	//review 불러오기
+	List<ReviewVO> reviewCall(Integer talent_no);
+	//review 값 평균 불러오기
+	ReviewVO reviewValue(Integer talent_no);
 
 }

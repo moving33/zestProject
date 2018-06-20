@@ -6,6 +6,7 @@ public class ReviewVO {
 	private Integer tr_no; //리뷰 테이블의 고유키
 	private Integer talent_no; //수업 테이블의 고유키
 	private Integer tt_no; //튜터테이블의 고유키
+	private Integer tr_client_no; //해당수업을 들은 학생의 넘버
 	private Integer tr_curri_value; //커리큘럼
 	private Integer tr_commu_value; //전달력
 	private Integer tr_ready_value; //준비성
@@ -14,6 +15,8 @@ public class ReviewVO {
 	private String tr_content; //리뷰내용
 	private double total_value; //평균
 	private Timestamp tc_reg_date; //리뷰등록일자
+	private String cl_name; //클라이언트 이름
+	
 	public Integer getTr_no() {
 		return tr_no;
 	}
@@ -80,6 +83,26 @@ public class ReviewVO {
 	}
 	public void setTotal_value(double total_value) {
 		this.total_value = total_value;
+	}
+	public Integer getTr_client_no() {
+		return tr_client_no;
+	}
+	public void setTr_client_no(Integer tr_client_no) {
+		this.tr_client_no = tr_client_no;
+	}
+	public String getCl_name() {
+		return cl_name;
+	}
+	public void setCl_name(String cl_name) {
+		this.cl_name = cl_name;
+	}
+	@Override
+	public String toString() {
+		return "ReviewVO [tr_no=" + tr_no + ", talent_no=" + talent_no + ", tt_no=" + tt_no + ", tr_client_no="
+				+ tr_client_no + ", tr_curri_value=" + tr_curri_value + ", tr_commu_value=" + tr_commu_value
+				+ ", tr_ready_value=" + tr_ready_value + ", tc_kind_value=" + tc_kind_value + ", tc_time_value="
+				+ tc_time_value + ", tr_content=" + tr_content + ", total_value=" + total_value + ", tc_reg_date="
+				+ tc_reg_date + ", cl_name=" + cl_name + "]";
 	}
 	
 	

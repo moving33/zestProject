@@ -8,8 +8,9 @@ import org.springframework.stereotype.Service;
 import com.zest.web.client.dao.category.ClassDetailDAO;
 import com.zest.web.client.model.ClassDetailVO;
 import com.zest.web.client.model.ClassDetail_TutorVO;
+import com.zest.web.client.model.ReviewVO;
 import com.zest.web.client.model.TalentVO;
-import com.zest.web.client.model.Talent_contentVO;
+
 
 
 @Service
@@ -38,6 +39,16 @@ public class ClassDetailServiceImpl implements ClassDetailService {
 	@Override
 	public ClassDetail_TutorVO tutorCall(Integer talent_no) {
 		return dao.tutorCall(talent_no);
+	}
+	
+	@Override
+	public List<ReviewVO> reviewCall(Integer talent_no){
+		return dao.reviewCall(talent_no);
+	}
+	
+	@Override
+	public ReviewVO reviewValue(Integer talent_no) {
+		return dao.reviewValue(talent_no);
 	}
 	
 	

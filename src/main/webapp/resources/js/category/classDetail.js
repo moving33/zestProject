@@ -1,31 +1,64 @@
 
-/*$(document).ready(function(){
-	
-	var scrollOffset = $('.class_navi').offset();
-	
-	$(window).scroll(function(){
-		if($(document).scrollTop() > scrollOffset.top){
-			$('.class_navi').addClass('scroll-fixed');
-		}
-		else{
-			$('.class_navi').removeClass('scroll-fixed');
-		}
-	});
-});*/
+
+// 세션
+
+$(document).ready(function(){
+   var sessionURL = "/zest/session";
+   var list = $('#loginCheck');
+   var listHtml = '';
+   
+   
+   fetch("/zest/session",{      
+      
+      method : 'POST',
+      //
+      credentials: "same-origin"
+      }).then(function(response) {
+         if (!response.ok) {
+            throw Error(response.statusText);
+         }
+         return response.json();
+      }).then((data) => {
+         if(data == 1){
+            var listHtml = "<ul>" +
+			"<li class='nav-item'>"+
+			"<a class='nav-linkj' id='myPage' href='/zest/clientPage' style='font-size: 20px;'><b>마이페이지</b></a></li>" +
+			"<li class='nav-item'>"+
+			"<a class='nav-linkj' id='logout' href='/zest/main/logout' style='font-size: 20px;'>"+			
+			"<b>로그아웃</b></a></li>" +
+			"</ul>";
+            list.html(listHtml);
+            changePageColor();
+            
+         }
+      }).catch((e) => {
+         console.log(e);
+      });  
+});
+
+function changePageColor(){
+	 $("#myPage").on({
+			mouseenter : function() {
+				$(this).css("background-color", "#ffffff"),
+				$(this).css("color", "#ff7200");
+			},
+			mouseleave : function() {
+				$(this).css("background-color", "#ffffff"),
+				$(this).css("color", "#000000");
+			}
+		});
+	 $("#logout").on({
+			mouseenter : function() {
+				$(this).css("background-color", "#ffffff"),
+				$(this).css("color", "#ff7200");
+			},
+			mouseleave : function() {
+				$(this).css("background-color", "#ffffff"),
+				$(this).css("color", "#000000");
+			}
+		});
+}
 
 
-/*$('#btn-write-revice').click(function(){
-	var popUrl = "http://localhost:8080/zest/reviewPag";
-	var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;"; 
-
-	window.open(popUrl,popOption);
-});*/
 
 
-
-/*function popupOpen(){
-
-	var popUrl = "/zest/reviewPage/3";
-	var popOption = "width=370, height=360, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no;"; 
-	window.open(popUrl,popOption);
-}*/

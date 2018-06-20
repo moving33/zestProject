@@ -13,5 +13,6 @@ public interface ReviewDAO {
 	
 	//리뷰삭제
 	void deleteReview(ReviewVO vo);
+	
 
 }
