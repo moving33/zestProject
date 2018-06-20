@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zest.web.client.dao.talent.TalentDAO;
-import com.zest.web.client.model.Talent_OneDayTimeVO;
+import com.zest.web.client.model.TalentOneDayTimeVO;
 
 @Service
 public class TalentTimeInsertServiceImpl implements TalentTimeInsertService{
@@ -15,7 +15,7 @@ public class TalentTimeInsertServiceImpl implements TalentTimeInsertService{
 	
 
 	@Override
-	public int insertOneDayTime(Talent_OneDayTimeVO vo) {
+	public int insertOneDayTime(TalentOneDayTimeVO vo) {
 		return talentDAO.insertOneDayTime(vo);
 	}
 		

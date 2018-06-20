@@ -1,23 +1,23 @@
 package com.zest.web.client.controller.common;
 
-import org.omg.PortableServer.REQUEST_PROCESSING_POLICY_ID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
+
+
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zest.web.client.model.ClientVO;
 import com.zest.web.client.model.TalentInfo;
 import com.zest.web.client.model.TalentTimeUtil;
 import com.zest.web.client.model.TalentVO;
-import com.zest.web.client.model.Talent_OneDayTimeVO;
+import com.zest.web.client.model.TalentOneDayTimeVO;
 import com.zest.web.client.model.Talent_contentVO;
 import com.zest.web.client.model.TuTorVO;
 import com.zest.web.client.model.Tutor_PropVO;
@@ -26,7 +26,7 @@ import com.zest.web.client.service.talent.time.TalentTimeInsertService;
 import com.zest.web.client.service.tutor.Tutor_PropSearchService;
 import com.zest.web.client.service.tutor.Tutor_SearchService;
 
-import java.text.DateFormat;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,8 +35,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -240,13 +238,14 @@ public class TutorPageController {
 
 	// 튜터등록 페이지 에서 시간내용 db에서 처리 하는 컨트롤러 Onday
 	@RequestMapping(value = "/tutorPage/talentPropTime2")
+	@ResponseBody
 	@SuppressWarnings({ "unused", "unchecked" })
 	public String insertTimeData2(@RequestBody Map<String, Object> timeMap,HttpSession session) {
 		HashMap<String, Object> zone1 = null;
 		HashMap<String, Object> zone2 = null;
 		HashMap<String, Object> zone3 = null;
 		// 몇 개나 값이 저장되이었는지 확인
-		int count = (int) timeMap.get("count");
+		int count = (Integer)timeMap.get("count");
 		System.out.println("원데이 항목 저장된 갯수:" + count);
 		// 해당 시간 정보를 저장할 녀석 하나 생성
 		TalentTimeUtil rootTime = new TalentTimeUtil();
@@ -268,6 +267,7 @@ public class TutorPageController {
 				zone2 = (HashMap<String, Object>) timeMap.get("zone2");
 				TalentTimeUtil tempTime = new TalentTimeUtil();
 				tempTime.setZone_id((String) zone2.get("zoneid"));
+				tempTime = insertTime(tempTime, zone2);
 				m.put("zone2", tempTime);
 				rootTime.setTimeData(m);
 			}
@@ -275,13 +275,15 @@ public class TutorPageController {
 				zone3 = (HashMap<String, Object>) timeMap.get("zone3");
 				TalentTimeUtil tempTime = new TalentTimeUtil();
 				tempTime.setZone_id((String) zone3.get("zoneid"));
+				tempTime = insertTime(tempTime, zone3);
 				m.put("zone3", tempTime);
 				rootTime.setTimeData(m);
 			}
 
 		}
-		TuTorVO vo = (TuTorVO) session.getAttribute("tutorVO");
+		TuTorVO vo = (TuTorVO) session.getAttribute("tutorVO");		
 		saveTimeData.put(vo.getTt_no(), rootTime);
+		System.out.println("원데이 항목에서 저장되는 튜터의 넘버 : "+vo.getTt_no());
 		
 		return "success";
 	}
@@ -295,6 +297,7 @@ public class TutorPageController {
 		TuTorVO vo = (TuTorVO) session.getAttribute("tutorVO");
 		TalentTimeUtil timeUtil = saveTimeData.get(vo.getTt_no());
 		// 내용 등록 서비스
+		System.out.println("등록로직에서 가져온 튜터의 넘버 : "+vo.getTt_no());
 		talentInsertService.insertTalent(talentVO, contentVO, talentInfo, vo, timeUtil);
 		return null;
 	}
@@ -310,7 +313,7 @@ public class TutorPageController {
 	// 전송된 날짜와 시간의 값을 저장하고 타임유틸에 해당요일에 해당하는 key값을 저장해서 리턴해주는 메서드
 	public TalentTimeUtil insertTime(TalentTimeUtil talentTimeUtil, HashMap<String, Object> hashMap) {
 
-		List<Talent_OneDayTimeVO> list = new ArrayList<>(); // 원데이 형식을 list 에 저장 ...
+		List<TalentOneDayTimeVO> list = new ArrayList<>(); // 원데이 형식을 list 에 저장 ...
 
 		if (hashMap.get("day1") != "") {
 			String tempDay = ((String) hashMap.get("day1"));
@@ -318,7 +321,7 @@ public class TutorPageController {
 			int dayNum = knowDay(tempDate);
 			// 일요일에다가 어떻게 널수 있을까???????????????? 일단 시간의 값을 가져와보자
 			String dayTime = (String) hashMap.get("t1");
-			Talent_OneDayTimeVO oneDayVO = new Talent_OneDayTimeVO();
+			TalentOneDayTimeVO oneDayVO = new TalentOneDayTimeVO();
 			oneDayVO.setDay1(new java.sql.Date(tempDate.getTime())); // 해당 date를 sql date로 변환
 			oneDayVO.setDay1Time(dayTime); // 시간 값 저장
 			oneDayVO.setDayOfWekk(dayNum); // 무슨 요일인지 저장
@@ -331,14 +334,14 @@ public class TutorPageController {
 			int dayNum = knowDay(tempDate);
 			String dayTime = (String) hashMap.get("t2");
 			// 같은 요일인지 확인하기
-			Talent_OneDayTimeVO beforeOneTimeVO = list.get(0);
+			TalentOneDayTimeVO beforeOneTimeVO = list.get(0);
 			if (dayNum == beforeOneTimeVO.getDayOfWekk()) { // 같은요일이라면
 				beforeOneTimeVO.setDay2(new java.sql.Date(tempDate.getTime()));
 				beforeOneTimeVO.setDay2Time(dayTime);
 				list.remove(0); // 저장된 index를 지우고 다시 집어넣는다.
 				list.add(beforeOneTimeVO);
 			} else { // 다른 요일이라면
-				Talent_OneDayTimeVO oneDayVO = new Talent_OneDayTimeVO();
+				TalentOneDayTimeVO oneDayVO = new TalentOneDayTimeVO();
 				oneDayVO.setDay1(new java.sql.Date(tempDate.getTime())); // 해당 date를 sql date로 변환
 				oneDayVO.setDay1Time(dayTime); // 시간 값 저장
 				oneDayVO.setDayOfWekk(dayNum); // 무슨 요일인지 저장
@@ -352,7 +355,7 @@ public class TutorPageController {
 			String dayTime = (String) hashMap.get("t3");
 			// 같은 요일있는지 확인하기...
 			for (int i = 0; i < list.size(); i++) {
-				Talent_OneDayTimeVO beforeOneTimeVO = list.get(i);
+				TalentOneDayTimeVO beforeOneTimeVO = list.get(i);
 
 				if (dayNum == beforeOneTimeVO.getDayOfWekk()) { // 같은요일이라면
 					if (beforeOneTimeVO.getDay2() != null) { // day2가 저장이 안되있다면
@@ -367,7 +370,7 @@ public class TutorPageController {
 						list.add(beforeOneTimeVO);
 					}
 				} else { // 다른 요일이라면
-					Talent_OneDayTimeVO oneDayVO = new Talent_OneDayTimeVO();
+					TalentOneDayTimeVO oneDayVO = new TalentOneDayTimeVO();
 					oneDayVO.setDay1(new java.sql.Date(tempDate.getTime())); // 해당 date를 sql date로 변환
 					oneDayVO.setDay1Time(dayTime); // 시간 값 저장
 					oneDayVO.setDayOfWekk(dayNum); // 무슨 요일인지 저장
@@ -378,11 +381,11 @@ public class TutorPageController {
 		}
 
 		// 저장된 상황을 확인한다.
-		for (Talent_OneDayTimeVO vo : list) {
-			System.out.println("원데이 타임 체크 ...");
-			System.out.println(vo.toString());
+		for (TalentOneDayTimeVO vo : list) {		
 			// db 에 해당 내용을 넣고 저장된 key값을 받아서 유틸객체에 집어 넣는다....
 			int key = talentTimeInsertService.insertOneDayTime(vo);
+			System.out.println("원데이 타임 체크 ...");
+			System.out.println(vo.toString());
 			int dayKey = vo.getDayOfWekk(); // 요일을 담고 있는 녀석
 			switch (dayKey) {
 			case 1:
@@ -432,13 +435,16 @@ public class TutorPageController {
 	 * @return String 날짜형식을 넣으면 Date형식의 날짜를 리턴해주는 녀석
 	 */
 	public Date StringParseDate(String date) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yy.mm.dd");
+		System.out.println("받아온 날짜 데이터 : "+date);		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		//구분자로 자르기		
 		Date nDate = null;
 		try {
 			nDate = sdf.parse(date);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		System.out.println("변환된 날짜 데이터 : "+nDate);
 		return nDate;
 	}
 

@@ -1,32 +1,30 @@
 package com.zest.web.client.model;
 
-import java.sql.Date;
+import java.util.Date;
 
-//원데이 항목 VO
-public class Talent_OneDayTimeVO {
-
-	private int tt_od_no;
+//원데이
+public class TalentOneDayTimeVO {
+	private Integer tt_od_no;
 	private Date day1;
 	private String day1Time;
 	private Date day2;
 	private String day2Time;
 	private Date day3;
 	private String day3Time;
-	private int dayOfWekk; // 해당 time VO가 무슨 요일의 vo인지 구분하는 녀석
+	private Integer dayOfWekk;
 	
 	
 	
-	
-	public int getDayOfWekk() {
+	public Integer getDayOfWekk() {
 		return dayOfWekk;
 	}
-	public void setDayOfWekk(int dayOfWekk) {
+	public void setDayOfWekk(Integer dayOfWekk) {
 		this.dayOfWekk = dayOfWekk;
 	}
-	public int getTt_od_no() {
+	public Integer getTt_od_no() {
 		return tt_od_no;
 	}
-	public void setTt_od_no(int tt_od_no) {
+	public void setTt_od_no(Integer tt_od_no) {
 		this.tt_od_no = tt_od_no;
 	}
 	public Date getDay1() {
@@ -67,12 +65,11 @@ public class Talent_OneDayTimeVO {
 	}
 	@Override
 	public String toString() {
-		return "Talent_OneDayTimeVO [tt_od_no=" + tt_od_no + ", day1=" + day1 + ", day1Time=" + day1Time + ", day2="
+		return "TalentOneDayTimeVO [tt_od_no=" + tt_od_no + ", day1=" + day1 + ", day1Time=" + day1Time + ", day2="
 				+ day2 + ", day2Time=" + day2Time + ", day3=" + day3 + ", day3Time=" + day3Time + "]";
 	}
 	
 	
 	
-	
-	
 }
+;
