@@ -174,7 +174,7 @@
 						<c:forEach var="item" items="${list}" varStatus="status" begin="0" end="0">
 						
 						<!-- 1순위 항목 -->
-						<a href="/zest/category/${item.talent_category_id }/${item.talent_no}">
+						<a href="/zest/talent/${item.talent_no}">
 							<div class="main_cont">
 								<div>
 									<img class="card-img-top" src="${item.tc_image_path}">
@@ -193,7 +193,7 @@
 						<div class="sub_cont">
 						<c:forEach var="item" items="${list}" varStatus="status" begin="1">
 								<div class="sub">
-								<a href="/zest/category/${item.talent_category_id }/${item.talent_no}">
+								<a href="/zest/talent/${item.talent_no}">
 									<div style="float:left;">
 										<img class="card-img-top" src="${item.tc_image_path}" style="height: 100px !important; width: 130px !important;">
 									</div>

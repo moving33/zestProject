@@ -94,7 +94,7 @@
        <c:forEach var="item" items="${categoryPageList}" varStatus="status">
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100" >
-            <a href="/zest/category/${item.talent_category_id }/${item.talent_no}" >
+            <a href="/zest/talent/${item.talent_no}" >
             <img class="card-img-top" src="${item.tc_image_path}" alt="">
             <div class="card-body">
               <h4 class="card-title">
