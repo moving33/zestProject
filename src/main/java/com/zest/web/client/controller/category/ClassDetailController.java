@@ -147,7 +147,7 @@ public class ClassDetailController {
 			modelDay.put("week" + i, InfoVo.get(i));
 		}
 		
-		
+		InfoVo.get(0).getTi_mon();
 		
 
 		modelAndView.addObject("detail", vo);
