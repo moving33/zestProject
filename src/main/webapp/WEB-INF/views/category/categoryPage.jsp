@@ -15,10 +15,10 @@
 	<title>Zest</title>
 	
 	<!-- 부트스트랩 CSS -->
-	<link href="../css/bootstrap.css" rel="stylesheet">
+	<link href="/zest/css/bootstrap.css" rel="stylesheet">
 
 	<!--  category css -->
-	<link href="../css/category/categoryPage.css" rel="stylesheet">
+	<link href="/zest/css/category/categoryPage.css" rel="stylesheet">
 	
 </head>
 
@@ -27,15 +27,17 @@
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bgj-dark fixedj-top">
 		<div class="container">
-			<a class="navbar-brand" href="/zest/main"> <img alt="Logo" src="../images/logo2.png">
+			<a class="navbar-brand" href="/zest/main"> <img alt="Logo" src="/zest/images/logo2.png">
 			</a>
 			<!-- 검색창 -->
-			<form class="flyout-search" action="#" name="search">
+			<form class="flyout-search" action="" name="search">
 				<div class="searchdiv" style="border: 2px solid #ff7200">
 					<div class="inputlmg">
-						<img src="../images/돋보기.png" onclick='#' style="margin-left: 5px;">
+						<button type="submit" style="background-color:#00000000; outline-color:#00000000; border:0; cursor:pointer">
+							<img src="/zest/images/돋보기.png" style="margin-left: 5px;">
+						</button>
 						<!-- 검색 텍스트 -->
-						<input type="text" name="search" placeholder="배우고 싶은 수업 또는 튜터를 검색해보세요!" onclick="#"
+						<input type="text" name="search_text" placeholder="배우고 싶은 수업 또는 튜터를 검색해보세요!" onclick="#"
 							value="" style="border-color: #ffffff00; width: 330px; outline: none; padding-top: 3px;">
 					</div>
 				</div>
@@ -65,7 +67,7 @@
 	<!-- 메뉴바 -->
 	<div class="container" align="center">
 		<div class="row">
-			<div id="hot" class="colj" onmouseover="#">인기수업</div>
+			<div id="hot" class="colj" ><a id="hot" href="/zest/category/hot" style="color:#000000;">인기수업</a></div>
 			<div id="sports" class="colj" onmouseover="getCategory('/zest/main/sports')"><a id="sports" href="/zest/category/sports" style="color: #000000;">스포츠</a></div>
 			<div id="beauty" class="colj" onmouseover="getCategory('/zest/main/beauty')"><a id="beauty" href="/zest/category/beauty" style="color: #000000;">뷰티</a></div>
 			<div id="music" class="colj" onmouseover="getCategory('/zest/main/music')"><a id="music" href="/zest/category/music" style="color: #000000;">음악</a></div>
@@ -92,12 +94,12 @@
        <c:forEach var="item" items="${categoryPageList}" varStatus="status">
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100" >
-            <a href="/zest/category/${item.talent_category_id }/${item.talent_no}" ><c:if test="${image0 ne '' }"><img class="card-img-top" src="${image0 }" alt=""></c:if>
+            <a href="/zest/category/${item.talent_category_id }/${item.talent_no}" >
+            <img class="card-img-top" src="${item.tc_image_path}" alt="">
             <div class="card-body">
               <h4 class="card-title">
                <p style="color:#ffc107 !important;">${item.tc_subject}</p>
               </h4><br>
-             
               <p class="card-text" style="color:#000000 !important;">구역: ${item.zone_name}</p>
               <p class="card-text" style="color:#000000 !important;">가격(1시간): ${item.talent_price_hour}</p>
             </div></a>
@@ -107,7 +109,10 @@
        </div><br>
       <!-- /.row -->
 
-      <%--페이징처리--%>
+
+		<c:choose>
+    	<c:when test="${result eq '대분류'}">
+    		<%--페이징처리--%>
 		<div>
 			<div class="row">
 				<div class="col-8">
@@ -120,7 +125,7 @@
 							<c:if test="${bp.isPre()}">
 								<li class="page-item">
 									<button class="page-link">
-										<a	href="/zest/category/${category}?pageNum=${bp.getPage_Start()-bp.p_size}">Previous </a>
+										<a	href="/zest/category/${category}?pageNum=${bp.getPage_start()-bp.p_size}">이전 </a>
 									</button>
 								</li>
 							</c:if>
@@ -150,7 +155,7 @@
 							<c:if test="${bp.isNext()}">
 								<li class="page-item">
 									<button class="page-link">
-										<a href="/zest/category/${category}?pageNum=${bp.getPage_Start()+bp.p_size}">Next </a>
+										<a href="/zest/category/${category}?pageNum=${bp.getPage_start()+bp.p_size}">다음 </a>
 									</button>
 								</li>
 							</c:if>
@@ -160,6 +165,175 @@
 			</div>
 		</div>
 		<!-- end Paging -->
+    	</c:when>
+		<c:when test="${result eq '소분류'}">
+    		<%--페이징처리--%>
+		<div>
+			<div class="row">
+				<div class="col-8">
+					<div class="pagePro"
+						style="text-align: center; margin: auto; display: table;">
+						<%-- pagination 사용 --%>
+						<ul class="pagination">
+
+							<%--이전버튼 --%>
+							<c:if test="${bp.isPre()}">
+								<li class="page-item">
+									<button class="page-link">
+										<a	href="/zest/category/${category}/${lecture}?pageNum=${bp.getPage_start()-bp.p_size}">이전 </a>
+									</button>
+								</li>
+							</c:if>
+
+							<%--페이징처리 --%>
+
+							<c:forEach var="counter" begin="${bp.getPage_start()}" end="${bp.getPage_end()}">
+								<c:if test="${search_text ne ''}">
+									<li class="page-item">
+										<button class="page-link"
+											onclick="window.location='/zest/category/${category}/${lecture}?pageNum=${counter}&search_type=${search_type}&search_text=${search_text}'">
+											${counter}</button>
+									</li>
+								</c:if>
+
+								<c:if test="${search_text eq ''}">
+									<li class="page-item">
+										<button class="page-link"
+											onclick="window.location='/zest/category/${category}/${lecture}?pageNum=${counter}&search_type=${search_type}&search_text=${search_text}'">
+											${counter}</button>
+									</li>
+								</c:if>
+							</c:forEach>
+
+
+							<%--다음버튼 --%>
+							<c:if test="${bp.isNext()}">
+								<li class="page-item">
+									<button class="page-link">
+										<a href="/zest/category/${category}/${lecture}?pageNum=${bp.getPage_start()+bp.p_size}">다음 </a>
+									</button>
+								</li>
+							</c:if>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end Paging -->
+    	</c:when>
+    	<c:when test="${result eq '검색'}">
+    		<%--페이징처리--%>
+		<div>
+			<div class="row">
+				<div class="col-8">
+					<div class="pagePro"
+						style="text-align: center; margin: auto; display: table;">
+						<%-- pagination 사용 --%>
+						<ul class="pagination">
+
+							<%--이전버튼 --%>
+							<c:if test="${bp.isPre()}">
+								<li class="page-item">
+									<button class="page-link">
+										<a	href="/zest/category/${category}/${lecture}?pageNum=${bp.getPage_start()-bp.p_size}">이전 </a>
+									</button>
+								</li>
+							</c:if>
+
+							<%--페이징처리 --%>
+
+							<c:forEach var="counter" begin="${bp.getPage_start()}" end="${bp.getPage_end()}">
+								<c:if test="${search_text ne ''}">
+									<li class="page-item">
+										<button class="page-link"
+											onclick="window.location='/zest/category/${category}/${lecture}?pageNum=${counter}&search_type=${search_type}&search_text=${search_text}'">
+											${counter}</button>
+									</li>
+								</c:if>
+
+								<c:if test="${search_text eq ''}">
+									<li class="page-item">
+										<button class="page-link"
+											onclick="window.location='/zest/category/${category}/${lecture}?pageNum=${counter}&search_type=${search_type}&search_text=${search_text}'">
+											${counter}</button>
+									</li>
+								</c:if>
+							</c:forEach>
+
+
+							<%--다음버튼 --%>
+							<c:if test="${bp.isNext()}">
+								<li class="page-item">
+									<button class="page-link">
+										<a href="/zest/category/${category}/${lecture}?pageNum=${bp.getPage_start()+bp.p_size}">다음 </a>
+									</button>
+								</li>
+							</c:if>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end Paging -->
+    	</c:when>
+    	
+    	<c:when test="${result eq '메인'}">
+    		<%--페이징처리--%>
+		<div>
+			<div class="row">
+				<div class="col-8">
+					<div class="pagePro"
+						style="text-align: center; margin: auto; display: table;">
+						<%-- pagination 사용 --%>
+						<ul class="pagination">
+
+							<%--이전버튼 --%>
+							<c:if test="${bp.isPre()}">
+								<li class="page-item">
+									<button class="page-link">
+										<a	href="/zest/category?pageNum=${bp.getPage_start()-bp.p_size}">이전 </a>
+									</button>
+								</li>
+							</c:if>
+
+							<%--페이징처리 --%>
+
+							<c:forEach var="counter" begin="${bp.getPage_start()}" end="${bp.getPage_end()}">
+								<c:if test="${search_text ne ''}">
+									<li class="page-item">
+										<button class="page-link"
+											onclick="window.location='/zest/category?pageNum=${counter}&search_type=${search_type}&search_text=${search_text}'">
+											${counter}</button>
+									</li>
+								</c:if>
+
+								<c:if test="${search_text eq ''}">
+									<li class="page-item">
+										<button class="page-link"
+											onclick="window.location='/zest/category?pageNum=${counter}&search_type=${search_type}&search_text=${search_text}'">
+											${counter}</button>
+									</li>
+								</c:if>
+							</c:forEach>
+
+
+							<%--다음버튼 --%>
+							<c:if test="${bp.isNext()}">
+								<li class="page-item">
+									<button class="page-link">
+										<a href="/zest/category?pageNum=${bp.getPage_start()+bp.p_size}">다음 </a>
+									</button>
+								</li>
+							</c:if>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end Paging -->
+    	</c:when>
+    </c:choose>
+      
 
 	</div>
     <!-- /.container -->
@@ -196,7 +370,7 @@
 				<div class="info">
 					<b>드루와</b>
 					<ul>
-						<li><img src="../images/yellow.png">&nbsp;KAKAO 옐로우ID / @Droowa</li>
+						<li><img src="/zest/images/yellow.png">&nbsp;KAKAO 옐로우ID / @Droowa</li>
 						<li>운영시간 / 평일 10:00~19:00</li>
 					</ul>
 				</div>
@@ -209,9 +383,9 @@
 				</div>
 				<div class="logo_box">
 					<a href="#" target="_blank"><img
-						src="../images/ic_sns_facebook_38_38.png"></a> <a href="#" target="_blank"><img
-						src="../images/ic_sns_instagram_38_38.png"></a> <a href="#"
-						target="_blank"><img src="../images/ic_sns_youtube_38_38.png"></a>
+						src="/zest/images/ic_sns_facebook_38_38.png"></a> <a href="#" target="_blank"><img
+						src="/zest/images/ic_sns_instagram_38_38.png"></a> <a href="#"
+						target="_blank"><img src="/zest/images/ic_sns_youtube_38_38.png"></a>
 				</div>
 
 			</div>
@@ -221,10 +395,10 @@
 
 
 	<!-- Bootstrap core JavaScript -->
-	<script src="../js/jquery.min.js"></script>
-	<script src="../js/bootstrap.bundle.min.js"></script>
-	<script src="../js/category/categoryPage.js"></script>
-	<script src="../js/common.js"></script>
+	<script src="/zest/js/jquery.min.js"></script>
+	<script src="/zest/js/bootstrap.bundle.min.js"></script>
+	<script src="/zest/js/category/categoryPage.js"></script>
+	<script src="/zest/js/common.js"></script>
 
 
 </body>

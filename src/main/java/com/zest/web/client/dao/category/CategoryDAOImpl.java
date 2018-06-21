@@ -22,12 +22,18 @@ public class CategoryDAOImpl implements CategoryDAO {
 		return null;
 	}
 
-	// 카테고리 페이지 리스트를 불러오는 메서드
+	// 카테고리(대분류) 페이지 리스트를 불러오는 메서드
 	@Override
 	public List<CategoryPageVO> getCategoryPageList(Object obj) {
-		System.out.println("dao 진입");
+		System.out.println("카테고리(대분류) dao 진입");
 		return sqlSessionTemplate.selectList("com.zest.categoryPage.getCategoryPageList", obj);
 	}
+	
+	// 카테고리(소분류) 페이지 리스트를 불러오는 메서드
+	public List<CategoryPageVO> getLecturePageList(Object obj){
+			System.out.println("카테고리(소분류) dao 진입");
+			return sqlSessionTemplate.selectList("com.zest.categoryPage.getLecturePageList", obj);
+		}
 	
 	@Override
 	public Integer getCategoryPageListCount(Object obj) {

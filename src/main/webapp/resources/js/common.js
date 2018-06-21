@@ -26,7 +26,7 @@ $(document).ready(function(){
 			"<li class='nav-item'>"+
 			"<a class='nav-linkj' id='myPage' href='/zest/clientPage' style='font-size: 20px;'><b>마이페이지</b></a></li>" +
 			"<li class='nav-item'>"+
-			"<a class='nav-linkj' id='logout' href='main/logout' style='font-size: 20px;'>"+			
+			"<a class='nav-linkj' id='logout' href='/zest/main/logout' style='font-size: 20px;'>"+			
 			"<b>로그아웃</b></a></li>" +
 			"</ul>";
             list.html(listHtml);
