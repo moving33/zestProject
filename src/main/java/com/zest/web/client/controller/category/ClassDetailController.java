@@ -132,10 +132,8 @@ public class ClassDetailController {
 		//위치 보여주기
 		model.put("zone", InfoVo);
 		System.out.println("인포 VO 121212121" + InfoVo.toString());
-	
-	
 		
-		
+
 
 
 		Map<String, Object> modelDay = new HashMap<>(); //model 저장할 MAP
@@ -145,9 +143,10 @@ public class ClassDetailController {
 		
 		for(int i=0; i < InfoVo.size(); i++) {
 			modelDay.put("week" + i, InfoVo.get(i));
+			
 		}
 		
-		InfoVo.get(0).getTi_mon();
+		
 		
 
 		modelAndView.addObject("detail", vo);
