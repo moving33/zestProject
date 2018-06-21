@@ -1450,9 +1450,9 @@ function lastSubmit(){
 			// 텍스트 기반으로 처리
 			return response.text();
 		}).then(function(text) {
-			alert(text);
-			if(text == "success"){
-				return true;
+			
+			if(text == "success"){		
+					return true;				
 			}else{
 				return false;
 			}

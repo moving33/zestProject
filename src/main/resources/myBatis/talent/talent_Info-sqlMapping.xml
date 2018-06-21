@@ -15,7 +15,8 @@
 								TI_TUR,
 								TI_FRI,
 								TI_SAT,
-								TI_SUN) 
+								TI_SUN,
+								TI_STATUS) 
 								        VALUES(
 											#{talent_no},
 											#{zone_id},
@@ -26,7 +27,8 @@
 											#{ti_tur, jdbcType=INTEGER},
 											#{ti_fri, jdbcType=INTEGER},
 											#{ti_sat, jdbcType=INTEGER},
-											#{ti_sun, jdbcType=INTEGER}            
+											#{ti_sun, jdbcType=INTEGER},
+											#{ti_status, jdbcType=INTEGER}            
 								    		)
 	</insert>    
 </mapper>
