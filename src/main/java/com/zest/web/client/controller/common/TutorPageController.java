@@ -239,7 +239,6 @@ public class TutorPageController {
 	// 튜터등록 페이지 에서 시간내용 db에서 처리 하는 컨트롤러 Onday
 	@RequestMapping(value = "/tutorPage/talentPropTime2")
 	@ResponseBody
-	@SuppressWarnings({ "unused", "unchecked" })
 	public String insertTimeData2(@RequestBody Map<String, Object> timeMap,HttpSession session) {
 		HashMap<String, Object> zone1 = null;
 		HashMap<String, Object> zone2 = null;
@@ -295,10 +294,25 @@ public class TutorPageController {
 
 		// hash map 에 저장되어있는 시간 가져오기
 		TuTorVO vo = (TuTorVO) session.getAttribute("tutorVO");
-		TalentTimeUtil timeUtil = saveTimeData.get(vo.getTt_no());
+		TalentTimeUtil timeUtil  = null;
+		//int count1  = 1;
+		while(true) {
+			timeUtil = saveTimeData.get(vo.getTt_no());
+			if(timeUtil != null) {
+				break;
+			}
+			//count1 ++;
+			//System.out.println(count1);
+			
+		}
+		
+		
+		System.out.println("등록 로직에서 가져온 timeUitl의 정보 :"+timeUtil.toString());
 		// 내용 등록 서비스
 		System.out.println("등록로직에서 가져온 튜터의 넘버 : "+vo.getTt_no());
 		talentInsertService.insertTalent(talentVO, contentVO, talentInfo, vo, timeUtil);
+		//가져온 데이터 지우기
+		saveTimeData.remove(vo.getTt_no());
 		return null;
 	}
 
