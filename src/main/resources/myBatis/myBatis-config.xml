@@ -4,6 +4,7 @@
 <configuration>
 
 	<typeAliases>
+
 		<typeAlias type="com.zest.web.client.model.LectureVO"
 			alias="lectureVO" />
 		<typeAlias type="com.zest.web.client.model.CategoryVO"
@@ -64,11 +65,8 @@
 		<mapper resource="myBatis/tutor/tutor-sqlMapping.xml" />
 		<!-- 관리자 -->
 		<mapper resource="myBatis/admin/admin-sqlMapping.xml" />
-		
-
-
-
-
+		<!-- 메인페이지 -->
+        <mapper resource="myBatis/main/mainPage-sqlMapping.xml" />
 		<!-- 강의 -->
 		<mapper resource="myBatis/talent/talent-sqlMapping.xml" />
 		<!-- 강의 내용 -->

@@ -51,6 +51,14 @@ public class ClientDAOImpl implements ClientDAO {
 		
 	}
 	
+	//회원정보 수정
+		@Override
+		public void modifyClient(ClientVO clientVO) {
+			logger.info("정보수정DAO..ing");
+			sqlSessionTemplate.update("com.zest.client.modifyClient", clientVO);
+				
+			}
+	
 	
 	//lastLogin 업데이트
 	@Override

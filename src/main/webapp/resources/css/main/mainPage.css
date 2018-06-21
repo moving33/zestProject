@@ -19,7 +19,7 @@ input:focus {
 
 /* 진호 */
 .searchdiv {
-	width: 390px;
+	width: 400px;
 	height: 40px;
 	border: 3px solid #ff0000;
 	border-radius: 40px;
@@ -163,7 +163,7 @@ input:focus {
 	background-color: white;
 	margin-bottom: 30px;
 	margin-right: 25px;
-	margin-top: 10px;
+	/* margin-top: 10px; */
 }
 
 .oneday #onedayIndicators .carousel-inner .carousel-item .oneday_cont .image

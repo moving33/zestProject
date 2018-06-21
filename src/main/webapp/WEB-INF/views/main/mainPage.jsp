@@ -36,14 +36,15 @@
 				src="images/logo2.png">
 			</a>
 			<!-- 검색창 -->
-			<form class="flyout-search" action="#" name="search">
+			<form class="flyout-search" action="/zest/category" name="search">
 				<div class="searchdiv" style="border: 2px solid #ff7200">
-					<div class="inputlmg" style="padding-top: 3px;">
-						<img src="images/돋보기.png" onclick='#' style="margin-left: 5px;">
+					<div class="inputlmg" style="padding-top: 1px;">
+						<button type="submit" style="background-color:#00000000; outline-color:#00000000; border:0; cursor:pointer">
+							<img src="images/돋보기.png" onclick='#' style="margin-left: 5px;">
+						</button>
 						<!-- 검색 텍스트 -->
-						<input type="text" name="search"
-							placeholder="배우고 싶은 수업 또는 튜터를 검색해보세요!" onclick="#" value=""
-							style="border-color: #ffffff00; width: 330px; outline: none; padding-top: 1px;">
+						<input type="text" name="search_text" placeholder="배우고 싶은 수업 또는 튜터를 검색해보세요!"
+							value="" style="border-color: #ffffff00; width: 330px; outline: none; padding-top: 3px;">
 					</div>
 				</div>
 			</form>
@@ -94,7 +95,7 @@
 					onclick="location.href='#'"></div>
 				<!-- Slide Three -->
 				<div class="carousel-item"
-					style="background-image: url('images/main/baner3.png'); cursor: pointer;"
+					style="background-image: url('images/main/baner1.png'); cursor: pointer;"
 					onclick="location.href='#'"></div>
 			</div>
 			<a class="carousel-control-prev" href="#carouselExampleIndicators"
@@ -113,36 +114,36 @@
 	<!-- 메뉴바 -->
 	<div class="container" align="center">
 		<div class="row" style="background-color: #f0f0f0; min-height: 50px;">
-			<div id="hot" class="colj" onmouseover="#" style="cursor:pointer">
-				<a id="hot" href="#" style="color: #000000;"><b>인기수업</b></a>
+			<div id="hot" class="colj" onmouseover="#" style="cursor:pointer;">
+				<a id="hot" href="/zest/category/hot" style="color: #000000;"><b>인기수업</b></a>
 			</div>
-			<div id="sports" class="colj" onmouseover="fetchPage('main/sports')" style="cursor:pointer" onclick="location.href='/zest/category/sports'">
+			<div id="sports" class="colj" onmouseover="fetchPage('main/sports')" style="cursor:pointer;" onclick="location.href='/zest/category/sports'">
 				<a id="sports" href="/zest/category/sports" style="color: #000000;"><b>스포츠</b></a>
 			</div>
-			<div id="beauty" class="colj" onmouseover="fetchPage('main/beauty')" style="cursor:pointer" onclick="location.href='/zest/category/beauty'">
+			<div id="beauty" class="colj" onmouseover="fetchPage('main/beauty')" style="cursor:pointer;" onclick="location.href='/zest/category/beauty'">
 				<a id="beauty" href="/zest/category/beauty" style="color: #000000;"><b>뷰티</b></a>
 			</div>
-			<div id="music" class="colj" onmouseover="fetchPage('main/music')" style="cursor:pointer" onclick="location.href='/zest/category/music'">
+			<div id="music" class="colj" onmouseover="fetchPage('main/music')" style="cursor:pointer;" onclick="location.href='/zest/category/music'">
 				<a id="music" href="/zest/category/music" style="color: #000000;"><b>음악</b></a>
 			</div>
-			<div id="food" class="colj" onmouseover="fetchPage('main/food')" style="cursor:pointer" onclick="location.href='/zest/category/food'">
+			<div id="food" class="colj" onmouseover="fetchPage('main/food')" style="cursor:pointer;" onclick="location.href='/zest/category/food'">
 				<a id="food" href="/zest/category/food" style="color: #000000;"><b>요리/음식</b></a>
 			</div>
-			<div id="design" class="colj" onmouseover="fetchPage('main/design')" style="cursor:pointer" onclick="location.href='/zest/category/design'">
+			<div id="design" class="colj" onmouseover="fetchPage('main/design')" style="cursor:pointer;" onclick="location.href='/zest/category/design'">
 				<a id="design" href="/zest/category/design" style="color: #000000;"><b>디자인</b></a>
 			</div>
 			<div id="business" class="colj"
-				onmouseover="fetchPage('main/business')" style="cursor:pointer" onclick="location.href='/zest/category/business'">
+				onmouseover="fetchPage('main/business')" style="cursor:pointer;" onclick="location.href='/zest/category/business'">
 				<a id="business" href="/zest/category/business" style="color: #000000;"><b>실무</b></a>
 			</div>
 			<div id="language" class="colj"
-				onmouseover="fetchPage('main/language')" style="cursor:pointer" onclick="location.href='/zest/category/language'">
+				onmouseover="fetchPage('main/language')" style="cursor:pointer;" onclick="location.href='/zest/category/language'">
 				<a id="language" href="/zest/category/language" style="color: #000000;"><b>외국어</b></a>
 			</div>
-			<div id="progam" class="colj" onmouseover="fetchPage('main/program')" style="cursor:pointer" onclick="location.href='/zest/category/program'">
+			<div id="progam" class="colj" onmouseover="fetchPage('main/program')" style="cursor:pointer;" onclick="location.href='/zest/category/program'">
 				<a id="progam" href="/zest/category/program" style="color: #000000;"><b>프로그래밍</b></a>
 			</div>
-			<div id="life" class="colj" onmouseover="fetchPage('main/life')" style="cursor:pointer" onclick="location.href='/zest/category/life'">
+			<div id="life" class="colj" onmouseover="fetchPage('main/life')" style="cursor:pointer;" onclick="location.href='/zest/category/life'">
 				<a id="life" href="/zest/category/life" style="color: #000000;"><b>라이프스타일</b></a>
 			</div>
 		</div>
@@ -162,26 +163,57 @@
 							style="position: absolute; right: 6px; width: 125px;"></div>
 					</div>
 				</div>
+				
+				
 				<!--  추천 수업 -->
 				<div class="col-lg-9 class_cont">
 					<h4 class="my-4">추천수업</h4>
 					<div style="border: 1px solid black; height: 400px">
+						
+						<!-- 인기수업 표시 시작 -->
+						<c:forEach var="item" items="${list}" varStatus="status" begin="0" end="0">
+						
 						<!-- 1순위 항목 -->
-						<a>
-							<div class="main_cont">1순위 내용</div>
+						<a href="/zest/talent/${item.talent_no}">
+							<div class="main_cont">
+								<div>
+									<img class="card-img-top" src="${item.tc_image_path}">
+								</div><br>
+									<h4 class="card-title">
+										<p style="color: #ffc107 !important;">${item.tc_subject}</p>
+									</h4>
+								<p class="card-text" style="color:#000000 !important;">구역: ${item.zone_name}</p>
+             					<p class="card-text" style="color:#000000 !important;">가격(1시간): ${item.talent_price_hour}</p>
+							</div>
 						</a>
+						
+						</c:forEach>
+						
 						<!-- 나머지 항목들 -->
 						<div class="sub_cont">
-							<a>
-								<div class="sub"></div>
-							</a> <a>
-								<div class="sub"></div>
-							</a> <a>
-								<div class="sub"></div>
-							</a>
+						<c:forEach var="item" items="${list}" varStatus="status" begin="1">
+								<div class="sub">
+								<a href="/zest/talent/${item.talent_no}">
+									<div style="float:left;">
+										<img class="card-img-top" src="${item.tc_image_path}" style="height: 100px !important; width: 130px !important;">
+									</div>
+									<div style="margin-left: 150px;">
+										<p style="color:#ffc107 !important; font-size: 17px;">${item.tc_subject}</p>
+										<p class="card-text" style="color:#000000 !important; font-size: 13px;">
+											구역: ${item.zone_name}<br>
+											가격(1시간): ${item.talent_price_hour}
+										</p>
+									</div>
+								</a>
+								</div>
+								</c:forEach>
+							<!-- 나머지 항목 끝 -->
 						</div>
 					</div>
 				</div>
+				
+				<!-- 인기수업 표시 끝 -->
+				
 			</div>
 		</div>
 
@@ -210,35 +242,35 @@
 				<div class="carousel-inner">
 					<div class="carousel-item active">
 						<div class="oneday_cont" style="margin-left: 28px;">
-							<div class="image"></div>
+								<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
 						</div>
 						<div class="oneday_cont">
-							<div class="image"></div>
+							<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
 						</div>
 						<div class="oneday_cont">
-							<div class="image"></div>
+							<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
 						</div>
 					</div>
 					<div class="carousel-item">
 						<div class="oneday_cont" style="margin-left: 28px;">
-							<div class="image"></div>
+								<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
 						</div>
 						<div class="oneday_cont">
-							<div class="image"></div>
+							<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
 						</div>
 						<div class="oneday_cont">
-							<div class="image"></div>
+							<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
 						</div>
 					</div>
 					<div class="carousel-item">
 						<div class="oneday_cont" style="margin-left: 28px;">
-							<div class="image"></div>
+								<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
 						</div>
 						<div class="oneday_cont">
-							<div class="image"></div>
+							<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
 						</div>
 						<div class="oneday_cont">
-							<div class="image"></div>
+							<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
 						</div>
 					</div>
 				</div>
@@ -276,35 +308,35 @@
 			<div class="carousel-inner">
 				<div class="carousel-item active">
 					<div class="oneday_cont" style="margin-left: 28px;">
-						<div class="image"></div>
+						<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
 					</div>
 					<div class="oneday_cont">
-						<div class="image"></div>
+						<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
 					</div>
 					<div class="oneday_cont">
-						<div class="image"></div>
+						<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
 					</div>
 				</div>
 				<div class="carousel-item">
 					<div class="oneday_cont" style="margin-left: 28px;">
-						<div class="image"></div>
+						<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
 					</div>
 					<div class="oneday_cont">
-						<div class="image"></div>
+						<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
 					</div>
 					<div class="oneday_cont">
-						<div class="image"></div>
+						<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
 					</div>
 				</div>
 				<div class="carousel-item">
 					<div class="oneday_cont" style="margin-left: 28px;">
-						<div class="image"></div>
+						<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
 					</div>
 					<div class="oneday_cont">
-						<div class="image"></div>
+						<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
 					</div>
 					<div class="oneday_cont">
-						<div class="image"></div>
+						<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
 					</div>
 				</div>
 			</div>
@@ -320,18 +352,7 @@
 			</a>
 		</div>
 	</div>
-	</section>
-	<br>
-	<br>
-	<br>
-
-	<!-- Footer
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center">Copyright &copy; Your Website 2018</p>
-		</div>
-		/.container
-	</footer> -->
+	</section><br><br><br>
 
 	<!-- footer -->
 	<div class="footer">
@@ -395,24 +416,7 @@
 	<script src="js/bootstrap.bundle.min.js"></script>
 	<script src="js/main/mainPage.js"></script>
 	<script src="js/common.js"></script>
-	<%-- <c:if test="${ login == 'success' }">
-		<script>
-		// 로그인시 창바꾸기 마이페이지와 로그아웃이 생김 (j)
-			var html = "<ul class='navbar-nav ml-auto'>" +
-			"<li class='nav-item activej'>"+
-			"<a class='nav-linkj logo'id='service' href='#'><b>서비스소개</b>" +
-			"<span class='sr-only'>(current)</span></a></li>" +
-			"<li class='nav-item'>"+
-			"<a class='nav-linkj' id='insert' href='#' style='font-size: 20px;'><b>튜터 등록</b></a></li>" +
-			"<li class='nav-item'>"+
-			"<a class='nav-linkj' id='myPage' href='clientPage' style='font-size: 20px;'><b>마이페이지</b></a></li>" +
-			"<li class='nav-item'>"+
-			"<a class='nav-linkj' id='logout' href='main/logout' style='font-size: 20px;'>"+			
-			"<b>로그아웃</b></a></li>" +
-			"</ul>";
-	$("#navbarResponsive").html(html);
-		</script>
-	</c:if> --%>
+
 </body>
 
 </html>

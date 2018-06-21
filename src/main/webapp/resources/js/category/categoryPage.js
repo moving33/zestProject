@@ -46,12 +46,12 @@ $("#login").on({
 $("#hot").on({
 	mouseenter : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#ff7200");
+		$("div #hot").css("color", "#ff7200");
 
 	},
 	mouseleave : function() {
 		$(this).css("background-color", "#ffffff"),
-		$(this).css("color", "#000000");
+		$("div #hot").css("color", "#000000");
 
 	}
 });
@@ -190,7 +190,7 @@ function getCategory(name){
 			/* for문 처리 */
 			$.each(data,function(index,value){
 				
-				listHtml += "<a class='colj' href='/zest/category/"+ value.lecture_id + "'style='color: #ff7200; font-size: 15px;'>"+value.lecture_name+"</a>";
+				listHtml += "<a class='colj' href='/zest/category/"+ value.category_id + "/" +  value.lecture_id + "'style='color: #ff7200; font-size: 15px;'>"+value.lecture_name+"</a>";
 			});
 			list.html(listHtml);
 		}).catch((e) => {

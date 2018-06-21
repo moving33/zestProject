@@ -175,9 +175,9 @@ function fetchPage(name){
 			$.each(data,function(index,value){
 				// var lecture = value.lecture_id;
 				if(index > 7){
-					listHtml2 += "<a href='/zest/category/" + value.lecture_id +"' class='list-group-item' style='font-size:middle; color:#000000 !important; right:-4px;'><b>"+value.lecture_name+"</b></a>";
+					listHtml2 += "<a href='/zest/category/" + value.category_id + "/" + value.lecture_id + "' class='list-group-item' style='font-size:middle; color:#000000 !important; right:-4px; border: 0px; background-color:#00000000;'><b>"+value.lecture_name+"</b></a>";
 				}else{
-				listHtml1 += "<a href='/zest/category/" + value.lecture_id +"' class='list-group-item' style='font-size:middle; color:#000000 !important;'><b>"+value.lecture_name+"</b></a>";
+				listHtml1 += "<a href='/zest/category/" + value.category_id + "/" + value.lecture_id + "' class='list-group-item' style='font-size:middle; color:#000000 !important; border: 0px; background-color:#00000000;'><b>"+value.lecture_name+"</b></a>";
 				}
 			});
 			list1.html(listHtml1);
