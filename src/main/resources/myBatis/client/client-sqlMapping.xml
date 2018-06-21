@@ -17,5 +17,10 @@
  	<update id="updateLastLogin" parameterType="ClientVO">
  	 UPDATE CLIENT set CL_LL_DATE= now() where CL_EMAIL = #{cl_email}
  	</update>
+ 	
+ 	<!-- 회원정보 수정 -->
+ 	<update id="modifyClient" parameterType="ClientVO">
+ 	UPDATE CLIENT set CL_IM_PATH = #{cl_im_path}, CL_NN = #{cl_nn}, CL_HP = #{cl_hp} where CL_EMAIL = #{cl_email}
+ 	</update>
  	 
  </mapper>

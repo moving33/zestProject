@@ -134,7 +134,7 @@ public class ClassDetailController {
 		System.out.println("인포 VO 121212121" + InfoVo.toString());
 	
 	
-		
+		//int count = (int) 
 		
 
 
