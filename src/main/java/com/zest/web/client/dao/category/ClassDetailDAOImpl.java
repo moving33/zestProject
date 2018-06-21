@@ -10,6 +10,7 @@ import com.zest.web.client.model.ClassDetailVO;
 import com.zest.web.client.model.ClassDetail_TutorVO;
 import com.zest.web.client.model.ReviewVO;
 import com.zest.web.client.model.TalentVO;
+import com.zest.web.client.model.Talent_info;
 
 
 
@@ -19,6 +20,7 @@ public class ClassDetailDAOImpl implements ClassDetailDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
+	// 강의디테일 불러오기
 	@Override
 	public List<ClassDetailVO> classCall(Integer talent_no) {
 		System.out.println("classCall 메서드 : " + talent_no);
@@ -27,7 +29,7 @@ public class ClassDetailDAOImpl implements ClassDetailDAO {
 		return vo;
 	}
 	
-	
+	//talent_content 불러오기
 	@Override
 	public ClassDetailVO contentCall(Integer talent_no) {
 		ClassDetailVO vo = sqlSession.selectOne("com.zest.classDetail.ContentClass", talent_no);
@@ -35,30 +37,40 @@ public class ClassDetailDAOImpl implements ClassDetailDAO {
 		return vo;
 	}
 	
+	//talent 불러오기
 	@Override
 	public TalentVO talentCall(Integer talent_no) {
 		TalentVO vo = sqlSession.selectOne("com.zest.classDetail.talentClass", talent_no);
 		return vo;
 	}
 	
+	//tutor 정보 불러오기
 	@Override
 	public ClassDetail_TutorVO tutorCall(Integer talent_no) {
 		ClassDetail_TutorVO vo = sqlSession.selectOne("com.zest.classDetail.talentInfo", talent_no);
 		return vo;
 	}
 	
+	//review 불러오기
 	@Override
 	public List<ReviewVO> reviewCall(Integer talent_no){
 		List<ReviewVO> vo = sqlSession.selectList("com.zest.classDetail.reviewInfo", talent_no);
 		return vo;
 	}
 	
+	//review 값 평균 불러오기
 	@Override
 	public ReviewVO reviewValue(Integer talent_no) {
 		ReviewVO vo = sqlSession.selectOne("com.zest.classDetail.reviewValue", talent_no);
 		return vo;
 	}
 	
+	//ZONE & DAY 불러오기 (TALENT_INFO)
+	@Override
+	public List<Talent_info> zoneDayCall(Integer talent_no){
+		List<Talent_info> vo = sqlSession.selectList("com.zest.talent_Info.zoneDay", talent_no);
+		return vo;
+	}
 	
 	
 

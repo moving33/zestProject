@@ -5,8 +5,10 @@ import java.util.List;
 import com.zest.web.client.model.ClassDetailVO;
 import com.zest.web.client.model.ClassDetail_TutorVO;
 import com.zest.web.client.model.ReviewVO;
+import com.zest.web.client.model.TalentInfo;
 import com.zest.web.client.model.TalentVO;
 import com.zest.web.client.model.Talent_contentVO;
+import com.zest.web.client.model.Talent_info;
 
 public interface ClassDetailDAO {
 
@@ -22,5 +24,7 @@ public interface ClassDetailDAO {
 	List<ReviewVO> reviewCall(Integer talent_no);
 	//review 값 평균 불러오기
 	ReviewVO reviewValue(Integer talent_no);
-
+	
+	//ZONE & DAY 불러오기 (TALENT_INFO)
+	List<Talent_info> zoneDayCall(Integer talent_no);
 }

@@ -29,4 +29,24 @@
 											#{ti_sun, jdbcType=INTEGER}            
 								    		)
 	</insert>    
+	
+	<!-- 강의 위치/요일  -->
+	<select id="zoneDay" resultType="TI_VO">
+		SELECT TI_NO,
+				TALENT_NO,
+				TALENT_INFO.ZONE_ID,
+				ZONE_NAME,
+				TI_ZONE_DETAIL,
+				TI_MON,
+				TI_TUE,
+				TI_WED,
+				TI_TUR,
+				TI_FRI,
+				TI_SAT,
+				TI_SUN,
+				TI_STATUS		
+		FROM TALENT_INFO JOIN ZONE USING(ZONE_ID) 
+		WHERE TALENT_INFO.ZONE_ID = ZONE.ZONE_ID and TALENT_NO = #{talent_no}
+	</select>
+	
 </mapper>

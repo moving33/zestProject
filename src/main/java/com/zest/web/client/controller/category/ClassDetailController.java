@@ -2,7 +2,9 @@ package com.zest.web.client.controller.category;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -10,14 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.zest.web.client.model.CategoryPageVO;
 import com.zest.web.client.model.ClassDetailVO;
 import com.zest.web.client.model.ClassDetail_TutorVO;
 import com.zest.web.client.model.ReviewVO;
 import com.zest.web.client.model.TalentVO;
+import com.zest.web.client.model.Talent_info;
 import com.zest.web.client.service.client.ClassDetailService;
 
 @Controller
@@ -60,10 +61,10 @@ public class ClassDetailController {
 				String tempFileName = files[i].getName();
 				
 				String subPath = tempPath.substring(8);
-				System.out.println("sub Path : " + subPath);
-
+				
+				/*System.out.println("sub Path : " + subPath);
 				System.out.println("tempPtah 값 : " + tempPath);
-				System.out.println("tempFileName 값: " + tempFileName);
+				System.out.println("tempFileName 값: " + tempFileName);*/
 				
 				String imagePath = "/LocalImage/" + subPath + "/" + tempFileName;
 				
@@ -125,13 +126,35 @@ public class ClassDetailController {
 		//리뷰 평균 값
 		ReviewVO avgReview = classDetailService.reviewValue(talent_no);
 		model.put("avg", avgReview);
+		
+		//위치(zone) 요일(day) 얻어오기
+		List<Talent_info> InfoVo = classDetailService.zoneDayCall(talent_no);
+		//위치 보여주기
+		model.put("zone", InfoVo);
+		System.out.println("인포 VO 121212121" + InfoVo.toString());
+	
+	
+		
+		
 
+
+		Map<String, Object> modelDay = new HashMap<>(); //model 저장할 MAP
+
+		
+		
+		
+		for(int i=0; i < InfoVo.size(); i++) {
+			modelDay.put("week" + i, InfoVo.get(i));
+		}
+		
+		InfoVo.get(0).getTi_mon();
+		
 
 		modelAndView.addObject("detail", vo);
 		modelAndView.addObject("talent", Tvo);
 		modelAndView.addObject("tutor", Cvo);
 		modelAndView.addAllObjects(model);
-
+		//modelAndView.addAllObjects(modelDay);
 		
 		modelAndView.setViewName("category/classDetail");
 		return modelAndView;

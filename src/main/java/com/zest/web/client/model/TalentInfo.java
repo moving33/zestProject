@@ -15,6 +15,8 @@ public class TalentInfo {
 	private Integer ti_sun;
 	private Integer tc_status; //상태 코드
 	
+	private String zone_name; //위치 이름 바꾸기
+	
 	public Integer getTi_no() {
 		return ti_no;
 	}
@@ -86,6 +88,19 @@ public class TalentInfo {
 	}
 	public void setTc_status(Integer tc_status) {
 		this.tc_status = tc_status;
+	}
+	public String getZone_name() {
+		return zone_name;
+	}
+	public void setZone_name(String zone_name) {
+		this.zone_name = zone_name;
+	}
+	@Override
+	public String toString() {
+		return "TalentInfo [ti_no=" + ti_no + ", talent_no=" + talent_no + ", zone_id=" + zone_id + ", ti_zone_detail="
+				+ ti_zone_detail + ", ti_mon=" + ti_mon + ", ti_tue=" + ti_tue + ", ti_wed=" + ti_wed + ", ti_tur="
+				+ ti_tur + ", ti_fri=" + ti_fri + ", ti_sat=" + ti_sat + ", ti_sun=" + ti_sun + ", tc_status="
+				+ tc_status + ", zone_name=" + zone_name + "]";
 	}
 	
 	

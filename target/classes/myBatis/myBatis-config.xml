@@ -64,6 +64,7 @@
 		<mapper resource="myBatis/tutor/tutor-sqlMapping.xml" />
 		<!-- 관리자 -->
 		<mapper resource="myBatis/admin/admin-sqlMapping.xml" />
+		
 
 
 
@@ -86,6 +87,7 @@
 		<mapper resource="myBatis/category/classDetail-sqlMapping.xml" />
 		<!-- 리뷰 -->
 		<mapper resource="myBatis/client/review-sqlMapping.xml" />
+		
 	</mappers>
 	
 	

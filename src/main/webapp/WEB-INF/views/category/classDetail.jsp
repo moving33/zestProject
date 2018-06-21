@@ -59,8 +59,12 @@
 		<!-- 수업결제 정보 -->
 		<div class="class_price" id ="class_price" style="position:relative;">
 			<div class="area_info">
-				<div class="area" id="area"><h1>위치</h1>	</div>
-				<div class="date" id="date"><h1>요일</h1></div>
+				<div class="area" id="area"><h1>위치</h1>	
+				<c:forEach var="zone" items="${zone }">
+				<a id="area_zone" class="" onclick="">${zone.zone_name }</a>
+				</c:forEach>
+				</div>
+				<div class="date" id="date"><h1>요일 ${day0 }</h1></div>
 				<div class="time" id="time"><h1>날짜<br>시간</h1></div>
 				<div class="add" id="add"><h1>장소<br>추가비용 : ${detail.tc_price_detail}</h1></div>
 				<div class="tutor_t">
@@ -144,13 +148,12 @@
 				<div class="class_title">
 				<div class="title">${detail.tc_subject}</div>
 				<div class="info">
-				<!-- 별점총점 -->
-				
-				
+		
+			<div class="star_comment">
 			<c:choose>
 			<c:when test="${1 eq avg.total_value }">
-			<div class="star_comment">
 				<div class="review-scores-detail review-scores-price">
+					<label>총점&nbsp;</label> 
 					<span class="star-input1">
 					<span class="input">
 					<input type="radio" name="total_value" value="1" checked id="curri1">
@@ -245,11 +248,12 @@
 					</span>
 					</span>
 				</div>
-				
 				</c:when>
-				
 				</c:choose>
 				</div>
+				
+				</div>
+				
 				<div class="info">
 					<ul>
 						<li class="ar"><div class="icon1"><img src="/zest/images/classDetail/icon_info01.png"></div>강남</li>							
@@ -944,6 +948,7 @@
 			<div class="map_in" id="qna">
 			<h1>위치</h1>
 			<div class="intro5"></div>
+		
 			</div>
 			
 			
@@ -953,7 +958,7 @@
 	
 		
 
-</div>
+
 
 	<!-- Bootstrap core JavaScript -->
 	<script src="/zest/js/jquery.min.js"></script>
