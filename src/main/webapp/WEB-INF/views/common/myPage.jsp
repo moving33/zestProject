@@ -153,60 +153,62 @@
 
 					<c:if test="${pageType == 'tutor'}">
 						<ul>
-							<li class="on"><a href="#">튜터신청확인</a></li>
-							<li><a href="#">...</a></li>
-							<li><a href="#">...</a></li>
+							<li class="on" id="li1">
+							<a href="javascript:void(0)" onclick="viewPropTalentPage()">튜터신청확인</a></li>
+							<li id="li2"><a href="javascript:void(0)"
+								onclick="viewRegiTalentPage()">강의 등록하기</a></li>
+							<li><a>...</a></li>
 						</ul>
 					</c:if>
 
 
 				</div>
 			</div>
-			<div class="cont12">
+			<!-- 튜터 신청 확인 div -->
+			<div class="cont12" id="tutorPropDiv">
 				<c:if test="${pageType == 'tutor'}">
 					<!-- 승인된 사용자 -->
-					<c:if test="${tt_prop.tp_message eq null and tt_prop.tp_status != 0}">
+					<c:if
+						test="${tt_prop.tp_message eq null and tt_prop.tp_status != 0}">
 						<div class="alert alert-primary" role="alert"
 							style="width: 80%; margin: auto;">
-							축하드립니다, 튜터로 선정되셨습니다. 자유롭게 자신의 재능을 나누어주세요! <br>
-							<span style="font-size: large;"><b> ${client.cl_name} </b></span>님 께서 수업신청시 채택가능성이 높은 분야는 
-								<span style="font-size: large;"><b> ${tt_prop.tp_category_id} </b></span>항목 입니다.
+							축하드립니다, 튜터로 선정되셨습니다. 자유롭게 자신의 재능을 나누어주세요! <br> <span
+								style="font-size: large;"><b> ${client.cl_name} </b></span>님 께서
+							수업신청시 채택가능성이 높은 분야는 <span style="font-size: large;"><b>
+									${tt_prop.tp_category_id} </b></span>항목 입니다.
 						</div>
 					</c:if>
 					<!--  대기중인 사용자  -->
 					<c:if test="${ tt_prop.tp_status eq 0}">
 						<div class="alert alert-primary" role="alert"
 							style="width: 80%; margin: auto;">
-							<span style="font-size: large;"><b> ${client.cl_name} </b></span>
-							님 께서 신청하신 항목을 검토 중에 있습니다, 신청하신 날짜 1~2일 안에 처리 될 예정입니다. 
+							<span style="font-size: large;"><b> ${client.cl_name}
+							</b></span> 님 께서 신청하신 항목을 검토 중에 있습니다, 신청하신 날짜 1~2일 안에 처리 될 예정입니다.
 						</div>
 					</c:if>
 					<!--  거부 처리된 사용자  -->
 					<c:if test="${ tt_prop.tp_status eq 1 and tt_prop.tp_message eq 0}">
 						<div class="alert alert-danger" role="alert"
 							style="width: 80%; margin: auto;">
-							<span style="font-size: large;"><b> ${client.cl_name} </b></span>
-							님 의 튜터 신청 처리가  
-							<span style="font-size: large; color:black;"><b> 신분증 인증 항목과 프로필 사진 인증 </b></span>
-							이  양식에 맞지 않아 취소 되었습니다 .						
+							<span style="font-size: large;"><b> ${client.cl_name}
+							</b></span> 님 의 튜터 신청 처리가 <span style="font-size: large; color: black;"><b>
+									신분증 인증 항목과 프로필 사진 인증 </b></span> 이 양식에 맞지 않아 취소 되었습니다 .
 						</div>
 					</c:if>
-						<c:if test="${ tt_prop.tp_status eq 1 and tt_prop.tp_message eq 1}">
+					<c:if test="${ tt_prop.tp_status eq 1 and tt_prop.tp_message eq 1}">
 						<div class="alert alert-danger" role="alert"
 							style="width: 80%; margin: auto;">
-							<span style="font-size: large;"><b> ${client.cl_name} </b></span>
-							님 의 튜터 신청 처리가  
-							<span style="font-size: large; color:black;"><b> 프로필 사진 </b></span>
-							이  양식에 맞지 않아 취소 되었습니다 .						
+							<span style="font-size: large;"><b> ${client.cl_name}
+							</b></span> 님 의 튜터 신청 처리가 <span style="font-size: large; color: black;"><b>
+									프로필 사진 </b></span> 이 양식에 맞지 않아 취소 되었습니다 .
 						</div>
 					</c:if>
-						<c:if test="${ tt_prop.tp_status eq 1 and tt_prop.tp_message eq 2}">
+					<c:if test="${ tt_prop.tp_status eq 1 and tt_prop.tp_message eq 2}">
 						<div class="alert alert-danger" role="alert"
 							style="width: 80%; margin: auto;">
-							<span style="font-size: large;"><b> ${client.cl_name} </b></span>
-							님 의 튜터 신청 처리가  
-							<span style="font-size: large; color:black;"><b> 신분증 인증 항목 </b></span>
-							이  양식에 맞지 않아 취소 되었습니다 .						
+							<span style="font-size: large;"><b> ${client.cl_name}
+							</b></span> 님 의 튜터 신청 처리가 <span style="font-size: large; color: black;"><b>
+									신분증 인증 항목 </b></span> 이 양식에 맞지 않아 취소 되었습니다 .
 						</div>
 					</c:if>
 					<ul>
@@ -214,8 +216,19 @@
 					</ul>
 				</c:if>
 			</div>
+			<!-- 튜터등록 div -->
+			<div class="cont12" id="talentRegi" style="display: none;">
+				<h1>드루와 강의를 등록하세요</h1>
+				<div class="tutor_eximg">
+					<img src="images/common/tutor/img_tutor_reg06.png" style="width: 1000px;">
+				</div>
+				<a href="/zest/tutorPage/talentProp" class="btn btn-primary" style="width: 500px;height: 50px; font-size: x-large; margin-left: 290px; margin-top: 30px;">강의 등록하기</a>
+			</div> 
 		</div>
-		<br> <br> <br>
+	</div>
+	<br>
+	<br>
+	<br>
 
 
 	</div>
