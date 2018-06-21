@@ -322,6 +322,7 @@ public class TalentInsertServiceImpl implements TalentInsertService {
 
 				// info 객체를 List에 저장한다
 				tt_infoVO.setTalent_no(no);
+				tt_infoVO.setTi_status(0);//원데이 항목이 아님을 명시한다.
 				tt_infoList.add(tt_infoVO);
 			}else {//원데이 항목
 				Talent_info tt_infoVO = new Talent_info();
