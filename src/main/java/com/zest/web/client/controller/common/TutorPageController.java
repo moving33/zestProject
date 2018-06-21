@@ -313,7 +313,7 @@ public class TutorPageController {
 		talentInsertService.insertTalent(talentVO, contentVO, talentInfo, vo, timeUtil);
 		//가져온 데이터 지우기
 		saveTimeData.remove(vo.getTt_no());
-		return null;
+		return "redirect:/clientPage"; //마이페이지로 넘기기
 	}
 
 	public Tutor_PropSearchService getSearchService() {
