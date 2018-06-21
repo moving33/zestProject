@@ -16,4 +16,6 @@ public interface ClientDAO {
 	ClientVO getClient(ClientVO clientVO);
 	//로그아웃시 마지막 날짜 업데이트 
 	void updateLastLogin(ClientVO clientVO);
+	//회원수정
+	void modifyClient(ClientVO clientVO);
 }

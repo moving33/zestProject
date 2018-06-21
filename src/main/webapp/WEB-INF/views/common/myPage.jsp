@@ -44,7 +44,7 @@
 									src="images/common/icon_sjoin.png">
 							</span> <span>마이페이지</span>
 						</a></li>
-						<li><a href="main/logout"> <span> <img
+						<li><a href="#"> <span> <img
 									src="images/common/icon_slogout.png">
 							</span> <span>로그아웃</span>
 						</a></li>
@@ -56,18 +56,16 @@
 						<div class="sec01">
 							<div class="box">
 								<div class="left"
-									style="background-image: url('//taling.me/Content/Uploads/Profile/339ed0e1d12129252e9b7a0df29088ddda7583c4.jpg')">
+									style="background-image: url(/${client.cl_im_path})">
 								</div>
 								<div class="right">
-									<div class="right01">${client.cl_name}</div>
-									<div class="right02">
-										<a href="#"> <span>정보수정</span>
-										</a>
+									<div class="right01">${client.cl_name} 님</div>
+									<div class="right02">${client.cl_nn} </div>
 										<div class="right03">
+											<a href="clientModifyPage"> <span>정보수정</span></a>
 											<a href="#"> <span>튜터 정보수정</span>
 											</a>
 										</div>
-									</div>
 								</div>
 							</div>
 						</div>
@@ -98,8 +96,7 @@
 							<div class="box">
 								<div class="left">
 									<div class="lgsize">핸드폰 번호</div>
-									<div class="middle lgsize" style="font-size: 15px">등록된
-										이메일</div>
+									<div class="middle lgsize" style="font-size: 15px">등록된 이메일</div>
 									<div class="middle lgsize">학교 정보</div>
 
 								</div>
@@ -110,9 +107,7 @@
                                         <a href="#"><span>번호
 													등록</span></a>
 										</c:if>
-										<c:if test="${client.cl_hp != 'none'}">client.cl_hp
-                                        <a href="#"><span>번호
-													수정</span></a>
+										<c:if test="${client.cl_hp != 'none'}">${client.cl_hp}
 										</c:if>
 									</div>
 									<div class="middle lgsize">${client.cl_email}</div>
@@ -126,7 +121,7 @@
 			</div>
 		</div>
 	</div>
-	</div>
+
 	<!-- 컨테이너 -->
 	<%--수강생페이지인지 튜터 페이지 인지 확인--%>
 	<input id="confirmType" value="${pageType}" type="hidden">
@@ -295,7 +290,7 @@
 		</div>
 	</div>
 	<script src="/zest/js/jquery.min.js"></script>
-	<script src="/zest/js/bootstrap.bundle.min.js"></script>
 	<script src="/zest/js/tutor/tutor.js"></script>
+	<script src="/zest/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
