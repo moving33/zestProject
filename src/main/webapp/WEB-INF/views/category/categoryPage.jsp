@@ -95,7 +95,9 @@
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100" >
             <a href="/zest/talent/${item.talent_no}" >
-            <img class="card-img-top" src="${item.tc_image_path}" alt="">
+            <div style="height: 200px;">
+            	<img style="height: -webkit-fill-available" class="card-img-top" src="${item.tc_image_path}" alt="">
+            </div>
             <div class="card-body">
               <h4 class="card-title">
                <p style="color:#ffc107 !important;">${item.tc_subject}</p>
