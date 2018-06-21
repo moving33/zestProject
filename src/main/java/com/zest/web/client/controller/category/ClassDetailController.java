@@ -36,7 +36,7 @@ public class ClassDetailController {
 		return modelAndView;
 	}*/
 
-	@RequestMapping(value = "/category/{category}/{talent_no}")
+	@RequestMapping(value = "/talent/{talent_no}")
 	public ModelAndView classDetail(@PathVariable int talent_no, ModelAndView modelAndView, ClassDetailVO vo,
 			TalentVO Tvo, ClassDetail_TutorVO Cvo) {
 		System.out.println("2222222222222");
