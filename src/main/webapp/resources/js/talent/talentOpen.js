@@ -128,7 +128,7 @@ function addImg() {
 $(function () {
     $("#picker1").datepicker({
         minDate: 0,
-        dateFormat: 'yy.mm.dd',
+        dateFormat: 'yyyy-mm-dd',
         prevText: '이전 달',
         nextText: '다음 달',
         monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
@@ -311,7 +311,7 @@ function fetchPage(name){
 function createDatePicker(a) {
     a.datepicker({
         minDate: 0,
-        dateFormat: 'yy.mm.dd',
+        dateFormat: 'yy-mm-dd',
         prevText: '이전 달',
         nextText: '다음 달',
         monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
@@ -641,7 +641,7 @@ function addTime(a) {
 
     $(setData).datepicker({
         minDate: 0,
-        dateFormat: 'yy.mm.dd',
+        dateFormat: 'yyyy-mm-dd',
         prevText: '이전 달',
         nextText: '다음 달',
         monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
@@ -1378,8 +1378,7 @@ function delCurri(a) {
 
 // 최종으로 보내기전에 체크 및 체크 완료시 ajax로 data전송
 function lastSubmit(){
-	
-	alert($("#talent_lecture_id option:selected").val());
+	alert('시작');
 	// 원데이 인지 아닌지 여부 판단
 	if(!$("#checkDayType").prop("checked")){// 해당 항목이 체크가 안되있으면 즉 원데이 항목이 아님,
 		// 저장된 항목을 보낼 변수 작성
@@ -1388,17 +1387,14 @@ function lastSubmit(){
 		if(data1.zoneId != ''){
 			sendData.zone1 = data1;
 			sendData.count = 1;
-			alert('1');
 		}
 		if(data2.zoneId != ''){
 			sendData.zone2 = data2;
 			sendData.count = 2;
-			alert('2');
 		}
 		if(data3.zoneId != ''){
 			sendData.zone3 = data1;
 			sendData.count = 3;
-			alert('3');
 		}
 		// 저장된 timeData controller로 내용 보내기
 		var myHeaders = new Headers();
@@ -1416,21 +1412,29 @@ function lastSubmit(){
 			// 텍스트 기반으로 처리
 			return response.text();
 		}).then(function(text) {
-			alert(text);			
+			alert(text);		
+			if(text == "success"){
+				return true;
+			}else{
+				return false;
+			}
 		});
 		
 	}else{//원데이 항목 처리 
-		var sendData ={'zone1':'','zone2':'','zone3':''};
+		var sendData ={'zone1':'','zone2':'','zone3':'','count':''};
 		if(onedayData1.zoneid != ''){
 			sendData.zone1 = onedayData1;
+			sendData.count = 1;
 		}
 		if(onedayData2.zoneid != ''){
 			sendData.zone2 = onedayData2;
+			sendData.count = 2;
 		}
 		if(onedayData3.zoneid != ''){
 			sendData.zone3 = onedayData3;
+			sendData.count = 3;
 		}
-		
+		alert(sendData.count);
 		var myHeaders = new Headers();
 		myHeaders.append("Content-Type",
 				"application/json;Charset=UTF-8");	
@@ -1446,11 +1450,14 @@ function lastSubmit(){
 			// 텍스트 기반으로 처리
 			return response.text();
 		}).then(function(text) {
-			alert(text);			
+			
+			if(text == "success"){		
+					return true;				
+			}else{
+				return false;
+			}
 		});
 	}
-	
-	return true;
 }
 
 $(document).ready(function () {
@@ -1729,9 +1736,9 @@ $(document).ready(function () {
         if ($(this).prop("checked")) {// 체크 되었을시
             $(".oneDayDiv").show();
             $(".notOnedayDiv").hide();
-            alert(onedayData1.zoneid + "/" + onedayData1.day1 + "/" + onedayData1.day2 + "/" + onedayData1.day3 + "/" + onedayData1.t1 + "/" + onedayData1.t2 + "/" + onedayData1.t3);
-            alert(onedayData2.zoneid + "/" + onedayData2.day1 + "/" + onedayData2.day2 + "/" + onedayData2.day3 + "/" + onedayData2.t1 + "/" + onedayData2.t2 + "/" + onedayData2.t3);
-            alert(onedayData3.zoneid + "/" + onedayData3.day1 + "/" + onedayData3.day2 + "/" + onedayData3.day3 + "/" + onedayData3.t1 + "/" + onedayData3.t2 + "/" + onedayData3.t3);
+            //alert(onedayData1.zoneid + "/" + onedayData1.day1 + "/" + onedayData1.day2 + "/" + onedayData1.day3 + "/" + onedayData1.t1 + "/" + onedayData1.t2 + "/" + onedayData1.t3);
+            //alert(onedayData2.zoneid + "/" + onedayData2.day1 + "/" + onedayData2.day2 + "/" + onedayData2.day3 + "/" + onedayData2.t1 + "/" + onedayData2.t2 + "/" + onedayData2.t3);
+            //alert(onedayData3.zoneid + "/" + onedayData3.day1 + "/" + onedayData3.day2 + "/" + onedayData3.day3 + "/" + onedayData3.t1 + "/" + onedayData3.t2 + "/" + onedayData3.t3);
         } else {// 체크가 안되있을시
             $(".notOnedayDiv").show();
             $(".oneDayDiv").hide();

@@ -1,6 +1,7 @@
 package com.zest.web.client.dao.talent;
 
 import com.zest.web.client.model.TalentVO;
+import com.zest.web.client.model.TalentOneDayTimeVO;
 import com.zest.web.client.model.Talent_contentVO;
 import com.zest.web.client.model.Talent_info;
 import com.zest.web.client.model.Talent_notOneDayTime;
@@ -18,4 +19,7 @@ public interface TalentDAO {
 	
 	//talent_info 테이블의 값을 등록
 	void insertTI(Talent_info vo);
+	
+	//원데이 항목 등록
+	int insertOneDayTime(TalentOneDayTimeVO vo);
 }
