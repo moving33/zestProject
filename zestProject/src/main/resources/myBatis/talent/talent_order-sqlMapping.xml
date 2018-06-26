@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zest.talentOrder">
+	<!-- 수업 신청  -->
+	<insert id="insertTO" parameterType="TalentPropVO">
+
+		INSERT INTO TALENT_ORDER(
+								talent_no,
+								cl_no,
+								tt_no,
+								to_real_price,
+								to_use_point,
+								to_price_total,
+								to_meet_count,
+								to_type,
+								to_ip,
+								tp_status
+								)
+							VALUES (
+									#{talent_no},
+									#{cl_no},
+									#{tt_no},
+									#{to_real_price},
+									#{to_use_point},
+									#{to_price_total},
+									#{to_meet_count},
+									#{to_type},
+									#{to_ip},
+									#{tp_status}																																		
+									)
+		   <selectKey resultType="int" keyProperty="to_no" order="AFTER">
+              SELECT LAST_INSERT_ID()
+          </selectKey>
+	</insert>
+</mapper>
