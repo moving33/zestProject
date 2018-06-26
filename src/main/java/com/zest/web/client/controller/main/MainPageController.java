@@ -1,13 +1,18 @@
 package com.zest.web.client.controller.main;
 
+import java.awt.font.TransformAttribute;
 import java.io.File;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.xml.crypto.dsig.Transform;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +28,11 @@ import com.zest.web.client.model.CategoryPageVO;
 import com.zest.web.client.model.ClientVO;
 import com.zest.web.client.model.LectureVO;
 import com.zest.web.client.model.Paging;
+import com.zest.web.client.model.ReviewVO;
 import com.zest.web.client.service.LectureService;
+import com.zest.web.client.service.client.ClientSearchService;
+import com.zest.web.client.service.main.GetOneDayService;
+import com.zest.web.client.service.main.GetReviewService;
 import com.zest.web.client.service.main.MainPageGetCategoryService;
 
 @Controller
@@ -38,6 +47,16 @@ public class MainPageController {
 	MainPageGetCategoryService mainPageGetCategoryService;
 	
 	@Autowired
+	GetOneDayService getOneDayService;
+	
+	@Autowired
+	GetReviewService getReviewService;
+	
+	@Autowired
+	ClientSearchService clientSearchService;
+	
+	
+	@Autowired
 	Paging pagind;
 
 	// 카테고리 강의 리스트를 저장해 놓는 곳
@@ -46,7 +65,7 @@ public class MainPageController {
 	// 메인페이지
 	@RequestMapping(value = "/main")
 	public ModelAndView viewMainPage(@RequestParam(required = false) String search_type, 
-			@RequestParam(required = false) String search_text) {
+			@RequestParam(required = false) String search_text)throws Exception {
 		logger.info("..ing (메인 페이지 컨트롤러)");
 		
 		ModelAndView modelAndView = new ModelAndView();
@@ -93,7 +112,7 @@ public class MainPageController {
 		List<CategoryPageVO> list = mainPageGetCategoryService.mainPageGetHotCategory(map);
 		System.out.println("메인페이지 인기수업 리스트 받아옴");
 		
-		// ------------------- 이미지 작업 ----------------------------
+		// ------------------- 인기수업 이미지 작업 ----------------------------
 
 
 		for (int j = 0; j < list.size(); j++) {
@@ -125,7 +144,91 @@ public class MainPageController {
 
 				// ------------------- 이미지 작업 끝 ----------------------------
 		
-		modelAndView.addObject("list", list);
+		// ----------------------- 원데이 리스트 받아옴 ----------------------------
+		List<CategoryPageVO> onedayList = getOneDayService.getOneDayCategory();
+		
+		// 원데이 리스트 이미지 작업
+		for (int j = 0; j < onedayList.size(); j++) {
+			System.out.println(onedayList.size());
+			System.out.println("원데이 인기수업 이미지 작업");
+			File dirFile = new File(onedayList.get(j).getTc_image_path()); // 이미지 패키지 경로 c:\zest\talent\MUSIC\3
+			System.out.println(dirFile);
+
+			File[] files = dirFile.listFiles(); // 파일 담기
+
+			for (int i = 0; i < files.length; i++) {
+				if (files[i].isFile()) {
+					if (i == 0) {
+						String tempPath = files[i].getParent(); // c:\zest\talent\BEAUTY\1
+						String tempFileName = files[i].getName(); // img0.jpg
+						String subPath = tempPath.substring(8); // talent\BEAUTY\1
+
+						System.out.println("sub Path : " + subPath);
+						System.out.println("tempPtah 값 : " + tempPath);
+						System.out.println("tempFileName 값: " + tempFileName);
+
+						onedayList.get(j).setTc_image_path("/LocalImage/" + subPath + "/" + tempFileName);
+
+						break;
+					}
+				}
+			}
+		}
+		
+		// --------------------------- 원데이 리스트 작업 끝 ------------------------------------
+		
+		// ----------------------- 리뷰 리스트 받아옴 ----------------------------
+				List<CategoryPageVO> reviewList = getReviewService.getReviewCategory();
+				
+				// 리뷰 리스트 이미지 작업
+				for (int j = 0; j < reviewList.size(); j++) {
+					System.out.println(reviewList.size());
+					System.out.println("리뷰 인기수업 이미지 작업");
+					File dirFile = new File(reviewList.get(j).getTc_image_path()); // 이미지 패키지 경로 c:\zest\talent\MUSIC\3
+					System.out.println(dirFile);
+
+					File[] files = dirFile.listFiles(); // 파일 담기
+
+					for (int i = 0; i < files.length; i++) {
+						if (files[i].isFile()) {
+							if (i == 0) {
+								String tempPath = files[i].getParent(); // c:\zest\talent\BEAUTY\1
+								String tempFileName = files[i].getName(); // img0.jpg
+								String subPath = tempPath.substring(8); // talent\BEAUTY\1
+
+								System.out.println("sub Path : " + subPath);
+								System.out.println("tempPtah 값 : " + tempPath);
+								System.out.println("tempFileName 값: " + tempFileName);
+								
+								// 날짜 형식 변경
+								String date = reviewList.get(j).getTc_reg_date();
+								Date to = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(date);
+								String datee = new SimpleDateFormat("yyyy-MM-dd").format(to);
+								System.out.println(datee);
+								reviewList.get(j).setTc_reg_date(datee);
+								
+								// 리뷰 작성자 얻어오기
+								ClientVO clientVO = new ClientVO();
+								clientVO.setCl_no(reviewList.get(j).getTr_client_no());
+								clientVO = clientSearchService.getClientForId(clientVO);				
+								reviewList.get(j).setCl_name(clientVO.getCl_name());								
+								reviewList.get(j).setTc_image_path("/LocalImage/" + subPath + "/" + tempFileName);
+								System.out.println("리뷰리스트 받아온 사람의 이름 : "+clientVO.getCl_name());
+								break;
+							}
+						}
+					}
+				}
+				
+				// --------------------------- 원데이 리스트 작업 끝 ------------------------------------
+		
+		Map<String, Object> model = new HashMap<>();
+		
+		model.put("reviewList", reviewList);
+		model.put("list", list);
+		model.put("onedayList", onedayList);
+		
+		modelAndView.addAllObjects(model);
 		modelAndView.setViewName("main/mainPage");
 		return modelAndView;
 	}

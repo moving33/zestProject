@@ -58,7 +58,7 @@
 				<!-- 최상위 메뉴 -->
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item activej"><a class="nav-linkj logo"
-						id="service" href="#"> <b>서비스소개</b> <span class="sr-only">(current)</span>
+						id="service" href="/zest/notice/list"> <b>공지사항</b> <span class="sr-only">(current)</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-linkj" id="insert" href="#"
 						style="font-size: 20px;"><b>튜터 등록</b></a></li>
@@ -157,7 +157,7 @@
 				<div class="col-lg-3 class_cont">
 					<h4 class="my-4">카테고리</h4>
 					<div class="list-group"
-						style="border: 1px solid black; height: 400px; position: relative;">
+						style="height: 400px; position: relative; border-top:1px solid #cccccc; border-bottom: 1px solid #cccccc;">
 						<div class="list-group1" style="position: absolute; width: 125px;"></div>
 						<div class="list-group2"
 							style="position: absolute; right: 6px; width: 125px;"></div>
@@ -176,14 +176,14 @@
 						<!-- 1순위 항목 -->
 						<a href="/zest/talent/${item.talent_no}">
 							<div class="main_cont">
-								<div>
-									<img class="card-img-top" src="${item.tc_image_path}">
+								<div style="height: 200px;">
+									<img style="height: -webkit-fill-available;"class="card-img-top" src="${item.tc_image_path}">
 								</div><br>
-									<h4 class="card-title">
-										<p style="color: #ffc107 !important;">${item.tc_subject}</p>
-									</h4>
+								<h4 class="card-title">
+									<p style="color: #ffc107 !important;">${item.tc_subject}</p>
+								</h4>
 								<p class="card-text" style="color:#000000 !important;">구역: ${item.zone_name}</p>
-             					<p class="card-text" style="color:#000000 !important;">가격(1시간): ${item.talent_price_hour}</p>
+             					<p class="card-text" style="color:#000000 !important;">가격(1시간): ${item.talent_price_hour}원</p>
 							</div>
 						</a>
 						
@@ -201,7 +201,7 @@
 										<p style="color:#ffc107 !important; font-size: 17px;">${item.tc_subject}</p>
 										<p class="card-text" style="color:#000000 !important; font-size: 13px;">
 											구역: ${item.zone_name}<br>
-											가격(1시간): ${item.talent_price_hour}
+											가격(1시간): ${item.talent_price_hour}원
 										</p>
 									</div>
 								</a>
@@ -215,21 +215,21 @@
 				<!-- 인기수업 표시 끝 -->
 				
 			</div>
-		</div>
+		</div><br>
 
 		<!-- 광고 -->
 		<div class="ad">
 			<img src="images/main/광고.png">
-		</div>
+		</div><br><br>
 
+		<div class="oneday_head">
+			<b style="font-size: x-large; padding-left:13%;">인기원데이</b> &nbsp;&nbsp;&nbsp; <b style="color:red;">깔끔하게 딱하루!</b>
+		</div>
+			
 		<!-- 인기 원데이 -->
 		<div class="container oneday">
-			<div class="oneday_head">
-				<b style="font-size: x-large;">인기원데이</b> &nbsp;&nbsp;&nbsp; 깔끔하게 딱하루
-			</div>
-
 			<div id="onedayIndicators" class="carousel slide"
-				style="height: 430px" data-ride="carousel">
+				style="height: 430px; padding-top: 3%;" data-ride="carousel">
 				<!-- 화살표 파지네이션 -->
 				<ol class="carousel-indicators">
 					<li data-target="#onedayIndicators" data-slide-to="0"
@@ -238,40 +238,230 @@
 					<li data-target="#onedayIndicators" data-slide-to="2"></li>
 				</ol>
 
-				<!-- 슬라이드 내용 -->
+				<!-- 인기원데이 슬라이드 내용 -->
 				<div class="carousel-inner">
 					<div class="carousel-item active">
+					<c:forEach var="item" items="${onedayList}" varStatus="status" begin="0" end="0">
+					<a href="/zest/talent/${item.talent_no}">
 						<div class="oneday_cont" style="margin-left: 28px;">
-								<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
+							<div style="height: 200px;">
+								<img style="margin-top:0px; height: -webkit-fill-available;" class="card-img-top" class="card-img-top" src="${item.tc_image_path}">
+							</div>
+								<h4 class="card-title">
+									<p style="color: #ffc107 !important;">${item.tc_subject}</p>
+								</h4>
+								<p class="card-text" style="color:#000000 !important;">구역: ${item.zone_name}</p>
+             					<p class="card-text" style="color:#000000 !important;">가격(1시간): ${item.talent_price_hour}원</p>
 						</div>
+					</a>
+					</c:forEach>
+					<c:forEach var="item" items="${onedayList}" varStatus="status" begin="1" end="2">
+					<a href="/zest/talent/${item.talent_no}">
 						<div class="oneday_cont">
-							<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
+						<div  style="height: 200px;">
+							<img style="margin-top:0px; height: -webkit-fill-available;" class="card-img-top" class="card-img-top" src="${item.tc_image_path}">
 						</div>
-						<div class="oneday_cont">
-							<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
+							<h4 class="card-title">
+									<p style="color: #ffc107 !important;">${item.tc_subject}</p>
+								</h4>
+								<p class="card-text" style="color:#000000 !important;">구역: ${item.zone_name}</p>
+             					<p class="card-text" style="color:#000000 !important;">가격(1시간): ${item.talent_price_hour}원</p>
 						</div>
+					</a>
+					</c:forEach>
 					</div>
 					<div class="carousel-item">
+					<c:forEach var="item" items="${onedayList}" varStatus="status" begin="3" end="3">
+					<a href="/zest/talent/${item.talent_no}">
 						<div class="oneday_cont" style="margin-left: 28px;">
-								<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
+							<div style="height: 200px;">
+								<img style="margin-top:0px; height: -webkit-fill-available !important;" class="card-img-top" class="card-img-top" src="${item.tc_image_path}">
+							</div>
+								<h4 class="card-title">
+									<p style="color: #ffc107 !important;">${item.tc_subject}</p>
+								</h4>
+								<p class="card-text" style="color:#000000 !important;">구역: ${item.zone_name}</p>
+             					<p class="card-text" style="color:#000000 !important;">가격(1시간): ${item.talent_price_hour}원</p>
 						</div>
+					</a>
+					</c:forEach>
+					<c:forEach var="item" items="${onedayList}" varStatus="status" begin="4" end="5">
+					<a href="/zest/talent/${item.talent_no}">
 						<div class="oneday_cont">
-							<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
+							<div  style="height: 200px;">
+								<img style="margin-top:0px; height: -webkit-fill-available;" class="card-img-top" class="card-img-top" src="${item.tc_image_path}">
+							</div>
+							<h4 class="card-title">
+									<p style="color: #ffc107 !important;">${item.tc_subject}</p>
+								</h4>
+								<p class="card-text" style="color:#000000 !important;">구역: ${item.zone_name}</p>
+             					<p class="card-text" style="color:#000000 !important;">가격(1시간): ${item.talent_price_hour}원</p>
 						</div>
-						<div class="oneday_cont">
-							<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
-						</div>
+					</a>
+					</c:forEach>
 					</div>
 					<div class="carousel-item">
+					<c:forEach var="item" items="${onedayList}" varStatus="status" begin="6" end="6">
+					<a href="/zest/talent/${item.talent_no}">
 						<div class="oneday_cont" style="margin-left: 28px;">
-								<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
+							<div  style="height: 200px;">
+								<img style="margin-top:0px; height: -webkit-fill-available;" class="card-img-top" class="card-img-top" src="${item.tc_image_path}">
+							</div>
+								<h4 class="card-title">
+									<p style="color: #ffc107 !important;">${item.tc_subject}</p>
+								</h4>
+								<p class="card-text" style="color:#000000 !important;">구역: ${item.zone_name}</p>
+             					<p class="card-text" style="color:#000000 !important;">가격(1시간): ${item.talent_price_hour}원</p>
 						</div>
+					</a>
+					</c:forEach>
+					<c:forEach var="item" items="${onedayList}" varStatus="status" begin="7" end="8">
+					<a href="/zest/talent/${item.talent_no}">
 						<div class="oneday_cont">
-							<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
+							<div  style="height: 200px;">
+								<img style="margin-top:0px; height: -webkit-fill-available;" class="card-img-top" class="card-img-top" src="${item.tc_image_path}">
+							</div>
+							<h4 class="card-title">
+									<p style="color: #ffc107 !important;">${item.tc_subject}</p>
+								</h4>
+								<p class="card-text" style="color:#000000 !important;">구역: ${item.zone_name}</p>
+             					<p class="card-text" style="color:#000000 !important;">가격(1시간): ${item.talent_price_hour}원</p>
 						</div>
+					</a>
+					</c:forEach>
+					</div>
+				</div>
+
+				<a class="carousel-control-prev" href="#onedayIndicators"
+					role="button" data-slide="prev"> <span
+					class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+					class="sr-only">Previous</span>
+				</a> <a class="carousel-control-next" href="#onedayIndicators"
+					role="button" data-slide="next"> <span
+					class="carousel-control-next-icon" aria-hidden="true"></span> <span
+					class="sr-only">Next</span>
+				</a>
+			</div>
+		</div><br><br><br>
+		
+		<!-- 따끈따끈 리뷰 -->
+		<div class="oneday_head">
+				<b style="font-size: x-large; padding-left:13%;">따끈따끈 리뷰</b> &nbsp;&nbsp;&nbsp; <b style="color:red;">검증된 수업을 들어보세요!</b>
+			</div>
+		<div class="container oneday">
+			<div id="onedayIndicators" class="carousel slide"
+				style="height: 430px; padding-top:3%;" data-ride="carousel">
+				<!-- 화살표 파지네이션 -->
+				<ol class="carousel-indicators">
+					<li data-target="#onedayIndicators" data-slide-to="0"
+						class="active"></li>
+					<li data-target="#onedayIndicators" data-slide-to="1"></li>
+					<li data-target="#onedayIndicators" data-slide-to="2"></li>
+				</ol>
+
+				<!-- 리뷰 슬라이드 내용 -->
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+					<c:forEach var="item" items="${reviewList}" varStatus="status" begin="0" end="0">
+					<a href="/zest/talent/${item.talent_no}">
+						<div class="oneday_cont" style="margin-left: 28px;">
+							<div style="height: 200px;">
+								<img style="margin-top:0px; height: -webkit-fill-available;" class="card-img-top" class="card-img-top" src="${item.tc_image_path}">
+							</div>
+								<h4 class="card-title">
+									<p style="color: #ffc107 !important;">${item.tc_subject}</p>
+								</h4>
+								<div style="height:100px; overflow: hidden;">
+									<p class="card-text" style="color:#000000 !important;"><b>${item.cl_name} 수강생</b>&nbsp; 작성일: ${item.tc_reg_date}</p>
+									<p class="card-text" style="color:#000000 !important;">${item.tr_content}</p>
+								</div>
+						</div>
+					</a>
+					</c:forEach>
+					<c:forEach var="item" items="${reviewList}" varStatus="status" begin="1" end="2">
+					<a href="/zest/talent/${item.talent_no}">
 						<div class="oneday_cont">
-							<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
+						<div  style="height: 200px;">
+							<img style="margin-top:0px; height: -webkit-fill-available;" class="card-img-top" class="card-img-top" src="${item.tc_image_path}">
 						</div>
+							<h4 class="card-title">
+									<p style="color: #ffc107 !important;">${item.tc_subject}</p>
+								</h4>
+								<div style="height:100px; overflow: hidden;">
+									<p class="card-text" style="color:#000000 !important;"><b>${item.cl_name} 수강생</b>&nbsp; 작성일: ${item.tc_reg_date}</p>
+									<p class="card-text" style="color:#000000 !important;">${item.tr_content}</p>
+								</div>
+						</div>
+					</a>
+					</c:forEach>
+					</div>
+					<div class="carousel-item">
+					<c:forEach var="item" items="${reviewList}" varStatus="status" begin="3" end="3">
+					<a href="/zest/talent/${item.talent_no}">
+						<div class="oneday_cont" style="margin-left: 28px;">
+							<div style="height: 200px;">
+								<img style="margin-top:0px; height: -webkit-fill-available !important;" class="card-img-top" class="card-img-top" src="${item.tc_image_path}">
+							</div>
+								<h4 class="card-title">
+									<p style="color: #ffc107 !important;">${item.tc_subject}</p>
+								</h4>
+								<div style="height:100px; overflow: hidden;">
+									<p class="card-text" style="color:#000000 !important;"><b>${item.cl_name} 수강생</b>&nbsp; 작성일: ${item.tc_reg_date}</p>
+									<p class="card-text" style="color:#000000 !important;">${item.tr_content}</p>
+								</div>
+						</div>
+					</a>
+					</c:forEach>
+					<c:forEach var="item" items="${reviewList}" varStatus="status" begin="4" end="5">
+					<a href="/zest/talent/${item.talent_no}">
+						<div class="oneday_cont">
+							<div  style="height: 200px;">
+								<img style="margin-top:0px; height: -webkit-fill-available;" class="card-img-top" class="card-img-top" src="${item.tc_image_path}">
+							</div>
+							<h4 class="card-title">
+									<p style="color: #ffc107 !important;">${item.tc_subject}</p>
+								</h4>
+								<div style="height:100px; overflow: hidden;">
+									<p class="card-text" style="color:#000000 !important;"><b>${item.cl_name} 수강생</b>&nbsp; 작성일: ${item.tc_reg_date}</p>
+									<p class="card-text" style="color:#000000 !important;">${item.tr_content}</p>
+								</div>							
+						</div>
+					</a>
+					</c:forEach>
+					</div>
+					<div class="carousel-item">
+					<c:forEach var="item" items="${reviewList}" varStatus="status" begin="6" end="6">
+					<a href="/zest/talent/${item.talent_no}">
+						<div class="oneday_cont" style="margin-left: 28px;">
+							<div  style="height: 200px;">
+								<img style="margin-top:0px; height: -webkit-fill-available;" class="card-img-top" class="card-img-top" src="${item.tc_image_path}">
+							</div>
+								<h4 class="card-title">
+									<p style="color: #ffc107 !important;">${item.tc_subject}</p>
+								</h4>
+								<div style="height:100px; overflow: hidden;">
+									<p class="card-text" style="color:#000000 !important;"><b>${item.cl_name} 수강생</b>&nbsp; 작성일: ${item.tc_reg_date}</p>
+									<p class="card-text" style="color:#000000 !important;">${item.tr_content}</p>
+								</div>
+						</div>
+					</a>
+					</c:forEach>
+					<c:forEach var="item" items="${reviewList}" varStatus="status" begin="7" end="8">
+					<a href="/zest/talent/${item.talent_no}">
+						<div class="oneday_cont">
+							<div  style="height: 200px;">
+								<img style="margin-top:0px; height: -webkit-fill-available;" class="card-img-top" class="card-img-top" src="${item.tc_image_path}">
+							</div>
+							<h4 class="card-title">
+									<p style="color: #ffc107 !important;">${item.tc_subject}</p>
+								</h4>
+								<div style="height:100px; overflow: hidden;">
+									<p class="card-text" style="color:#000000 !important;"><b>${item.cl_name} 수강생</b>&nbsp; 작성일: ${item.tc_reg_date}</p>
+									<p class="card-text" style="color:#000000 !important;">${item.tr_content}</p>
+								</div>
+						</div>
+					</a>
+					</c:forEach>
 					</div>
 				</div>
 
@@ -288,71 +478,7 @@
 		</div>
 	</section>
 
-	<!-- 따끈따끈 리뷰 -->
-	<div class="container oneday">
-		<div class="oneday_head">
-			<b style="font-size: x-large;">따끈따끈 리뷰</b> &nbsp;&nbsp;&nbsp; 검증된 수업을
-			들어보세요
-		</div>
-
-		<div id="onedayIndicators" class="carousel slide"
-			style="height: 430px" data-ride="carousel">
-			<!-- 화살표 파지네이션 -->
-			<ol class="carousel-indicators">
-				<li data-target="#onedayIndicators" data-slide-to="0" class="active"></li>
-				<li data-target="#onedayIndicators" data-slide-to="1"></li>
-				<li data-target="#onedayIndicators" data-slide-to="2"></li>
-			</ol>
-
-			<!-- 슬라이드 내용 -->
-			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<div class="oneday_cont" style="margin-left: 28px;">
-						<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
-					</div>
-					<div class="oneday_cont">
-						<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
-					</div>
-					<div class="oneday_cont">
-						<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
-					</div>
-				</div>
-				<div class="carousel-item">
-					<div class="oneday_cont" style="margin-left: 28px;">
-						<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
-					</div>
-					<div class="oneday_cont">
-						<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
-					</div>
-					<div class="oneday_cont">
-						<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
-					</div>
-				</div>
-				<div class="carousel-item">
-					<div class="oneday_cont" style="margin-left: 28px;">
-						<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
-					</div>
-					<div class="oneday_cont">
-						<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
-					</div>
-					<div class="oneday_cont">
-						<img style="margin-top:0px; height: auto;" class="card-img-top" src="http://placehold.it/700x400">
-					</div>
-				</div>
-			</div>
-
-			<a class="carousel-control-prev" href="#onedayIndicators"
-				role="button" data-slide="prev"> <span
-				class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-				class="sr-only">Previous</span>
-			</a> <a class="carousel-control-next" href="#onedayIndicators"
-				role="button" data-slide="next"> <span
-				class="carousel-control-next-icon" aria-hidden="true"></span> <span
-				class="sr-only">Next</span>
-			</a>
-		</div>
-	</div>
-	</section><br><br><br>
+	<br><br><br>
 
 	<!-- footer -->
 	<div class="footer">

@@ -51,8 +51,8 @@
 			<div class="collapse navbar-collapse" id="loginCheck">
 				<!-- 최상위 메뉴 -->
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item activej"><a class="nav-linkj logo" id="service" href="#">
-						<b>서비스소개</b> 
+					<li class="nav-item activej"><a class="nav-linkj logo" id="service" href="/zest/notice/list">
+						<b>공지사항</b> 
 					<span class="sr-only">(current)</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-linkj" id="insert" href="#" style="font-size: 20px;"><b>튜터 등록</b></a></li>
@@ -95,13 +95,15 @@
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100" >
             <a href="/zest/talent/${item.talent_no}" >
-            <img class="card-img-top" src="${item.tc_image_path}" alt="">
+            <div style="height: 200px;">
+            	<img style="height: -webkit-fill-available" class="card-img-top" src="${item.tc_image_path}" alt="">
+            </div>
             <div class="card-body">
               <h4 class="card-title">
                <p style="color:#ffc107 !important;">${item.tc_subject}</p>
               </h4><br>
               <p class="card-text" style="color:#000000 !important;">구역: ${item.zone_name}</p>
-              <p class="card-text" style="color:#000000 !important;">가격(1시간): ${item.talent_price_hour}</p>
+              <p class="card-text" style="color:#000000 !important;">가격(1시간): ${item.talent_price_hour}원</p>
             </div></a>
           </div>
         </div>
@@ -113,7 +115,7 @@
 		<c:choose>
     	<c:when test="${result eq '대분류'}">
     		<%--페이징처리--%>
-		<div>
+		<div style="padding-left: 20%;">
 			<div class="row">
 				<div class="col-8">
 					<div class="pagePro"

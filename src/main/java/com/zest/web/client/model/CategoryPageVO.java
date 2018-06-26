@@ -1,5 +1,6 @@
 package com.zest.web.client.model;
 
+
 public class CategoryPageVO {
 	private Integer talent_no; // talent 테이블 고유번호
 	private Integer talent_price_hour; // 1시간당 가격
@@ -11,7 +12,19 @@ public class CategoryPageVO {
 	private String talent_category_id; // 카테고리 아이디
 	private String talent_lecture_id; // 카테고리(소분류) 아이디
 	private String search_text; // 검색 텍스트
+	private String tr_content; // 리뷰 내용
+	private String tc_reg_date; // 리뷰 작성일
+	private String cl_name; // 리뷰 작성자
+	private Integer tr_client_no; //리뷰 작성자의 번호 
 	
+	
+	
+	public Integer getTr_client_no() {
+		return tr_client_no;
+	}
+	public void setTr_client_no(Integer tr_client_no) {
+		this.tr_client_no = tr_client_no;
+	}
 	public Integer getTalent_no() {
 		return talent_no;
 	}
@@ -72,19 +85,33 @@ public class CategoryPageVO {
 	public void setSearch_text(String search_text) {
 		this.search_text = search_text;
 	}
-	
+	public String getTr_content() {
+		return tr_content;
+	}
+	public void setTr_content(String tr_content) {
+		this.tr_content = tr_content;
+	}
+	public String getTc_reg_date() {
+		return tc_reg_date;
+	}
+	public void setTc_reg_date(String tc_reg_date) {
+		this.tc_reg_date = tc_reg_date;
+	}
+	public String getCl_name() {
+		return cl_name;
+	}
+	public void setCl_name(String cl_name) {
+		this.cl_name = cl_name;
+	}
 	@Override
 	public String toString() {
 		return "CategoryPageVO [talent_no=" + talent_no + ", talent_price_hour=" + talent_price_hour
 				+ ", talent_acc_client=" + talent_acc_client + ", tc_subject=" + tc_subject + ", tc_image_path="
 				+ tc_image_path + ", zone_id=" + zone_id + ", zone_name=" + zone_name + ", talent_category_id="
 				+ talent_category_id + ", talent_lecture_id=" + talent_lecture_id + ", search_text=" + search_text
-				+ "]";
+				+ ", tr_content=" + tr_content + ", tc_reg_date=" + tc_reg_date + ", cl_name=" + cl_name
+				+ ", tr_client_no=" + tr_client_no + "]";
 	}
-	
-
-	
-	
 	
 	
 	

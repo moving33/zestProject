@@ -51,8 +51,8 @@ public class CategoryController {
 
 			// 현재페이지
 			int currentPage = Integer.parseInt(pageNum); // 현재 페이지 번호
-			int pageSize = 2; // 페이지당 보여줄 글
-			int pageBlockSize = 2; // 페이지 블록의 사이즈
+			int pageSize = 9; // 페이지당 보여줄 글
+			int pageBlockSize = 5; // 페이지 블록의 사이즈
 
 			// 검색설정확인
 			if (search_type == null)
@@ -141,8 +141,8 @@ public class CategoryController {
 
 		// 현재페이지
 		int currentPage = Integer.parseInt(pageNum); // 현재 페이지 번호
-		int pageSize = 2; // 페이지당 보여줄 글
-		int pageBlockSize = 2; // 페이지 블록의 사이즈
+		int pageSize = 9; // 페이지당 보여줄 글
+		int pageBlockSize = 5; // 페이지 블록의 사이즈
 
       // 검색설정확인
       if (search_type == null)
@@ -243,8 +243,8 @@ public class CategoryController {
 
 		// 현재페이지
 		int currentPage = Integer.parseInt(pageNum); // 현재 페이지 번호
-		int pageSize = 2; // 페이지당 보여줄 글
-		int pageBlockSize = 2; // 페이지 블록의 사이즈
+		int pageSize = 9; // 페이지당 보여줄 글
+		int pageBlockSize = 5; // 페이지 블록의 사이즈
 
 		// 검색설정확인
 		if (search_type == null)
@@ -353,8 +353,8 @@ public class CategoryController {
 
 			// 현재페이지
 			int currentPage = Integer.parseInt(pageNum); // 현재 페이지 번호
-			int pageSize = 2; // 페이지당 보여줄 글
-			int pageBlockSize = 2; // 페이지 블록의 사이즈
+			int pageSize = 9; // 페이지당 보여줄 글
+			int pageBlockSize = 5; // 페이지 블록의 사이즈
 
 			// 검색설정확인
 			if (search_type == null)

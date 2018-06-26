@@ -67,6 +67,11 @@ public class ClientDAOImpl implements ClientDAO {
 		sqlSessionTemplate.update("com.zest.client.updateLastLogin", clientVO);
 		
 	}
+	
+	@Override
+	public ClientVO getClientForId(ClientVO clientVO) {		
+		return sqlSessionTemplate.selectOne("com.zest.client.getClientForId", clientVO);
+	}
 
 	public SqlSessionTemplate getSqlSessionTemplate() {
 		return sqlSessionTemplate;
@@ -75,6 +80,8 @@ public class ClientDAOImpl implements ClientDAO {
 	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
 		this.sqlSessionTemplate = sqlSessionTemplate;
 	}
+
+	
 
 	
 	
