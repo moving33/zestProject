@@ -11,11 +11,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-
+	
 <!-- 부트스트랩 CSS -->
 <link href="/zest/css/bootstrap.css" rel="stylesheet">
 <!-- classDetail css -->
 <link href="/zest/css/category/classDetail.css" rel="stylesheet">
+<script src="/zest/js/jquery.min.js"></script>
 
 
 <title>수업상세 페이지</title>
@@ -60,13 +61,240 @@
 		<div class="class_price" id ="class_price" style="position:relative;">
 			<div class="area_info">
 				<div class="area" id="area"><h1>위치</h1>	
-				<c:forEach var="zone" items="${zone }">
-				<a id="area_zone" class="" onclick="">${zone.zone_name }</a>
+				
+				<c:forEach var="zone" items="${zone }" varStatus="status">
+				<input type="button" id="area_zone${status.count }" class="area_zone" value="${zone.zone_name }">
+				
 				</c:forEach>
+				
+				</div> 
+				<!-- 수업시간 -->
+				<script>
+					$("#area_zone1").click(function(){
+						$("#area_zone1").css("background","#ff7200");
+						$("#area_zone1").css("color","#fff");
+						$("#area_zone2").css("background","#e9e9e9");
+						$("#area_zone2").css("color","#999");
+						$("#area_zone3").css("background","#e9e9e9");
+						$("#area_zone3").css("color","#999");
+						$("#section1").css("display","block");
+						$("#section2").css("display","none");
+						$("#section3").css("display","none");
+					});
+					$("#area_zone2").click(function(){
+						$("#area_zone1").css("background","#e9e9e9");
+						$("#area_zone1").css("color","#999");
+						$("#area_zone2").css("background","#ff7200");
+						$("#area_zone2").css("color","#fff");
+						$("#area_zone3").css("background","#e9e9e9");
+						$("#area_zone3").css("color","#999");
+						$("#section1").css("display","none");
+						$("#section2").css("display","block");
+						$("#section3").css("display","none");
+					});
+					$("#area_zone3").click(function(){
+						$("#area_zone1").css("background","#e9e9e9");
+						$("#area_zone1").css("color","#999");
+						$("#area_zone2").css("background","#e9e9e9");
+						$("#area_zone2").css("color","#999");
+						$("#area_zone3").css("background","#ff7200");
+						$("#area_zone3").css("color","#fff");
+						$("#section1").css("display","none");
+						$("#section2").css("display","none");
+						$("#section3").css("display","block");
+					});
+				</script>
+				
+				
+				<div id = "dayId1" >
+				<c:forEach var="week" items="${weekDay}" varStatus="status">
+				<!-- 첫번째구역  -->
+				<c:if test="${week.key == 'mon1'}">
+				<script>
+							var bnt = "<p>월요일 ${week.value}</p>";
+								$("#section1").append(bnt);
+				</script>
+				</c:if> 
+				
+				<c:if test="${week.key == 'tue1'}">
+			 	<script>
+							var bnt = "<p>화요일 ${week.value}</p>";
+								$("#section1").append(bnt);
+
+				</script> 
+				</c:if>
+				
+				<c:if test="${week.key == 'wed'}">
+			 	<script>
+							var bnt = "<p>수요일 ${week.value}</p>";
+								$("#section1").append(bnt);
+
+				</script> 
+				</c:if>
+				
+				<c:if test="${week.key == 'tur'}">
+			 	<script>
+							var bnt = "<p>목요일 ${week.value}</p>";
+								$("#section1").append(bnt);
+
+				</script> 
+				</c:if>
+				
+				<c:if test="${week.key == 'fri'}">
+			 	<script>
+							var bnt = "<p>금요일 ${week.value}</p>";
+								$("#section1").append(bnt);
+
+				</script> 
+				</c:if>
+				
+				<c:if test="${week.key == 'sat1'}">
+			 	<script>
+							var bnt = "<p>토요일 ${week.value}</p>";
+								$("#section1").append(bnt);
+
+				</script> 
+				</c:if>
+				
+				<c:if test="${week.key == 'sun1'}">
+			 	<script>
+							var bnt = "<p>일요일 ${week.value}</p>";
+								$("#section1").append(bnt);
+
+				</script> 
+				</c:if>
+				
+				<!-- 두번째 구역 -->
+				
+				<c:if test="${week.key == 'mon2' }">
+				<script>
+							var aaa = "<p>월요일 ${week.value}</p>";
+								$("#section2").append(aaa);
+
+				</script>
+				</c:if>
+				
+				<c:if test="${week.key == 'tue2' }">
+				<script>
+							var aaa = "<p>화요일 ${week.value}</p>";
+								$("#section2").append(aaa);
+
+				</script>
+				</c:if>
+				
+				<c:if test="${week.key == 'wed2' }">
+				<script>
+							var aaa = "<p>수요일 ${week.value}</p>";
+								$("#section2").append(aaa);
+
+				</script>
+				</c:if>
+				
+				<c:if test="${week.key == 'tur2' }">
+				<script>
+							var aaa = "<p>목요일 ${week.value}</p>";
+								$("#section2").append(aaa);
+
+				</script>
+				</c:if>
+				
+				<c:if test="${week.key == 'fri2' }">
+				<script>
+							var aaa = "<p>금요일 ${week.value}</p>";
+								$("#section2").append(aaa);
+
+				</script>
+				</c:if>
+				
+				<c:if test="${week.key == 'sat2' }">
+				<script>
+							var aaa = "<p>토요일 ${week.value}</p>";
+								$("#section2").append(aaa);
+
+				</script>
+				</c:if>
+				
+				<c:if test="${week.key == 'sun2' }">
+				<script>
+							var aaa = "<p>일요일 ${week.value}</p>";
+								$("#section2").append(aaa);
+
+				</script>
+				</c:if>
+				
+				<!-- 세번째 구역 -->
+				<c:if test="${week.key == 'mon3' }">
+				<script>
+							var aaa = "<p>월요일 ${week.value}</p>";
+								$("#section3").append(aaa);
+
+				</script>
+				</c:if>
+				
+				<c:if test="${week.key == 'tue3' }">
+				<script>
+							var aaa = "<p>화요일 ${week.value}</p>";
+								$("#section3").append(aaa);
+
+				</script>
+				</c:if>
+				
+				<c:if test="${week.key == 'wed3' }">
+				<script>
+							var aaa = "<p>수요일 ${week.value}</p>";
+								$("#section3").append(aaa);
+
+				</script>
+				</c:if>
+				
+				<c:if test="${week.key == 'tur3' }">
+				<script>
+							var aaa = "<p>목요일 ${week.value}</p>";
+								$("#section3").append(aaa);
+
+				</script>
+				</c:if>
+				
+				<c:if test="${week.key == 'fri3' }">
+				<script>
+							var aaa = "<p>금요일 ${week.value}</p>";
+								$("#section3").append(aaa);
+
+				</script>
+				</c:if>
+				
+				<c:if test="${week.key == 'sat3' }">
+				<script>
+							var aaa = "<p>토요일 ${week.value}</p>";
+								$("#section3").append(aaa);
+
+				</script>
+				
+				</c:if>
+				
+				<c:if test="${week.key == 'sun3' }">
+				<script>
+							var aaa = "<p>일요일 ${week.value}</p>";
+								$("#section3").append(aaa);
+
+				</script>
+				</c:if>
+				
+				
+				<div id ="section1" style="display: block"></div>
+				
+				<div id="section2" style="display: none"></div>
+				
+				<div id="section3" style="display: none"></div>
+
+				</c:forEach>
+
 				</div>
-				<div class="date" id="date"><h1>요일 ${day0 }</h1></div>
-				<div class="time" id="time"><h1>날짜<br>시간</h1></div>
-				<div class="add" id="add"><h1>장소<br>추가비용 : ${detail.tc_price_detail}</h1></div>
+				
+			
+		
+				<!-- <div class="time" id="time"><h1>날짜<br>시간</h1></div> -->
+				<div class="add" id="add1"><br>추가비용 : ${detail.tc_price_detail}</div>
 				<div class="tutor_t">
 				<dl class="tutor_txt">
 					<dt><div class="tutorPro"><img id="tt_img1" src="${pro0 }"></div></dt>
@@ -151,99 +379,59 @@
 		
 			<div class="star_comment">
 			<c:choose>
-			<c:when test="${1 eq avg.total_value }">
+			<c:when test="${1 eq avg2.total_value }">
 				<div class="review-scores-detail review-scores-price">
-					<label>총점&nbsp;</label> 
+					<label>총점&nbsp;</label> 					
 					<span class="star-input1">
 					<span class="input">
-					<input type="radio" name="total_value" value="1" checked id="curri1">
+					<input type="radio" value="1" checked >
 					<label for="curri1">1</label>
-					<input type="radio" name="total_value" value="2" id="curri2">
-					<label for="curri2">2</label>
-					<input type="radio" name="total_value" value="3" id="curri3">
-					<label for="curri3">3</label>
-					<input type="radio" name="total_value" value="4" id="curri4">
-					<label for="curri4">4</label>
-					<input type="radio" name="total_value" value="5" id="curri5">
-					<label for="curri5">5</label>
 					</span>
 					</span>
 				</div>
 				</c:when>
-				<c:when test="${2 eq avg.total_value }">
+				<c:when test="${2 eq avg2.total_value }">
 				<div class="review-scores-detail review-scores-price">
 					<label>총점&nbsp;</label> 
 					<span class="star-input1">
 					<span class="input">
-					<input type="radio" name="total_value" value="1" id="curri1">
-					<label for="curri1">1</label>
-					<input type="radio" name="total_value" value="2" checked id="curri2">
+					<input type="radio" value="2" checked >
 					<label for="curri2">2</label>
-					<input type="radio" name="total_value" value="3" id="curri3">
-					<label for="curri3">3</label>
-					<input type="radio" name="total_value" value="4" id="curri4">
-					<label for="curri4">4</label>
-					<input type="radio" name="total_value" value="5" id="curri5">
-					<label for="curri5">5</label>
 					</span>
 					</span>
 				</div>
 				</c:when>
 				
-				<c:when test="${3 eq avg.total_value}">
+				<c:when test="${3 eq avg2.total_value}">
 				<div class="review-scores-detail review-scores-price">
 					<label>총점&nbsp;</label> 
 					<span class="star-input1">
 					<span class="input">
-					<input type="radio" name="total_value" value="1" id="curri1">
-					<label for="curri1">1</label>
-					<input type="radio" name="total_value" value="2" id="curri2">
-					<label for="curri2">2</label>
-					<input type="radio" name="total_value" value="3" checked id="curri3">
+					<input type="radio" value="3" checked>
 					<label for="curri3">3</label>
-					<input type="radio" name="total_value" value="4" id="curri4">
-					<label for="curri4">4</label>
-					<input type="radio" name="total_value" value="5" id="curri5">
-					<label for="curri5">5</label>
 					</span>
 					</span>
 				</div>
 				</c:when>
 				
-				<c:when test="${4 eq avg.total_value}">
+				<c:when test="${4 eq avg2.total_value}">
 				<div class="review-scores-detail review-scores-price">
 					<label>총점&nbsp;</label> 
 					<span class="star-input1">
 					<span class="input">
-					<input type="radio" name="total_value" value="1" id="curri1">
-					<label for="curri1">1</label>
-					<input type="radio" name="total_value" value="2" id="curri2">
-					<label for="curri2">2</label>
-					<input type="radio" name="total_value" value="3" id="curri3">
-					<label for="curri3">3</label>
-					<input type="radio" name="total_value" value="4" checked id="curri4">
+					<input type="radio"  value="4" checked >
 					<label for="curri4">4</label>
-					<input type="radio" name="total_value" value="5" id="curri5">
-					<label for="curri5">5</label>
 					</span>
 					</span>
 				</div>
 				</c:when>
 				
-				<c:when test="${5 eq avg.total_value}">
+				<c:when test="${5 eq avg2.total_value}">
 				<div class="review-scores-detail review-scores-price">
 					<label>총점&nbsp;</label> 
 					<span class="star-input1">
 					<span class="input">
-					<input type="radio" name="total_value" value="1" id="curri1">
-					<label for="curri1">1</label>
-					<input type="radio" name="total_value" value="2" id="curri2">
-					<label for="curri2">2</label>
-					<input type="radio" name="total_value" value="3" id="curri3">
-					<label for="curri3">3</label>
-					<input type="radio" name="total_value" value="4" id="curri4">
-					<label for="curri4">4</label>
-					<input type="radio" name="total_value" value="5" checked id="curri5">
+					<input type="radio" value="5" checked>
 					<label for="curri5">5</label>
 					</span>
 					</span>
@@ -254,9 +442,11 @@
 				
 				</div>
 				
+				
 				<div class="info">
 					<ul>
-						<li class="ar"><div class="icon1"><img src="/zest/images/classDetail/icon_info01.png"></div>강남</li>							
+						<li class="ar"><div class="icon1"><img src="/zest/images/classDetail/icon_info01.png"></div>
+						<c:forEach var="zone" items="${zone }" varStatus="status">${zone.zone_name }<br></c:forEach></li>							
 						<li class="hu"><div class="icon2"><img src="/zest/images/classDetail/icon_info02.png"></div><font color="#ff005a">2</font>시간/회</li>
 						<li class="gr"><div class="icon3"><img src="/zest/images/classDetail/icon_info03.png"></div>최대인원:<font color="#ff005a">${detail.tc_max_client}</font>명</li>
 						<li class="ohu"><div class="icon4"><img src="/zest/images/classDetail/icon_info04.png"></div><font color="#ff005a">￦20,000</font>/시간</li>
@@ -312,14 +502,6 @@
 					<span class="input">
 					<input type="radio" name="total_value" value="1" checked id="curri1">
 					<label for="curri1">1</label>
-					<input type="radio" name="total_value" value="2" id="curri2">
-					<label for="curri2">2</label>
-					<input type="radio" name="total_value" value="3" id="curri3">
-					<label for="curri3">3</label>
-					<input type="radio" name="total_value" value="4" id="curri4">
-					<label for="curri4">4</label>
-					<input type="radio" name="total_value" value="5" id="curri5">
-					<label for="curri5">5</label>
 					</span>
 					</span>
 				</div>
@@ -329,16 +511,8 @@
 					<label>총점&nbsp;</label> 
 					<span class="star-input1">
 					<span class="input">
-					<input type="radio" name="total_value" value="1" id="curri1">
-					<label for="curri1">1</label>
 					<input type="radio" name="total_value" value="2" checked id="curri2">
 					<label for="curri2">2</label>
-					<input type="radio" name="total_value" value="3" id="curri3">
-					<label for="curri3">3</label>
-					<input type="radio" name="total_value" value="4" id="curri4">
-					<label for="curri4">4</label>
-					<input type="radio" name="total_value" value="5" id="curri5">
-					<label for="curri5">5</label>
 					</span>
 					</span>
 				</div>
@@ -349,16 +523,8 @@
 					<label>총점&nbsp;</label> 
 					<span class="star-input1">
 					<span class="input">
-					<input type="radio" name="total_value" value="1" id="curri1">
-					<label for="curri1">1</label>
-					<input type="radio" name="total_value" value="2" id="curri2">
-					<label for="curri2">2</label>
 					<input type="radio" name="total_value" value="3" checked id="curri3">
 					<label for="curri3">3</label>
-					<input type="radio" name="total_value" value="4" id="curri4">
-					<label for="curri4">4</label>
-					<input type="radio" name="total_value" value="5" id="curri5">
-					<label for="curri5">5</label>
 					</span>
 					</span>
 				</div>
@@ -369,16 +535,8 @@
 					<label>총점&nbsp;</label> 
 					<span class="star-input1">
 					<span class="input">
-					<input type="radio" name="total_value" value="1" id="curri1">
-					<label for="curri1">1</label>
-					<input type="radio" name="total_value" value="2" id="curri2">
-					<label for="curri2">2</label>
-					<input type="radio" name="total_value" value="3" id="curri3">
-					<label for="curri3">3</label>
 					<input type="radio" name="total_value" value="4" checked id="curri4">
 					<label for="curri4">4</label>
-					<input type="radio" name="total_value" value="5" id="curri5">
-					<label for="curri5">5</label>
 					</span>
 					</span>
 				</div>
@@ -389,14 +547,6 @@
 					<label>총점&nbsp;</label> 
 					<span class="star-input1">
 					<span class="input">
-					<input type="radio" name="total_value" value="1" id="curri1">
-					<label for="curri1">1</label>
-					<input type="radio" name="total_value" value="2" id="curri2">
-					<label for="curri2">2</label>
-					<input type="radio" name="total_value" value="3" id="curri3">
-					<label for="curri3">3</label>
-					<input type="radio" name="total_value" value="4" id="curri4">
-					<label for="curri4">4</label>
 					<input type="radio" name="total_value" value="5" checked id="curri5">
 					<label for="curri5">5</label>
 					</span>
@@ -416,14 +566,6 @@
 					<span class="input">
 					<input type="radio" name="tr_curri_value" value="1" checked id="curri1">
 					<label for="curri1">1</label>
-					<input type="radio" name="tr_curri_value" value="2" id="curri2">
-					<label for="curri2">2</label>
-					<input type="radio" name="tr_curri_value" value="3" id="curri3">
-					<label for="curri3">3</label>
-					<input type="radio" name="tr_curri_value" value="4" id="curri4">
-					<label for="curri4">4</label>
-					<input type="radio" name="tr_curri_value" value="5" id="curri5">
-					<label for="curri5">5</label>
 					</span>
 					</span>
 				</div>
@@ -434,16 +576,8 @@
 					<label>커리큘럼&nbsp;</label> 
 					<span class="star-input1">
 					<span class="input">
-					<input type="radio" name="tr_curri_value" value="1" id="curri1">
-					<label for="curri1">1</label>
 					<input type="radio" name="tr_curri_value" value="2" checked id="curri2">
 					<label for="curri2">2</label>
-					<input type="radio" name="tr_curri_value" value="3" id="curri3">
-					<label for="curri3">3</label>
-					<input type="radio" name="tr_curri_value" value="4" id="curri4">
-					<label for="curri4">4</label>
-					<input type="radio" name="tr_curri_value" value="5" id="curri5">
-					<label for="curri5">5</label>
 					</span>
 					</span>
 				</div>
@@ -454,16 +588,8 @@
 					<label>커리큘럼&nbsp;</label> 
 					<span class="star-input1">
 					<span class="input">
-					<input type="radio" name="tr_curri_value" value="1" id="curri1">
-					<label for="curri1">1</label>
-					<input type="radio" name="tr_curri_value" value="2" id="curri2">
-					<label for="curri2">2</label>
 					<input type="radio" name="tr_curri_value" value="3" checked id="curri3">
 					<label for="curri3">3</label>
-					<input type="radio" name="tr_curri_value" value="4" id="curri4">
-					<label for="curri4">4</label>
-					<input type="radio" name="tr_curri_value" value="5" id="curri5">
-					<label for="curri5">5</label>
 					</span>
 					</span>
 				</div>
@@ -474,16 +600,8 @@
 					<label>커리큘럼&nbsp;</label> 
 					<span class="star-input1">
 					<span class="input">
-					<input type="radio" name="tr_curri_value" value="1" id="curri1">
-					<label for="curri1">1</label>
-					<input type="radio" name="tr_curri_value" value="2" id="curri2">
-					<label for="curri2">2</label>
-					<input type="radio" name="tr_curri_value" value="3" id="curri3">
-					<label for="curri3">3</label>
 					<input type="radio" name="tr_curri_value" value="4" checked id="curri4">
 					<label for="curri4">4</label>
-					<input type="radio" name="tr_curri_value" value="5" id="curri5">
-					<label for="curri5">5</label>
 					</span>
 					</span>
 				</div>
@@ -494,14 +612,6 @@
 					<label>커리큘럼&nbsp;</label> 
 					<span class="star-input1">
 					<span class="input">
-					<input type="radio" name="tr_curri_value" value="1" id="curri1">
-					<label for="curri1">1</label>
-					<input type="radio" name="tr_curri_value" value="2" id="curri2">
-					<label for="curri2">2</label>
-					<input type="radio" name="tr_curri_value" value="3" id="curri3">
-					<label for="curri3">3</label>
-					<input type="radio" name="tr_curri_value" value="4" id="curri4">
-					<label for="curri4">4</label>
 					<input type="radio" name="tr_curri_value" value="5" checked id="curri5">
 					<label for="curri5">5</label>
 					</span>
@@ -518,14 +628,6 @@
 					<span class="input">
 					<input type="radio" name="tr_commu_value" value="1" checked id="delivery1">
 					<label for="delivery1">1</label>
-					<input type="radio" name="tr_commu_value" value="2" id="delivery2">
-					<label for="delivery2">2</label>
-					<input type="radio" name="tr_commu_value" value="3" id="delivery3">
-					<label for="delivery3">3</label>
-					<input type="radio" name="tr_commu_value" value="4" id="delivery4">
-					<label for="delivery4">4</label>
-					<input type="radio" name="tr_commu_value" value="5" id="delivery5">
-					<label for="delivery5">5</label>
 					</span>
 					</span>
 				</div>
@@ -536,16 +638,8 @@
 					<label>전달력&nbsp;&nbsp;&nbsp;&nbsp;</label>
 					<span class="star-input2">
 					<span class="input">
-					<input type="radio" name="tr_commu_value" value="1" id="delivery1">
-					<label for="delivery1">1</label>
 					<input type="radio" name="tr_commu_value" value="2" checked id="delivery2">
 					<label for="delivery2">2</label>
-					<input type="radio" name="tr_commu_value" value="3" id="delivery3">
-					<label for="delivery3">3</label>
-					<input type="radio" name="tr_commu_value" value="4" id="delivery4">
-					<label for="delivery4">4</label>
-					<input type="radio" name="tr_commu_value" value="5" id="delivery5">
-					<label for="delivery5">5</label>
 					</span>
 					</span>
 				</div>
@@ -556,16 +650,8 @@
 					<label>전달력&nbsp;&nbsp;&nbsp;&nbsp;</label>
 					<span class="star-input2">
 					<span class="input">
-					<input type="radio" name="tr_commu_value" value="1" id="delivery1">
-					<label for="delivery1">1</label>
-					<input type="radio" name="tr_commu_value" value="2" id="delivery2">
-					<label for="delivery2">2</label>
 					<input type="radio" name="tr_commu_value" value="3" checked id="delivery3">
 					<label for="delivery3">3</label>
-					<input type="radio" name="tr_commu_value" value="4" id="delivery4">
-					<label for="delivery4">4</label>
-					<input type="radio" name="tr_commu_value" value="5" id="delivery5">
-					<label for="delivery5">5</label>
 					</span>
 					</span>
 				</div>
@@ -576,16 +662,8 @@
 					<label>전달력&nbsp;&nbsp;&nbsp;&nbsp;</label>
 					<span class="star-input2">
 					<span class="input">
-					<input type="radio" name="tr_commu_value" value="1" id="delivery1">
-					<label for="delivery1">1</label>
-					<input type="radio" name="tr_commu_value" value="2" id="delivery2">
-					<label for="delivery2">2</label>
-					<input type="radio" name="tr_commu_value" value="3" id="delivery3">
-					<label for="delivery3">3</label>
 					<input type="radio" name="tr_commu_value" value="4" checked id="delivery4">
 					<label for="delivery4">4</label>
-					<input type="radio" name="tr_commu_value" value="5" id="delivery5">
-					<label for="delivery5">5</label>
 					</span>
 					</span>
 				</div>
@@ -596,14 +674,6 @@
 					<label>전달력&nbsp;&nbsp;&nbsp;&nbsp;</label>
 					<span class="star-input2">
 					<span class="input">
-					<input type="radio" name="tr_commu_value" value="1" id="delivery1">
-					<label for="delivery1">1</label>
-					<input type="radio" name="tr_commu_value" value="2" id="delivery2">
-					<label for="delivery2">2</label>
-					<input type="radio" name="tr_commu_value" value="3" id="delivery3">
-					<label for="delivery3">3</label>
-					<input type="radio" name="tr_commu_value" value="4" id="delivery4">
-					<label for="delivery4">4</label>
 					<input type="radio" name="tr_commu_value" value="5" checked id="delivery5">
 					<label for="delivery5">5</label>
 					</span>
@@ -620,14 +690,6 @@
 					<span class="input">
 					<input type="radio" name="tr_ready_value" value="1" checked id="prepare1">
 					<label for="prepare1">1</label>
-					<input type="radio" name="tr_ready_value" value="2" id="prepare2">
-					<label for="prepare2">2</label>
-					<input type="radio" name="tr_ready_value" value="3" id="prepare3">
-					<label for="prepare3">3</label>
-					<input type="radio" name="tr_ready_value" value="4" id="prepare4">
-					<label for="prepare4">4</label>
-					<input type="radio" name="tr_ready_value" value="5" id="prepare5">
-					<label for="prepare5">5</label>
 					</span>
 					</span>
 				</div>
@@ -638,16 +700,8 @@
 					<label>준비성&nbsp;&nbsp;&nbsp;&nbsp;</label>
 					<span class="star-input3">
 					<span class="input">
-					<input type="radio" name="tr_ready_value" value="1" id="prepare1">
-					<label for="prepare1">1</label>
 					<input type="radio" name="tr_ready_value" value="2" checked id="prepare2">
 					<label for="prepare2">2</label>
-					<input type="radio" name="tr_ready_value" value="3" id="prepare3">
-					<label for="prepare3">3</label>
-					<input type="radio" name="tr_ready_value" value="4" id="prepare4">
-					<label for="prepare4">4</label>
-					<input type="radio" name="tr_ready_value" value="5" id="prepare5">
-					<label for="prepare5">5</label>
 					</span>
 					</span>
 				</div>
@@ -658,16 +712,8 @@
 					<label>준비성&nbsp;&nbsp;&nbsp;&nbsp;</label>
 					<span class="star-input3">
 					<span class="input">
-					<input type="radio" name="tr_ready_value" value="1" id="prepare1">
-					<label for="prepare1">1</label>
-					<input type="radio" name="tr_ready_value" value="2" id="prepare2">
-					<label for="prepare2">2</label>
 					<input type="radio" name="tr_ready_value" value="3" checked id="prepare3">
 					<label for="prepare3">3</label>
-					<input type="radio" name="tr_ready_value" value="4" id="prepare4">
-					<label for="prepare4">4</label>
-					<input type="radio" name="tr_ready_value" value="5" id="prepare5">
-					<label for="prepare5">5</label>
 					</span>
 					</span>
 				</div>
@@ -678,16 +724,8 @@
 					<label>준비성&nbsp;&nbsp;&nbsp;&nbsp;</label>
 					<span class="star-input3">
 					<span class="input">
-					<input type="radio" name="tr_ready_value" value="1" id="prepare1">
-					<label for="prepare1">1</label>
-					<input type="radio" name="tr_ready_value" value="2" id="prepare2">
-					<label for="prepare2">2</label>
-					<input type="radio" name="tr_ready_value" value="3" id="prepare3">
-					<label for="prepare3">3</label>
 					<input type="radio" name="tr_ready_value" value="4" checked id="prepare4">
 					<label for="prepare4">4</label>
-					<input type="radio" name="tr_ready_value" value="5" id="prepare5">
-					<label for="prepare5">5</label>
 					</span>
 					</span>
 				</div>
@@ -698,14 +736,6 @@
 					<label>준비성&nbsp;&nbsp;&nbsp;&nbsp;</label>
 					<span class="star-input3">
 					<span class="input">
-					<input type="radio" name="tr_ready_value" value="1" id="prepare1">
-					<label for="prepare1">1</label>
-					<input type="radio" name="tr_ready_value" value="2" id="prepare2">
-					<label for="prepare2">2</label>
-					<input type="radio" name="tr_ready_value" value="3" id="prepare3">
-					<label for="prepare3">3</label>
-					<input type="radio" name="tr_ready_value" value="4" id="prepare4">
-					<label for="prepare4">4</label>
 					<input type="radio" name="tr_ready_value" value="5" checked id="prepare5">
 					<label for="prepare5">5</label>
 					</span>
@@ -722,14 +752,6 @@
 					<span class="input">
 					<input type="radio" name="tc_kind_value" value="1" checked id="kind1">
 					<label for="kind1">1</label>
-					<input type="radio" name="tc_kind_value" value="2" id="kind2">
-					<label for="kind2">2</label>
-					<input type="radio" name="tc_kind_value" value="3" id="kind3">
-					<label for="kind3">3</label>
-					<input type="radio" name="tc_kind_value" value="4" id="kind4">
-					<label for="kind4">4</label>
-					<input type="radio" name="tc_kind_value" value="5" id="kind5">
-					<label for="kind5">5</label>
 					</span>
 					</span>
 				</div>
@@ -740,16 +762,8 @@
 					<label>친절도&nbsp;&nbsp;&nbsp;&nbsp;</label>
 					<span class="star-input4">
 					<span class="input">
-					<input type="radio" name="tc_kind_value" value="1" id="kind1">
-					<label for="kind1">1</label>
 					<input type="radio" name="tc_kind_value" value="2" checked id="kind2">
 					<label for="kind2">2</label>
-					<input type="radio" name="tc_kind_value" value="3" id="kind3">
-					<label for="kind3">3</label>
-					<input type="radio" name="tc_kind_value" value="4" id="kind4">
-					<label for="kind4">4</label>
-					<input type="radio" name="tc_kind_value" value="5" id="kind5">
-					<label for="kind5">5</label>
 					</span>
 					</span>
 				</div>
@@ -760,16 +774,8 @@
 					<label>친절도&nbsp;&nbsp;&nbsp;&nbsp;</label>
 					<span class="star-input4">
 					<span class="input">
-					<input type="radio" name="tc_kind_value" value="1" id="kind1">
-					<label for="kind1">1</label>
-					<input type="radio" name="tc_kind_value" value="2" id="kind2">
-					<label for="kind2">2</label>
 					<input type="radio" name="tc_kind_value" value="3" checked id="kind3">
 					<label for="kind3">3</label>
-					<input type="radio" name="tc_kind_value" value="4" id="kind4">
-					<label for="kind4">4</label>
-					<input type="radio" name="tc_kind_value" value="5" id="kind5">
-					<label for="kind5">5</label>
 					</span>
 					</span>
 				</div>
@@ -780,16 +786,8 @@
 					<label>친절도&nbsp;&nbsp;&nbsp;&nbsp;</label>
 					<span class="star-input4">
 					<span class="input">
-					<input type="radio" name="tc_kind_value" value="1" id="kind1">
-					<label for="kind1">1</label>
-					<input type="radio" name="tc_kind_value" value="2" id="kind2">
-					<label for="kind2">2</label>
-					<input type="radio" name="tc_kind_value" value="3" id="kind3">
-					<label for="kind3">3</label>
 					<input type="radio" name="tc_kind_value" value="4" checked id="kind4">
 					<label for="kind4">4</label>
-					<input type="radio" name="tc_kind_value" value="5" id="kind5">
-					<label for="kind5">5</label>
 					</span>
 					</span>
 				</div>
@@ -800,15 +798,6 @@
 					<label>친절도&nbsp;&nbsp;&nbsp;&nbsp;</label>
 					<span class="star-input4">
 					<span class="input">
-					<input type="radio" name="tc_kind_value" value="1" id="kind1">
-					<label for="kind1">1</label>
-					<input type="radio" name="tc_kind_value" value="2" id="kind2">
-					<label for="kind2">2</label>
-					<input type="radio" name="tc_kind_value" value="3" id="kind3">
-					<label for="kind3">3</label>
-					<input type="radio" name="tc_kind_value" value="4" id="kind4">
-					<label for="kind4">4</label>
-					<input type="radio" name="tc_kind_value" value="5" checked id="kind5">
 					<label for="kind5">5</label>
 					</span>
 					</span>
@@ -825,14 +814,6 @@
 					<span class="input">
 					<input type="radio" name="tc_time_value" value="1" checked id="time1">
 					<label for="time1">1</label>
-					<input type="radio" name="tc_time_value" value="2" id="time2">
-					<label for="time2">2</label>
-					<input type="radio" name="tc_time_value" value="3" id="time3">
-					<label for="time3">3</label>
-					<input type="radio" name="tc_time_value" value="4" id="time4">
-					<label for="time4">4</label>
-					<input type="radio" name="tc_time_value" value="5" id="time5">
-					<label for="time5">5</label>
 					</span>
 					</span>
 			</div>
@@ -843,16 +824,8 @@
 					<label>시간준수&nbsp;</label>
 					<span class="star-input5">
 					<span class="input">
-					<input type="radio" name="tc_time_value" value="1" id="time1">
-					<label for="time1">1</label>
 					<input type="radio" name="tc_time_value" value="2" checked id="time2">
 					<label for="time2">2</label>
-					<input type="radio" name="tc_time_value" value="3" id="time3">
-					<label for="time3">3</label>
-					<input type="radio" name="tc_time_value" value="4" id="time4">
-					<label for="time4">4</label>
-					<input type="radio" name="tc_time_value" value="5" id="time5">
-					<label for="time5">5</label>
 					</span>
 					</span>
 			</div>
@@ -863,16 +836,8 @@
 					<label>시간준수&nbsp;</label>
 					<span class="star-input5">
 					<span class="input">
-					<input type="radio" name="tc_time_value" value="1" id="time1">
-					<label for="time1">1</label>
-					<input type="radio" name="tc_time_value" value="2" id="time2">
-					<label for="time2">2</label>
 					<input type="radio" name="tc_time_value" value="3" checked id="time3">
 					<label for="time3">3</label>
-					<input type="radio" name="tc_time_value" value="4" id="time4">
-					<label for="time4">4</label>
-					<input type="radio" name="tc_time_value" value="5" id="time5">
-					<label for="time5">5</label>
 					</span>
 					</span>
 			</div>
@@ -883,16 +848,8 @@
 					<label>시간준수&nbsp;</label>
 					<span class="star-input5">
 					<span class="input">
-					<input type="radio" name="tc_time_value" value="1" id="time1">
-					<label for="time1">1</label>
-					<input type="radio" name="tc_time_value" value="2" id="time2">
-					<label for="time2">2</label>
-					<input type="radio" name="tc_time_value" value="3" id="time3">
-					<label for="time3">3</label>
 					<input type="radio" name="tc_time_value" value="4" checked id="time4">
 					<label for="time4">4</label>
-					<input type="radio" name="tc_time_value" value="5" id="time5">
-					<label for="time5">5</label>
 					</span>
 					</span>
 			</div>
@@ -903,14 +860,6 @@
 					<label>시간준수&nbsp;</label>
 					<span class="star-input5">
 					<span class="input">
-					<input type="radio" name="tc_time_value" value="1" id="time1">
-					<label for="time1">1</label>
-					<input type="radio" name="tc_time_value" value="2" id="time2">
-					<label for="time2">2</label>
-					<input type="radio" name="tc_time_value" value="3" id="time3">
-					<label for="time3">3</label>
-					<input type="radio" name="tc_time_value" value="4" id="time4">
-					<label for="time4">4</label>
 					<input type="radio" name="tc_time_value" value="5" checked id="time5">
 					<label for="time5">5</label>
 					</span>
@@ -928,7 +877,64 @@
 			<hr>
 			<p class="name">${review.cl_name } 님</p>
 			<div class="review-content">${review.tr_content } </div>
+	
 			</c:forEach>
+			
+				<%--페이징처리--%>
+		<div>
+			<div class="row"> 
+				<div class="col-8">
+					<div class="pagePro"
+						style="text-align: center; margin: auto; display: table;">
+						<%-- pagination 사용 --%>
+						<ul class="pagination">
+
+							<%--이전버튼 --%>
+							<c:if test="${bp.isPre()}">
+								<li class="page-item">
+									<button class="page-link">
+										<a href="/zest/talent/${talent_no}?pageNum=${bp.getPage_start()-bp.p_size}">이전 </a>
+									</button>
+								</li>
+							</c:if>
+
+							<%--페이징처리 --%>
+
+							<c:forEach var="counter" begin="${bp.getPage_start()}" end="${bp.getPage_end()}">
+								<c:if test="${search_text ne ''}">
+									<li class="page-item">
+										<button class="page-link"
+											onclick="window.location='/zest/talent/${talent_no}?pageNum=${counter}'">
+											${counter}</button>
+									</li>
+								</c:if>
+
+								<c:if test="${search_text eq ''}">
+									<li class="page-item">
+										<button class="page-link"
+											onclick="window.location='/zest/talent/${talent_no}?pageNum=${counter}'">
+											${counter}</button>
+									</li>
+								</c:if>
+							</c:forEach>
+
+
+							<%--다음버튼 --%>
+							<c:if test="${bp.isNext()}">
+								<li class="page-item">
+									<button class="page-link">
+										<a href="/zest/talent/${talent_no}?pageNum=${bp.getPage_start()+bp.p_size}">다음 </a>
+									</button>
+								</li>
+							</c:if>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end Paging -->
+			
+			
 			</div>
 			</div>
 			
@@ -944,10 +950,50 @@
 				}
 			</script>
 			
+			<script>
+				/* var add1 = ${com0}
+				var add2 = "${com1}"
+				var add3 = ${com2}
+				alert(add1 + "ddddddddd");
+				
+				var mapOptions = {
+					    center: new naver.maps.LatLng(37.3595704, 127.105399),
+					    zoom: 10
+					};
+
+				var map = new naver.maps.Map('map', mapOptions);
+		         */
+				/* var myaddr = new naver.maps.LatLng(add1, add3);
+		        map.setCenter(myaddr); 
+		        
+		        // 마커 표시
+		        var marker = new naver.maps.Marker({
+		            position: myaddr,
+		            map: map
+		        });
+		        
+		        // 지도
+		        var mapDiv = document.getElementById('map');
+		        map = new naver.maps.Map(mapDiv); */ 
+
+				
+				/* var mapOptions = {
+					center: new naver.maps.LatLng(add1, add3),
+				    zoom: 10
+				};
+				
+				var map = new naver.maps.Map('map', mapOptions);  */
+				
+				
+				
+			</script>
+			 
 			<!-- 지도 -->
 			<div class="map_in" id="qna">
-			<h1>위치</h1>
-			<div class="intro5"></div>
+			<div id="map" style="width:100%;height:400px;"></div>
+			<div class="intro5">
+				
+			</div>
 		
 			</div>
 			
@@ -961,10 +1007,14 @@
 
 
 	<!-- Bootstrap core JavaScript -->
-	<script src="/zest/js/jquery.min.js"></script>
+
 	<script src="/zest/js/bootstrap.bundle.min.js"></script>
 	<script src="/zest/js/category/classDetail.js"></script>
 	<script src="/zest/js/main/mainPage.js"></script>
+	<!-- 네이버지도 혜진 -->
+	<script type="text/javascript"
+            src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=pk_psC42XxmixgAb1TmT&submodules=geocoder"></script>
+ 
 	
 
 </body>

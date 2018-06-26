@@ -25,4 +25,9 @@
               SELECT LAST_INSERT_ID()
           </selectKey>
 	</insert>
+	
+	<!-- 원데이 불러오기 -->
+	<select id="getOnedayTime" parameterType="TT_TimeVO" resultType="TT_TimeVO">
+	SELECT * FROM Talent_OneDayTime WHERE TT_OD_NO = #{tt_od_no}
+	</select>
 </mapper>

@@ -59,5 +59,86 @@
 	WHERE TALENT_NO = #{talent_no}
 	</select>
 	
+	<!-- 리뷰 카운트 -->
+	<select id="reviewCount" resultType="int">
+		SELECT COUNT(*) FROM TALENT_REVIEW WHERE TALENT_NO = #{talent_no}
+	</select>
 	
+	<!-- 리뷰내용 pageNum 만큼 가져오기 -->
+	<select id="reviewAll" resultType="ReviewVO">
+		<![CDATA[
+		SELECT * FROM (SELECT @rownum := @rownum + 1 AS rownum,
+				TALENT_NO,
+				TT_NO,
+				CL_NAME,
+				TOTAL_VALUE,
+				TR_CONTENT
+						FROM(SELECT @rownum := 0)dummy,
+							(SELECT 
+							TALENT_NO,
+							TT_NO,
+							CL_NAME,
+							TOTAL_VALUE,
+							TR_CONTENT
+							
+						FROM TALENT_REVIEW JOIN CLIENT
+							ON TALENT_REVIEW.TR_CLIENT_NO = CLIENT.CL_NO
+							ORDER BY
+							TC_REG_DATE DESC LIMIT 11111)rootMVC
+		
+							
+							WHERE (@rownum := 0) = 0)rnumMVC 
+						WHERE rownum >= #{startRow} and rownum <= #{endRow} and TALENT_NO = #{talent_no}
+			]]>
+						
+	</select>
+	
+	
+	
+	<!--  <![CDATA[
+		SELECT * FROM (SELECT @rownum := @rownum + 1 AS rownum,
+				TALENT_NO,
+				TT_NO,
+				CL_NAME,
+				TOTAL_VALUE,
+				TR_CONTENT
+						FROM(SELECT @rownum := 0)dummy,
+							(SELECT 
+							TALENT_NO,
+							TT_NO,
+							CL_NAME,
+							TOTAL_VALUE,
+							TR_CONTENT
+						FROM TALENT_REVIEW JOIN CLIENT
+							ON TALENT_REVIEW.TR_CLIENT_NO = CLIENT.CL_NO
+							WHERE TALENT_REVIEW.TALENT_NO = #{talent_no}
+							ORDER BY
+							TC_REG_DATE DESC LIMIT 11111)rootMVC
+							WHERE (@rownum := 0) = 0)rnumMVC 
+						WHERE rownum >= #{startRow} and rownum <= #{endRow}
+						]]> -->
+	
+	
+	
+	<!-- <![CDATA[
+		SELECT * FROM (SELECT @rownum := @rownum + 1 AS rownum,
+				TALENT_NO,
+				TT_NO,
+				CL_NAME,
+				TOTAL_VALUE,
+				TR_CONTENT
+						FROM(SELECT @rownum := 0)dummy,
+							(SELECT 
+							TALENT_NO,
+							TT_NO,
+							CL_NAME,
+							TOTAL_VALUE,
+							TR_CONTENT
+							FROM TALENT_REVIEW, CLIENT
+							WHERE TALENT_REVIEW.TR_CLIENT_NO = CLIENT.CL_NO and TALENT_REVIEW.TALENT_NO = #{talent_no}
+							ORDER BY
+							TC_REG_DATE DESC LIMIT 11111)rootMVC
+							WHERE (@rownum := 0) = 0)rnumMVC
+						WHERE rownum >= #{startRow} and rownum <= #{endRow}
+			]]> -->
 </mapper>

@@ -19,4 +19,10 @@
               SELECT LAST_INSERT_ID()
           </selectKey>
 	</insert>
+	
+	<!-- 원데이 아닌것 불러오기 -->
+	<select id="getnotOndayTime" parameterType="TT_notTimeVO" resultType="TT_notTimeVO">
+	SELECT * FROM Talent_notOneDayTime WHERE TT_NOD_NO = #{tt_nod_no}
+	
+	</select>
 </mapper>

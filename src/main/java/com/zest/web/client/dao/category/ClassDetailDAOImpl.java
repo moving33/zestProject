@@ -9,8 +9,10 @@ import org.springframework.stereotype.Repository;
 import com.zest.web.client.model.ClassDetailVO;
 import com.zest.web.client.model.ClassDetail_TutorVO;
 import com.zest.web.client.model.ReviewVO;
+import com.zest.web.client.model.TalentOneDayTimeVO;
 import com.zest.web.client.model.TalentVO;
 import com.zest.web.client.model.Talent_info;
+import com.zest.web.client.model.Talent_notOneDayTime;
 
 
 
@@ -33,7 +35,6 @@ public class ClassDetailDAOImpl implements ClassDetailDAO {
 	@Override
 	public ClassDetailVO contentCall(Integer talent_no) {
 		ClassDetailVO vo = sqlSession.selectOne("com.zest.classDetail.ContentClass", talent_no);
-		System.out.println("DAO Impl" + vo.toString());
 		return vo;
 	}
 	
@@ -72,10 +73,35 @@ public class ClassDetailDAOImpl implements ClassDetailDAO {
 		return vo;
 	}
 	
+
+	@Override
+	public Talent_notOneDayTime getTalent_notOneDayTime(Talent_notOneDayTime vo) {
+		return sqlSession.selectOne("com.zest.talent_NotOneDay.getnotOndayTime",vo);
+	}
 	
 
 	
+	@Override
+	public TalentOneDayTimeVO getTalent_OnedayTime(TalentOneDayTimeVO vo) {
+		return sqlSession.selectOne("com.zest.talent_OneDay.getOnedayTime", vo);
+	}
 	
+	
+	
+	
+
+	@Override
+	public Integer getReviewCount(Integer talent_no) {
+		return sqlSession.selectOne("com.zest.classDetail.reviewCount", talent_no);
+	}
+
+	@Override
+	public List<ReviewVO> getReviewList(Object obj) {
+		List<ReviewVO> vo = sqlSession.selectList("com.zest.classDetail.reviewAll", obj);
+		System.out.println("리뷰리스트불러오기 :" + vo.toString());
+		return vo;
+	}
+
 	
 	public SqlSessionTemplate getSqlSession() {
 		return sqlSession;

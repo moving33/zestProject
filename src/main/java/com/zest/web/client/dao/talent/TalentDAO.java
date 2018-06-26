@@ -22,4 +22,7 @@ public interface TalentDAO {
 	
 	//원데이 항목 등록
 	int insertOneDayTime(TalentOneDayTimeVO vo);
+	
+	//원데이 아닌시간 가져오기
+	Talent_notOneDayTime getTalent_notOneDayTime(Talent_notOneDayTime vo);
 }

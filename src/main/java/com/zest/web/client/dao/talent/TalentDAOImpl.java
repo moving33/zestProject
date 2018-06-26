@@ -44,6 +44,13 @@ public class TalentDAOImpl implements TalentDAO {
 		session.insert("com.zest.talent_OneDay.insertOneDayTime",vo);
 		return vo.getTt_od_no();
 	}
+
+	@Override
+	public Talent_notOneDayTime getTalent_notOneDayTime(Talent_notOneDayTime vo) {
+		return session.selectOne("com.zest.talent_NotOneDay.getnotOndayTime",vo);
+	}
+	
+	
 	
 	
 	

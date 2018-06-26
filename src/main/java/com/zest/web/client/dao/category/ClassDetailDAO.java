@@ -5,10 +5,10 @@ import java.util.List;
 import com.zest.web.client.model.ClassDetailVO;
 import com.zest.web.client.model.ClassDetail_TutorVO;
 import com.zest.web.client.model.ReviewVO;
-import com.zest.web.client.model.TalentInfo;
+import com.zest.web.client.model.TalentOneDayTimeVO;
 import com.zest.web.client.model.TalentVO;
-import com.zest.web.client.model.Talent_contentVO;
 import com.zest.web.client.model.Talent_info;
+import com.zest.web.client.model.Talent_notOneDayTime;
 
 public interface ClassDetailDAO {
 
@@ -27,4 +27,14 @@ public interface ClassDetailDAO {
 	
 	//ZONE & DAY 불러오기 (TALENT_INFO)
 	List<Talent_info> zoneDayCall(Integer talent_no);
+	//원데이 아닌시간 가져오기
+	Talent_notOneDayTime getTalent_notOneDayTime(Talent_notOneDayTime vo);
+	//원데이 시간 가져오기
+	TalentOneDayTimeVO getTalent_OnedayTime(TalentOneDayTimeVO vo);
+	
+	
+	//리뷰 카운트
+	Integer getReviewCount(Integer talent_no);
+	//리뷰 리스트 불러오기
+	List<ReviewVO> getReviewList(Object obj);
 }

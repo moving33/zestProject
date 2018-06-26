@@ -9,8 +9,10 @@ import com.zest.web.client.dao.category.ClassDetailDAO;
 import com.zest.web.client.model.ClassDetailVO;
 import com.zest.web.client.model.ClassDetail_TutorVO;
 import com.zest.web.client.model.ReviewVO;
+import com.zest.web.client.model.TalentOneDayTimeVO;
 import com.zest.web.client.model.TalentVO;
 import com.zest.web.client.model.Talent_info;
+import com.zest.web.client.model.Talent_notOneDayTime;
 
 
 
@@ -65,6 +67,31 @@ public class ClassDetailServiceImpl implements ClassDetailService {
 	}
 	
 	
+	//not원데이 객체 불러오기
+	@Override
+	public Talent_notOneDayTime getTalent_notOneDayTime(Talent_notOneDayTime vo) {
+		return dao.getTalent_notOneDayTime(vo);
+	}
+	
+	
+	//원데이 객체 불러오기
+	@Override
+	public TalentOneDayTimeVO getTalent_OnedayTime(TalentOneDayTimeVO vo) {
+		return dao.getTalent_OnedayTime(vo);
+	}
+	
+	
+	
+
+	@Override
+	public Integer getReviewCount(Integer talent_no) {
+		return dao.getReviewCount(talent_no);
+	}
+
+	@Override
+	public List<ReviewVO> getReviewList(Object obj) {
+		return dao.getReviewList(obj);
+	}
 
 	public ClassDetailDAO getDao() {
 		return dao;
