@@ -19,7 +19,7 @@ $(document).ready(function(){
          if(data == 1){
             var listHtml = "<ul class='navbar-nav ml-auto'>" +
 			"<li class='nav-item activej'>"+
-			"<a class='nav-linkj logo'id='service' href='#'><b>서비스소개</b>" +
+			"<a class='nav-linkj logo'id='service' href='/zest/notice/list'><b>공지사항</b>" +
 			"<span class='sr-only'>(current)</span></a></li>" +
 			"<li class='nav-item'>"+
 			"<a class='nav-linkj' id='insert' href='#' style='font-size: 20px;'><b>튜터 등록</b></a></li>" +

@@ -14,12 +14,12 @@
 <title>$Title$</title>
 
 <!-- 세션 검사 -->
-
+<link rel="stylesheet" href="/zest/css/style.css" type="text/css">
 <link href="/zest/css/admin/zest_admin.css" rel="stylesheet">
 <link href="/zest/css/bootstrap.css" rel="stylesheet">
 
 </head>
-<body class="fix-header fix-sidebar">
+<body class="fix-header fix-sidebar" style="font-size:18px;">
 	<%--전체--%>
 	<div id="main-wrapper">
 		<%--Header header--%>
@@ -65,7 +65,22 @@
 								<li><a href="#">Blank</a></li>
 								<li><a href="#">Blank</a></li>
 							</ul></li>
-						<li></li>
+						<li>
+							<a href="/zest/admin/notice/noticeList"> <span
+								class="">공지사항</span>
+							</a>
+						</li>
+						<li>
+							<a href="#statistics" aria-expanded="true"
+								aria-controls="statistics" data-toggle="collapse">
+							 	<span class="">통계</span>
+							</a>
+							<ul class="collapse" id="statistics">
+								<li><a href="/zest/admin/statistics">카테고리별 누적 인원 수</a></li>
+								<li><a href="/zest/admin/statisticsCate">카테고리별 활동 수</a></li>
+								<li><a href="#">Blank</a></li>
+							</ul>
+						</li>
 					</nav>
 				</div>
 			</div>
@@ -76,7 +91,7 @@
 			<div class="row page-titles" style="margin: 0">
 				<div class="col-md-5 align-self-center">
 					<%--타이틀이 들어가는 영역--%>
-					<h3 class="text-primary">TITLE</h3>
+					<h3 class="text-primary" style="color:#000000 !important;">TITLE</h3>
 				</div>
 			</div>
 

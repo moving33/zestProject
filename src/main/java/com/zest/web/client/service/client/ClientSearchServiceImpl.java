@@ -39,6 +39,11 @@ public class ClientSearchServiceImpl implements ClientSearchService {
 	public void setClientDAO(ClientDAO clientDAO) {
 		this.clientDAO = clientDAO;
 	}
+
+	@Override
+	public ClientVO getClientForId(ClientVO clientVO) {
+		return clientDAO.getClientForId(clientVO);
+	}
 	
 	
 

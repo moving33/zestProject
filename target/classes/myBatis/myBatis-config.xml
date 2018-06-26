@@ -4,7 +4,10 @@
 <configuration>
 
 	<typeAliases>
-
+		<typeAlias type="com.zest.web.admin.model.StatisticsVO"
+			alias="StatisticsVO" />
+		<typeAlias type="com.zest.web.notice.model.NoticeVO"
+			alias="NoticeVO" />
 		<typeAlias type="com.zest.web.client.model.LectureVO"
 			alias="lectureVO" />
 		<typeAlias type="com.zest.web.client.model.CategoryVO"
@@ -85,7 +88,11 @@
 		<mapper resource="myBatis/category/classDetail-sqlMapping.xml" />
 		<!-- 리뷰 -->
 		<mapper resource="myBatis/client/review-sqlMapping.xml" />
-		
+		<!-- 공지사항 -->
+		<mapper resource="myBatis/notice/notice-sqlMapping.xml" />
+		<!-- 통계 -->
+		<mapper resource="myBatis/statistics/statistics-sqlMapping.xml" />
+				
 	</mappers>
 	
 	

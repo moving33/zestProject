@@ -13,12 +13,12 @@
 <head>
 <title>$Title$</title>
 
-
+<link rel="stylesheet" href="/zest/css/style.css" type="text/css">
 <link href="/zest/css/admin/zest_admin.css" rel="stylesheet">
 <link href="/zest/css/bootstrap.css" rel="stylesheet">
 
 </head>
-<body class="fix-header fix-sidebar">
+<body class="fix-header fix-sidebar" style="font-size:18px;">
 	<%--전체--%>
 	<div id="main-wrapper">
 		<%--Header header--%>
@@ -32,33 +32,9 @@
 						<a></a>
 					</div>
 					<%--로그 오른쪽부분 --%>
-					<div class="navbar-collapse">
-						<%--toggle and nav items--%>
-						<ul class="navbar-nav mr-auto mt-md-2" style="display: block;">
-							<%--로그인창--%>
-							<li class="nav-item m-1 float-left">
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text labelLogin" id="adminSpan1">ID</span>
-									</div>
-									<input type="text" class="form-control" placeholder="Admin ID"
-										aria-label="Admin ID" aria-describedby="basic-addon1">
-								</div>
-							</li>
-							<li class="nav-item m-1 float-left">
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text labelLogin" id="adminSpan2">PASSWORD</span>
-									</div>
-									<input type="password" class="form-control"
-										placeholder="password" aria-label="Admin Password"
-										aria-describedby="basic-addon1">
-								</div>
-
-							</li>
-
-
-						</ul>
+					<div class="navbar-collapse" style="font-size: 18px;">
+						관리자 <b style="color: #ff7200;">${admin.name}</b>님 환영합니다.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="logout" style="float: right;">로그아웃</a>
 					</div>
 				</nav>
 			</div>
@@ -87,7 +63,22 @@
 								<li><a href="#">Blank</a></li>
 								<li><a href="#">Blank</a></li>
 							</ul></li>
-						<li></li>
+						<li>
+							<a href="/zest/admin/notice/noticeList"> <span
+								class="">공지사항</span>
+							</a>
+						</li>
+						<li>
+							<a href="#statistics" aria-expanded="true"
+								aria-controls="statistics" data-toggle="collapse">
+							 	<span class="">통계</span>
+							</a>
+							<ul class="collapse" id="statistics">
+								<li><a href="/zest/admin/statistics">카테고리별 누적 인원 수</a></li>
+								<li><a href="/zest/admin/statisticsCate">카테고리별 활동 수</a></li>
+								<li><a href="#">Blank</a></li>
+							</ul>
+						</li>
 					</nav>
 				</div>
 			</div>
@@ -98,7 +89,7 @@
 			<div class="row page-titles" style="margin: 0">
 				<div class="col-md-5 align-self-center">
 					<%--타이틀이 들어가는 영역--%>
-					<h3 class="text-primary">Tutor Manager</h3>
+					<h3 class="text-primary" style="color:#000000 !important;">Tutor Manager</h3>
 				</div>
 			</div>
 
@@ -321,6 +312,7 @@
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 		<script src="/zest/js/jquery.min.js"></script>
 		<script src="/zest/js/bootstrap.bundle.min.js"></script>

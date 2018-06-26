@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zest.statistics">
+	
+	<!-- 통계 - 카테고리별 누적 인원 수 -->
+	<select id="getCount" resultType="int">
+		SELECT SUM(TALENT_ACC_CLIENT) FROM TALENT
+		WHERE TALENT_CATEGORY_ID = #{talent_category_id};
+	</select>
+	
+	<!-- 통계 - 카테고리별 활동 수 -->
+	<select id="getCateCount" resultType="int">
+		SELECT COUNT(TALENT_NO) FROM TALENT
+		WHERE TALENT_CATEGORY_ID = #{talent_category_id};
+	</select>
+
+</mapper>

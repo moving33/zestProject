@@ -9,6 +9,11 @@
  	 SELECT * FROM CLIENT WHERE CL_EMAIL = #{cl_email}   
  	</select>
  	
+ 	<!-- client 조회[NO key 값으로] -->
+ 	<select id="getClientForId" parameterType="ClientVO" resultType="ClientVO">
+ 	 SELECT * FROM CLIENT WHERE CL_NO = #{cl_no}   
+ 	</select>
+ 	
  	<!-- client 가입 -->
  	<insert id="insertClient" parameterType="ClientVO">
  	 INSERT INTO CLIENT(CL_NAME, CL_EMAIL, CL_PASS) VALUES (#{cl_name} ,#{cl_email}, #{cl_pass});

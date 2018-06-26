@@ -12,4 +12,7 @@ public interface ClientSearchService {
 	//회원 리스트로 검색 서비스
 	List<ClientVO> getClientList(ClientVO clientVO);
 	
+	//id값으로 조회 
+	ClientVO getClientForId(ClientVO clientVO);
+	
 }

@@ -18,4 +18,7 @@ public interface ClientDAO {
 	void updateLastLogin(ClientVO clientVO);
 	//회원수정
 	void modifyClient(ClientVO clientVO);
+	//no값으로 조회
+	ClientVO getClientForId(ClientVO clientVO);
+	
 }
